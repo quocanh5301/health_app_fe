@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:health_app_flutter/data/local_database/databases/user.dart';
-import 'package:health_app_flutter/feature/base/bloc/base_bloc.dart';
+import 'package:health_app_flutter/feature/base/bloc/base_cubit.dart';
 import 'package:health_app_flutter/feature/run_tracking/bloc/run_tracking_cubit.dart';
 import 'package:health_app_flutter/util/app_state/bloc/app_cubit.dart';
 import 'package:health_app_flutter/util/app_state/provider/app_provider.dart';

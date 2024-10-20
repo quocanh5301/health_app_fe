@@ -1,15 +1,16 @@
 import 'package:health_app_flutter/data/local_database/local_database.dart';
+import 'package:health_app_flutter/data/model/run_data.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class RunDatabase<RunData> implements IDatabase<RunData> {
+class RunDatabase implements IDatabase<RunData> {
   static final RunDatabase _instance = RunDatabase._internal();
   static Database? _database;
 
   RunDatabase._internal();
 
   factory RunDatabase() {
-    return _instance as RunDatabase<RunData>;
+    return _instance;
   }
 
   Future<Database> get database async {

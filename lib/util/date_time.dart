@@ -6,6 +6,7 @@ class DateTimeHelper {
   static const String dateFormat1 = "yyyy-MM-dd HH:mm:ss";
   static const String dateFormat2 = "yyyy-MM-dd";
   static const String dateFormat3 = "HH:mm dd/MM/yyyy";
+  static const String dateFormat4 = "dd/MM/yyyy HH:mm:ss";
 
   static String formatToHHMM(String dateTime, String dateFormat) {
     if (dateTime == '') {
@@ -27,11 +28,14 @@ class DateTimeHelper {
     return "$hour:$minute";
   }
 
+  static DateTime stringToDatetimeFormat4(String datetimeString) =>
+      DateFormat(dateFormat4).parse(datetimeString);
+
+  static String dateTimeToStringFormat4(DateTime date) =>
+      "${date.day}/${date.month}/${date.year} ${date.hour}:${date.minute}:${date.second}";
+
   static String dateTimeToYMD(DateTime date) =>
       "${date.year}-${date.month}-${date.day}";
-
-  static String dateTimeToDMYhhMMss(DateTime date) =>
-      "${date.day}/${date.month}/${date.year} ${date.hour}:${date.minute}:${date.second}";
 
   static String getTimeAgo({
     required String dateFormat,
