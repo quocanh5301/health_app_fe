@@ -29,8 +29,12 @@ class _SlideToConfirmState extends State<SlideToConfirm> {
           widget.onConfirm(); // Trigger the callback function
         }
         // Reset the position after completion
-        setState(() {
-          _dragPosition = 0.0;
+        Future.delayed(const Duration(seconds: 1), () {
+          if (mounted) {
+            setState(() {
+              _dragPosition = 0.0;
+            });
+          }
         });
       },
       child: Stack(

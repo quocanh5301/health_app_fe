@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:health_app_flutter/data/model/alarm_model.dart';
 
-part 'alarm_model.freezed.dart';
-part 'alarm_model.g.dart';
+part 'alarm_edit_state.freezed.dart';
 
 @freezed
-class AlarmModel with _$AlarmModel {
-  const factory AlarmModel({
+class AlarmEditState with _$AlarmEditState {
+  factory AlarmEditState({
     @Default(0) int id,
     @Default("") String title,
     @Default("") String note,
@@ -16,11 +16,7 @@ class AlarmModel with _$AlarmModel {
     @Default(true) bool vibrate,
     @Default("assets/audio_nature_sounds.mp3") String audio,
     @Default(RepeatOption.once) RepeatOption repeatOption,
-    @Default([]) List<int> customDays, // 1 means Monday, 6 means Saturday, 7 means Sunday
-  }) = _AlarmModel;
-
-  factory AlarmModel.fromJson(Map<String, dynamic> json) =>
-      _$AlarmModelFromJson(json);
+    @Default([]) List<int> customDays,
+    @Default("") String mess,
+  }) = _AlarmEditState;
 }
-
-enum RepeatOption { daily, monFri, once, custom }

@@ -1,20 +1,20 @@
-import 'package:alarm/model/alarm_settings.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:health_app_flutter/data/model/alarm_model.dart';
 
 part 'alarm_state.freezed.dart';
 
 @freezed
 class AlarmState with _$AlarmState {
   const factory AlarmState({
-    @Default([]) List<AlarmSettings> alarms,
+    @Default([]) List<AlarmModel> alarms,
     @Default("") String mess,
-    @Default(SetAlarmStatus.initial) SetAlarmStatus setAlarmStatus,
     @Default(GetAlarmStatus.initial) GetAlarmStatus getAlarmStatus,
     @Default(DeleteAlarmStatus.initial) DeleteAlarmStatus deleteAlarmStatus,
-  }) = _AlarmStatee;
+    @Default(SetAlarmStatus.initial) SetAlarmStatus setAlarmStatus,
+  }) = _AlarmState;
 }
 
-enum SetAlarmStatus { initial, editting, finish, error }
+enum SetAlarmStatus { initial, setting, finish, error }
 
 enum GetAlarmStatus { initial, getting, finish, error }
 

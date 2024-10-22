@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:health_app_flutter/data/local_database/databases/alarm.dart';
 import 'package:health_app_flutter/data/model/alarm_model.dart';
@@ -9,14 +11,15 @@ class AlarmService {
   final AlarmScheduler _alarmScheduler = AlarmScheduler();
 
   Future<AlarmModel> getAlarmById(int id) async {
-    return await _alarmDatabase.getById(id) ?? AlarmModel();
+    return await _alarmDatabase.getById(id) ?? const AlarmModel();
   }
 
   Future<List<AlarmModel>> getAllAlarm() async {
+    // await _alarmDatabase.dropTable();
     return await _alarmDatabase.getAll();
   }
 
-  Future<bool> setAlarm(AlarmModel alarm) async {
+  Future<bool> toggleAlarm(AlarmModel alarm) async {
     // Parse dateTime into DateTime object
     DateTime alarmTime;
     try {
@@ -28,8 +31,10 @@ class AlarmService {
 
     // Adjust time if it's already passed
     DateTime finalAlarmTime = alarmTime;
-    if (DateTime.now().isAfter(alarmTime) ||
-        !alarm.customDays.contains(finalAlarmTime.weekday)) {
+    if ((DateTime.now().isAfter(alarmTime) &&
+            DateTime.now().weekday == alarmTime.weekday) ||
+        (!alarm.customDays.contains(finalAlarmTime.weekday) &&
+            alarm.repeatOption == RepeatOption.custom)) {
       finalAlarmTime = _alarmScheduler.scheduleForNextTime(
         alarmTime,
         alarm.repeatOption,
@@ -39,11 +44,108 @@ class AlarmService {
 
     alarm = alarm.copyWith(
       dateTime: DateTimeHelper.dateTimeToStringFormat4(finalAlarmTime),
+      isActive: !alarm.isActive,
     );
 
-    if (await _alarmScheduler.scheduleAlarm(alarm)) {
-      if (await _alarmDatabase.insert(alarm) != 0) {
-        // Save alarm to the database
+    if (alarm.isActive) {
+      if (await _alarmScheduler.scheduleAlarm(alarm)) {
+        return await _alarmDatabase.update(alarm) > 0;
+      } else {
+        return false;
+      }
+    } else {
+      if (await _alarmScheduler.cancelAlarm(alarm.id)) {
+        return await _alarmDatabase.update(alarm) > 0;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  Future<bool> cancelAlarm(int id) async {
+    debugPrint("qa alarm_service: cancelAlarm $id");
+    return await _alarmScheduler.cancelAlarm(id);
+  }
+
+  Future<bool> deleteAlarm(int id) async {
+    if (await _alarmScheduler.cancelAlarm(id)) {
+      return await _alarmDatabase.delete(id.toString()) > 0;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> checkIfAlarmExists(int id) async =>
+      await _alarmDatabase.alarmExists(id);
+
+  Future<bool> updateAlarm(AlarmModel alarm) async {
+    // Parse dateTime into DateTime object
+    DateTime alarmTime;
+    try {
+      alarmTime = DateTimeHelper.stringToDatetimeFormat4(alarm.dateTime);
+    } catch (e) {
+      debugPrint("qa alarm_service error: alarmTime format error $e");
+      return false;
+    }
+
+    // Adjust time if it's already passed
+    DateTime finalAlarmTime = alarmTime;
+    if ((DateTime.now().isAfter(alarmTime) &&
+            DateTime.now().weekday == alarmTime.weekday) ||
+        (!alarm.customDays.contains(finalAlarmTime.weekday) &&
+            alarm.repeatOption == RepeatOption.custom)) {
+      finalAlarmTime = _alarmScheduler.scheduleForNextTime(
+        alarmTime,
+        alarm.repeatOption,
+        alarm.customDays,
+      );
+      debugPrint("qa alarm_service: finalAlarmTime $finalAlarmTime");
+    }
+
+    alarm = alarm.copyWith(
+      dateTime: DateTimeHelper.dateTimeToStringFormat4(finalAlarmTime),
+    );
+
+    if (alarm.isActive) {
+      await _alarmScheduler.scheduleAlarm(alarm);
+    } else {
+      await _alarmScheduler.cancelAlarm(alarm.id);
+    }
+
+    return await _alarmDatabase.update(alarm) > 0;
+  }
+
+  Future<bool> insertAlarm(AlarmModel alarm) async {
+    // Parse dateTime into DateTime object
+    DateTime alarmTime;
+    try {
+      alarmTime = DateTimeHelper.stringToDatetimeFormat4(alarm.dateTime);
+    } catch (e) {
+      debugPrint("qa alarm_service error: alarmTime format error $e");
+      return false;
+    }
+
+    // Adjust time if it's already passed
+    DateTime finalAlarmTime = alarmTime;
+    if ((DateTime.now().isAfter(alarmTime) &&
+            DateTime.now().weekday == alarmTime.weekday) ||
+        (!alarm.customDays.contains(finalAlarmTime.weekday) &&
+            alarm.repeatOption == RepeatOption.custom)) {
+      finalAlarmTime = _alarmScheduler.scheduleForNextTime(
+        alarmTime,
+        alarm.repeatOption,
+        alarm.customDays,
+      );
+    }
+    debugPrint("qa alarm_service: finalAlarmTime $finalAlarmTime");
+
+    alarm = alarm.copyWith(
+      dateTime: DateTimeHelper.dateTimeToStringFormat4(finalAlarmTime),
+    );
+
+    int id = await _alarmDatabase.insert(alarm);
+    if (id != 0) {
+      if (await _alarmScheduler.scheduleAlarm(alarm.copyWith(id: id))) {
         return true;
       } else {
         await _alarmScheduler.cancelAlarm(alarm.id);
@@ -53,33 +155,4 @@ class AlarmService {
       return false;
     }
   }
-
-  Future<bool> toggleAlarm(AlarmModel alarm) async {
-    if (alarm.isActive) {
-      if (await _alarmScheduler.cancelAlarm(alarm.id)) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      if (await setAlarm(alarm)) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  }
-
-  Future<bool> cancelAlarm(int id) async {
-    return await _alarmScheduler.cancelAlarm(id);
-  }
-
-  Future<void> deleteAlarm(int id) async {
-    if (await _alarmScheduler.cancelAlarm(id)) {
-      await _alarmDatabase.delete(id.toString());
-    }
-  }
-
-  Future<bool> checkIfAlarmExists(int id) async =>
-      await _alarmDatabase.alarmExists(id);
 }

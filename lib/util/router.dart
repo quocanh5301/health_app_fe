@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:health_app_flutter/data/share_pref/shared_pref.dart';
+import 'package:health_app_flutter/feature/alarm/alarm_list_screen.dart';
 import 'package:health_app_flutter/feature/first_intro/first_intro.dart';
 import 'package:health_app_flutter/feature/base/base_screen.dart';
 import 'package:health_app_flutter/feature/login/log_in_screen.dart';
@@ -15,6 +16,7 @@ final router = GoRouter(
   initialLocation: SharedPref.getIsFirstTime()
       // ? const FirstTimeIntroRoute().location
       ?const BaseRoute().location
+      // ? const AlarmListgRoute().location
       : SharedPref.getApiToken().isEmpty
           ? const LoginRoute().location
           : const BaseRoute().location,
@@ -56,9 +58,19 @@ class RunTrackingRoute extends GoRouteData {
       const RunTrackingScreen();
 }
 
+@TypedGoRoute<AlarmListgRoute>(path: Routes.alarmList)
+class AlarmListgRoute extends GoRouteData {
+  const AlarmListgRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AlarmListScreen();
+}
+
 class Routes {
   static const String firstTimeIntro = '/first_time_intro';
   static const String login = '/login';
   static const String base = '/base';
   static const String runTracking = '/run_tracking';
+  static const String alarmList = '/alarm_list';
 }

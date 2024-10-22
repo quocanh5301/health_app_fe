@@ -16,11 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AlarmState {
-  List<AlarmSettings> get alarms => throw _privateConstructorUsedError;
+  List<AlarmModel> get alarms => throw _privateConstructorUsedError;
   String get mess => throw _privateConstructorUsedError;
-  SetAlarmStatus get setAlarmStatus => throw _privateConstructorUsedError;
   GetAlarmStatus get getAlarmStatus => throw _privateConstructorUsedError;
   DeleteAlarmStatus get deleteAlarmStatus => throw _privateConstructorUsedError;
+  SetAlarmStatus get setAlarmStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AlarmStateCopyWith<AlarmState> get copyWith =>
@@ -34,11 +34,11 @@ abstract class $AlarmStateCopyWith<$Res> {
       _$AlarmStateCopyWithImpl<$Res, AlarmState>;
   @useResult
   $Res call(
-      {List<AlarmSettings> alarms,
+      {List<AlarmModel> alarms,
       String mess,
-      SetAlarmStatus setAlarmStatus,
       GetAlarmStatus getAlarmStatus,
-      DeleteAlarmStatus deleteAlarmStatus});
+      DeleteAlarmStatus deleteAlarmStatus,
+      SetAlarmStatus setAlarmStatus});
 }
 
 /// @nodoc
@@ -56,23 +56,19 @@ class _$AlarmStateCopyWithImpl<$Res, $Val extends AlarmState>
   $Res call({
     Object? alarms = null,
     Object? mess = null,
-    Object? setAlarmStatus = null,
     Object? getAlarmStatus = null,
     Object? deleteAlarmStatus = null,
+    Object? setAlarmStatus = null,
   }) {
     return _then(_value.copyWith(
       alarms: null == alarms
           ? _value.alarms
           : alarms // ignore: cast_nullable_to_non_nullable
-              as List<AlarmSettings>,
+              as List<AlarmModel>,
       mess: null == mess
           ? _value.mess
           : mess // ignore: cast_nullable_to_non_nullable
               as String,
-      setAlarmStatus: null == setAlarmStatus
-          ? _value.setAlarmStatus
-          : setAlarmStatus // ignore: cast_nullable_to_non_nullable
-              as SetAlarmStatus,
       getAlarmStatus: null == getAlarmStatus
           ? _value.getAlarmStatus
           : getAlarmStatus // ignore: cast_nullable_to_non_nullable
@@ -81,32 +77,36 @@ class _$AlarmStateCopyWithImpl<$Res, $Val extends AlarmState>
           ? _value.deleteAlarmStatus
           : deleteAlarmStatus // ignore: cast_nullable_to_non_nullable
               as DeleteAlarmStatus,
+      setAlarmStatus: null == setAlarmStatus
+          ? _value.setAlarmStatus
+          : setAlarmStatus // ignore: cast_nullable_to_non_nullable
+              as SetAlarmStatus,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$AlarmStateeImplCopyWith<$Res>
+abstract class _$$AlarmStateImplCopyWith<$Res>
     implements $AlarmStateCopyWith<$Res> {
-  factory _$$AlarmStateeImplCopyWith(
-          _$AlarmStateeImpl value, $Res Function(_$AlarmStateeImpl) then) =
-      __$$AlarmStateeImplCopyWithImpl<$Res>;
+  factory _$$AlarmStateImplCopyWith(
+          _$AlarmStateImpl value, $Res Function(_$AlarmStateImpl) then) =
+      __$$AlarmStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {List<AlarmSettings> alarms,
+      {List<AlarmModel> alarms,
       String mess,
-      SetAlarmStatus setAlarmStatus,
       GetAlarmStatus getAlarmStatus,
-      DeleteAlarmStatus deleteAlarmStatus});
+      DeleteAlarmStatus deleteAlarmStatus,
+      SetAlarmStatus setAlarmStatus});
 }
 
 /// @nodoc
-class __$$AlarmStateeImplCopyWithImpl<$Res>
-    extends _$AlarmStateCopyWithImpl<$Res, _$AlarmStateeImpl>
-    implements _$$AlarmStateeImplCopyWith<$Res> {
-  __$$AlarmStateeImplCopyWithImpl(
-      _$AlarmStateeImpl _value, $Res Function(_$AlarmStateeImpl) _then)
+class __$$AlarmStateImplCopyWithImpl<$Res>
+    extends _$AlarmStateCopyWithImpl<$Res, _$AlarmStateImpl>
+    implements _$$AlarmStateImplCopyWith<$Res> {
+  __$$AlarmStateImplCopyWithImpl(
+      _$AlarmStateImpl _value, $Res Function(_$AlarmStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -114,23 +114,19 @@ class __$$AlarmStateeImplCopyWithImpl<$Res>
   $Res call({
     Object? alarms = null,
     Object? mess = null,
-    Object? setAlarmStatus = null,
     Object? getAlarmStatus = null,
     Object? deleteAlarmStatus = null,
+    Object? setAlarmStatus = null,
   }) {
-    return _then(_$AlarmStateeImpl(
+    return _then(_$AlarmStateImpl(
       alarms: null == alarms
           ? _value._alarms
           : alarms // ignore: cast_nullable_to_non_nullable
-              as List<AlarmSettings>,
+              as List<AlarmModel>,
       mess: null == mess
           ? _value.mess
           : mess // ignore: cast_nullable_to_non_nullable
               as String,
-      setAlarmStatus: null == setAlarmStatus
-          ? _value.setAlarmStatus
-          : setAlarmStatus // ignore: cast_nullable_to_non_nullable
-              as SetAlarmStatus,
       getAlarmStatus: null == getAlarmStatus
           ? _value.getAlarmStatus
           : getAlarmStatus // ignore: cast_nullable_to_non_nullable
@@ -139,25 +135,29 @@ class __$$AlarmStateeImplCopyWithImpl<$Res>
           ? _value.deleteAlarmStatus
           : deleteAlarmStatus // ignore: cast_nullable_to_non_nullable
               as DeleteAlarmStatus,
+      setAlarmStatus: null == setAlarmStatus
+          ? _value.setAlarmStatus
+          : setAlarmStatus // ignore: cast_nullable_to_non_nullable
+              as SetAlarmStatus,
     ));
   }
 }
 
 /// @nodoc
 
-class _$AlarmStateeImpl implements _AlarmStatee {
-  const _$AlarmStateeImpl(
-      {final List<AlarmSettings> alarms = const [],
+class _$AlarmStateImpl implements _AlarmState {
+  const _$AlarmStateImpl(
+      {final List<AlarmModel> alarms = const [],
       this.mess = "",
-      this.setAlarmStatus = SetAlarmStatus.initial,
       this.getAlarmStatus = GetAlarmStatus.initial,
-      this.deleteAlarmStatus = DeleteAlarmStatus.initial})
+      this.deleteAlarmStatus = DeleteAlarmStatus.initial,
+      this.setAlarmStatus = SetAlarmStatus.initial})
       : _alarms = alarms;
 
-  final List<AlarmSettings> _alarms;
+  final List<AlarmModel> _alarms;
   @override
   @JsonKey()
-  List<AlarmSettings> get alarms {
+  List<AlarmModel> get alarms {
     if (_alarms is EqualUnmodifiableListView) return _alarms;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_alarms);
@@ -168,32 +168,32 @@ class _$AlarmStateeImpl implements _AlarmStatee {
   final String mess;
   @override
   @JsonKey()
-  final SetAlarmStatus setAlarmStatus;
-  @override
-  @JsonKey()
   final GetAlarmStatus getAlarmStatus;
   @override
   @JsonKey()
   final DeleteAlarmStatus deleteAlarmStatus;
+  @override
+  @JsonKey()
+  final SetAlarmStatus setAlarmStatus;
 
   @override
   String toString() {
-    return 'AlarmState(alarms: $alarms, mess: $mess, setAlarmStatus: $setAlarmStatus, getAlarmStatus: $getAlarmStatus, deleteAlarmStatus: $deleteAlarmStatus)';
+    return 'AlarmState(alarms: $alarms, mess: $mess, getAlarmStatus: $getAlarmStatus, deleteAlarmStatus: $deleteAlarmStatus, setAlarmStatus: $setAlarmStatus)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AlarmStateeImpl &&
+            other is _$AlarmStateImpl &&
             const DeepCollectionEquality().equals(other._alarms, _alarms) &&
             (identical(other.mess, mess) || other.mess == mess) &&
-            (identical(other.setAlarmStatus, setAlarmStatus) ||
-                other.setAlarmStatus == setAlarmStatus) &&
             (identical(other.getAlarmStatus, getAlarmStatus) ||
                 other.getAlarmStatus == getAlarmStatus) &&
             (identical(other.deleteAlarmStatus, deleteAlarmStatus) ||
-                other.deleteAlarmStatus == deleteAlarmStatus));
+                other.deleteAlarmStatus == deleteAlarmStatus) &&
+            (identical(other.setAlarmStatus, setAlarmStatus) ||
+                other.setAlarmStatus == setAlarmStatus));
   }
 
   @override
@@ -201,37 +201,37 @@ class _$AlarmStateeImpl implements _AlarmStatee {
       runtimeType,
       const DeepCollectionEquality().hash(_alarms),
       mess,
-      setAlarmStatus,
       getAlarmStatus,
-      deleteAlarmStatus);
+      deleteAlarmStatus,
+      setAlarmStatus);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AlarmStateeImplCopyWith<_$AlarmStateeImpl> get copyWith =>
-      __$$AlarmStateeImplCopyWithImpl<_$AlarmStateeImpl>(this, _$identity);
+  _$$AlarmStateImplCopyWith<_$AlarmStateImpl> get copyWith =>
+      __$$AlarmStateImplCopyWithImpl<_$AlarmStateImpl>(this, _$identity);
 }
 
-abstract class _AlarmStatee implements AlarmState {
-  const factory _AlarmStatee(
-      {final List<AlarmSettings> alarms,
+abstract class _AlarmState implements AlarmState {
+  const factory _AlarmState(
+      {final List<AlarmModel> alarms,
       final String mess,
-      final SetAlarmStatus setAlarmStatus,
       final GetAlarmStatus getAlarmStatus,
-      final DeleteAlarmStatus deleteAlarmStatus}) = _$AlarmStateeImpl;
+      final DeleteAlarmStatus deleteAlarmStatus,
+      final SetAlarmStatus setAlarmStatus}) = _$AlarmStateImpl;
 
   @override
-  List<AlarmSettings> get alarms;
+  List<AlarmModel> get alarms;
   @override
   String get mess;
-  @override
-  SetAlarmStatus get setAlarmStatus;
   @override
   GetAlarmStatus get getAlarmStatus;
   @override
   DeleteAlarmStatus get deleteAlarmStatus;
   @override
+  SetAlarmStatus get setAlarmStatus;
+  @override
   @JsonKey(ignore: true)
-  _$$AlarmStateeImplCopyWith<_$AlarmStateeImpl> get copyWith =>
+  _$$AlarmStateImplCopyWith<_$AlarmStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,4 +1,5 @@
 import 'package:alarm/alarm.dart';
+import 'package:flutter/material.dart';
 import 'package:health_app_flutter/data/model/alarm_model.dart';
 import 'package:health_app_flutter/util/date_time.dart';
 
@@ -10,11 +11,13 @@ class AlarmScheduler {
   ) {
     switch (repeatOption) {
       case RepeatOption.monFri:
-        alarmTime.add(const Duration(days: 1));
-        if (alarmTime.weekday >= DateTime.saturday) {
-          return _nextWeekday(alarmTime, DateTime.monday);
+        final newAlarmTime = alarmTime.add(const Duration(days: 1));
+        if (newAlarmTime.weekday == DateTime.saturday ||
+            newAlarmTime.weekday == DateTime.sunday) {
+          return _nextWeekday(newAlarmTime, DateTime.monday);
         }
-        return alarmTime;
+        debugPrint("qa alarm_scheduler: alarmTime reschedule $newAlarmTime");
+        return newAlarmTime;
       case RepeatOption.custom:
         return _nextCustomDay(alarmTime, customDays);
       case RepeatOption.once:
@@ -25,33 +28,41 @@ class AlarmScheduler {
   }
 
   DateTime _nextWeekday(DateTime time, int weekday) {
+    DateTime newTime = time;
     while (time.weekday >= DateTime.saturday) {
-      time = time.add(Duration(days: 8 - time.weekday)); // Move to next Monday
+      newTime = time.add(Duration(days: 8 - time.weekday)); // Move to next Monday
     }
-    return time;
+    return newTime;
   }
 
   DateTime _nextCustomDay(DateTime time, List<int> customDays) {
-    while (!customDays.contains(time.weekday)) {
-      time = time.add(const Duration(days: 1));
+    DateTime newTime = time;
+    newTime = newTime.add(const Duration(days: 1));
+    while (!customDays.contains(newTime.weekday)) {
+      newTime = newTime.add(const Duration(days: 1));
     }
-    return time;
+    return newTime;
   }
 
   Future<bool> scheduleAlarm(AlarmModel alarm) async {
-    return await Alarm.set(
-      alarmSettings: AlarmSettings(
-        id: alarm.id,
-        dateTime: DateTimeHelper.stringToDatetimeFormat4(alarm.dateTime),
-        loopAudio: alarm.loopAudio,
-        assetAudioPath: alarm.audio, // Add your custom alarm sound here
-        notificationTitle: alarm.title,
-        notificationBody: alarm.note,
-        vibrate: alarm.vibrate,
-        volume: alarm.volumn,
-        enableNotificationOnKill: true,
-      ),
-    );
+    try {
+      return await Alarm.set(
+        alarmSettings: AlarmSettings(
+          id: alarm.id,
+          dateTime: DateTimeHelper.stringToDatetimeFormat4(alarm.dateTime),
+          loopAudio: alarm.loopAudio,
+          assetAudioPath: alarm.audio, // Add your custom alarm sound here
+          notificationTitle: alarm.title,
+          notificationBody: alarm.note,
+          vibrate: alarm.vibrate,
+          volume: alarm.volume,
+          enableNotificationOnKill: true,
+        ),
+      );
+    } catch (e) {
+      debugPrint("qa alarm_scheduler error: $e");
+      return false;
+    }
   }
 
   Future<bool> cancelAlarm(int id) async {

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'alarm_model.dart';
+part of 'alarm_edit_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,8 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-AlarmModel _$AlarmModelFromJson(Map<String, dynamic> json) {
-  return _AlarmModel.fromJson(json);
-}
-
 /// @nodoc
-mixin _$AlarmModel {
+mixin _$AlarmEditState {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
@@ -32,18 +28,18 @@ mixin _$AlarmModel {
   String get audio => throw _privateConstructorUsedError;
   RepeatOption get repeatOption => throw _privateConstructorUsedError;
   List<int> get customDays => throw _privateConstructorUsedError;
+  String get mess => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AlarmModelCopyWith<AlarmModel> get copyWith =>
+  $AlarmEditStateCopyWith<AlarmEditState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AlarmModelCopyWith<$Res> {
-  factory $AlarmModelCopyWith(
-          AlarmModel value, $Res Function(AlarmModel) then) =
-      _$AlarmModelCopyWithImpl<$Res, AlarmModel>;
+abstract class $AlarmEditStateCopyWith<$Res> {
+  factory $AlarmEditStateCopyWith(
+          AlarmEditState value, $Res Function(AlarmEditState) then) =
+      _$AlarmEditStateCopyWithImpl<$Res, AlarmEditState>;
   @useResult
   $Res call(
       {int id,
@@ -56,13 +52,14 @@ abstract class $AlarmModelCopyWith<$Res> {
       bool vibrate,
       String audio,
       RepeatOption repeatOption,
-      List<int> customDays});
+      List<int> customDays,
+      String mess});
 }
 
 /// @nodoc
-class _$AlarmModelCopyWithImpl<$Res, $Val extends AlarmModel>
-    implements $AlarmModelCopyWith<$Res> {
-  _$AlarmModelCopyWithImpl(this._value, this._then);
+class _$AlarmEditStateCopyWithImpl<$Res, $Val extends AlarmEditState>
+    implements $AlarmEditStateCopyWith<$Res> {
+  _$AlarmEditStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -83,6 +80,7 @@ class _$AlarmModelCopyWithImpl<$Res, $Val extends AlarmModel>
     Object? audio = null,
     Object? repeatOption = null,
     Object? customDays = null,
+    Object? mess = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -129,16 +127,20 @@ class _$AlarmModelCopyWithImpl<$Res, $Val extends AlarmModel>
           ? _value.customDays
           : customDays // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      mess: null == mess
+          ? _value.mess
+          : mess // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$AlarmModelImplCopyWith<$Res>
-    implements $AlarmModelCopyWith<$Res> {
-  factory _$$AlarmModelImplCopyWith(
-          _$AlarmModelImpl value, $Res Function(_$AlarmModelImpl) then) =
-      __$$AlarmModelImplCopyWithImpl<$Res>;
+abstract class _$$AlarmEditStateImplCopyWith<$Res>
+    implements $AlarmEditStateCopyWith<$Res> {
+  factory _$$AlarmEditStateImplCopyWith(_$AlarmEditStateImpl value,
+          $Res Function(_$AlarmEditStateImpl) then) =
+      __$$AlarmEditStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -152,15 +154,16 @@ abstract class _$$AlarmModelImplCopyWith<$Res>
       bool vibrate,
       String audio,
       RepeatOption repeatOption,
-      List<int> customDays});
+      List<int> customDays,
+      String mess});
 }
 
 /// @nodoc
-class __$$AlarmModelImplCopyWithImpl<$Res>
-    extends _$AlarmModelCopyWithImpl<$Res, _$AlarmModelImpl>
-    implements _$$AlarmModelImplCopyWith<$Res> {
-  __$$AlarmModelImplCopyWithImpl(
-      _$AlarmModelImpl _value, $Res Function(_$AlarmModelImpl) _then)
+class __$$AlarmEditStateImplCopyWithImpl<$Res>
+    extends _$AlarmEditStateCopyWithImpl<$Res, _$AlarmEditStateImpl>
+    implements _$$AlarmEditStateImplCopyWith<$Res> {
+  __$$AlarmEditStateImplCopyWithImpl(
+      _$AlarmEditStateImpl _value, $Res Function(_$AlarmEditStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -177,8 +180,9 @@ class __$$AlarmModelImplCopyWithImpl<$Res>
     Object? audio = null,
     Object? repeatOption = null,
     Object? customDays = null,
+    Object? mess = null,
   }) {
-    return _then(_$AlarmModelImpl(
+    return _then(_$AlarmEditStateImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -223,14 +227,18 @@ class __$$AlarmModelImplCopyWithImpl<$Res>
           ? _value._customDays
           : customDays // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      mess: null == mess
+          ? _value.mess
+          : mess // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$AlarmModelImpl implements _AlarmModel {
-  const _$AlarmModelImpl(
+
+class _$AlarmEditStateImpl implements _AlarmEditState {
+  _$AlarmEditStateImpl(
       {this.id = 0,
       this.title = "",
       this.note = "",
@@ -241,11 +249,9 @@ class _$AlarmModelImpl implements _AlarmModel {
       this.vibrate = true,
       this.audio = "assets/audio_nature_sounds.mp3",
       this.repeatOption = RepeatOption.once,
-      final List<int> customDays = const []})
+      final List<int> customDays = const [],
+      this.mess = ""})
       : _customDays = customDays;
-
-  factory _$AlarmModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AlarmModelImplFromJson(json);
 
   @override
   @JsonKey()
@@ -288,15 +294,19 @@ class _$AlarmModelImpl implements _AlarmModel {
   }
 
   @override
+  @JsonKey()
+  final String mess;
+
+  @override
   String toString() {
-    return 'AlarmModel(id: $id, title: $title, note: $note, dateTime: $dateTime, isActive: $isActive, volume: $volume, loopAudio: $loopAudio, vibrate: $vibrate, audio: $audio, repeatOption: $repeatOption, customDays: $customDays)';
+    return 'AlarmEditState(id: $id, title: $title, note: $note, dateTime: $dateTime, isActive: $isActive, volume: $volume, loopAudio: $loopAudio, vibrate: $vibrate, audio: $audio, repeatOption: $repeatOption, customDays: $customDays, mess: $mess)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AlarmModelImpl &&
+            other is _$AlarmEditStateImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.note, note) || other.note == note) &&
@@ -312,10 +322,10 @@ class _$AlarmModelImpl implements _AlarmModel {
             (identical(other.repeatOption, repeatOption) ||
                 other.repeatOption == repeatOption) &&
             const DeepCollectionEquality()
-                .equals(other._customDays, _customDays));
+                .equals(other._customDays, _customDays) &&
+            (identical(other.mess, mess) || other.mess == mess));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -329,24 +339,19 @@ class _$AlarmModelImpl implements _AlarmModel {
       vibrate,
       audio,
       repeatOption,
-      const DeepCollectionEquality().hash(_customDays));
+      const DeepCollectionEquality().hash(_customDays),
+      mess);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AlarmModelImplCopyWith<_$AlarmModelImpl> get copyWith =>
-      __$$AlarmModelImplCopyWithImpl<_$AlarmModelImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$AlarmModelImplToJson(
-      this,
-    );
-  }
+  _$$AlarmEditStateImplCopyWith<_$AlarmEditStateImpl> get copyWith =>
+      __$$AlarmEditStateImplCopyWithImpl<_$AlarmEditStateImpl>(
+          this, _$identity);
 }
 
-abstract class _AlarmModel implements AlarmModel {
-  const factory _AlarmModel(
+abstract class _AlarmEditState implements AlarmEditState {
+  factory _AlarmEditState(
       {final int id,
       final String title,
       final String note,
@@ -357,10 +362,8 @@ abstract class _AlarmModel implements AlarmModel {
       final bool vibrate,
       final String audio,
       final RepeatOption repeatOption,
-      final List<int> customDays}) = _$AlarmModelImpl;
-
-  factory _AlarmModel.fromJson(Map<String, dynamic> json) =
-      _$AlarmModelImpl.fromJson;
+      final List<int> customDays,
+      final String mess}) = _$AlarmEditStateImpl;
 
   @override
   int get id;
@@ -385,7 +388,9 @@ abstract class _AlarmModel implements AlarmModel {
   @override
   List<int> get customDays;
   @override
+  String get mess;
+  @override
   @JsonKey(ignore: true)
-  _$$AlarmModelImplCopyWith<_$AlarmModelImpl> get copyWith =>
+  _$$AlarmEditStateImplCopyWith<_$AlarmEditStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

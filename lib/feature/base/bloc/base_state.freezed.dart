@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$BaseState {
   int get tabIndex => throw _privateConstructorUsedError;
+  bool get isAlarmRinging => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BaseStateCopyWith<BaseState> get copyWith =>
@@ -28,7 +29,7 @@ abstract class $BaseStateCopyWith<$Res> {
   factory $BaseStateCopyWith(BaseState value, $Res Function(BaseState) then) =
       _$BaseStateCopyWithImpl<$Res, BaseState>;
   @useResult
-  $Res call({int tabIndex});
+  $Res call({int tabIndex, bool isAlarmRinging});
 }
 
 /// @nodoc
@@ -45,12 +46,17 @@ class _$BaseStateCopyWithImpl<$Res, $Val extends BaseState>
   @override
   $Res call({
     Object? tabIndex = null,
+    Object? isAlarmRinging = null,
   }) {
     return _then(_value.copyWith(
       tabIndex: null == tabIndex
           ? _value.tabIndex
           : tabIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      isAlarmRinging: null == isAlarmRinging
+          ? _value.isAlarmRinging
+          : isAlarmRinging // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -63,7 +69,7 @@ abstract class _$$BaseStateImplCopyWith<$Res>
       __$$BaseStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int tabIndex});
+  $Res call({int tabIndex, bool isAlarmRinging});
 }
 
 /// @nodoc
@@ -78,12 +84,17 @@ class __$$BaseStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? tabIndex = null,
+    Object? isAlarmRinging = null,
   }) {
     return _then(_$BaseStateImpl(
       tabIndex: null == tabIndex
           ? _value.tabIndex
           : tabIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      isAlarmRinging: null == isAlarmRinging
+          ? _value.isAlarmRinging
+          : isAlarmRinging // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -91,15 +102,18 @@ class __$$BaseStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BaseStateImpl implements _BaseState {
-  const _$BaseStateImpl({this.tabIndex = 0});
+  const _$BaseStateImpl({this.tabIndex = 0, this.isAlarmRinging = false});
 
   @override
   @JsonKey()
   final int tabIndex;
+  @override
+  @JsonKey()
+  final bool isAlarmRinging;
 
   @override
   String toString() {
-    return 'BaseState(tabIndex: $tabIndex)';
+    return 'BaseState(tabIndex: $tabIndex, isAlarmRinging: $isAlarmRinging)';
   }
 
   @override
@@ -108,11 +122,13 @@ class _$BaseStateImpl implements _BaseState {
         (other.runtimeType == runtimeType &&
             other is _$BaseStateImpl &&
             (identical(other.tabIndex, tabIndex) ||
-                other.tabIndex == tabIndex));
+                other.tabIndex == tabIndex) &&
+            (identical(other.isAlarmRinging, isAlarmRinging) ||
+                other.isAlarmRinging == isAlarmRinging));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, tabIndex);
+  int get hashCode => Object.hash(runtimeType, tabIndex, isAlarmRinging);
 
   @JsonKey(ignore: true)
   @override
@@ -122,10 +138,13 @@ class _$BaseStateImpl implements _BaseState {
 }
 
 abstract class _BaseState implements BaseState {
-  const factory _BaseState({final int tabIndex}) = _$BaseStateImpl;
+  const factory _BaseState({final int tabIndex, final bool isAlarmRinging}) =
+      _$BaseStateImpl;
 
   @override
   int get tabIndex;
+  @override
+  bool get isAlarmRinging;
   @override
   @JsonKey(ignore: true)
   _$$BaseStateImplCopyWith<_$BaseStateImpl> get copyWith =>
