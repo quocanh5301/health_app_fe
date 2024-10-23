@@ -1,3 +1,4 @@
+import 'package:alarm/alarm.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,7 @@ void main() async {
   SharedPref.prefs = await SharedPreferences.getInstance();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await di.init();
+  await Alarm.init();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.white,

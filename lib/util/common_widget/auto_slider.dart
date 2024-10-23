@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:health_app_flutter/util/images.dart';
 import 'package:health_app_flutter/util/styles.dart';
 
 class AutoSlider extends StatefulWidget {
-  const AutoSlider({super.key});
+  final List<String> images;
+  const AutoSlider({super.key, required this.images});
 
   @override
   State<AutoSlider> createState() => _AutoSliderState();
@@ -13,11 +13,6 @@ class AutoSlider extends StatefulWidget {
 
 class _AutoSliderState extends State<AutoSlider> {
   final PageController _pageController = PageController(initialPage: 0);
-  final List<String> images = [
-    AppImage.imgIntro1,
-    AppImage.imgIntro2,
-    AppImage.imgIntro3
-  ];
   int _currentPage = 0;
   late Timer _timer;
 
@@ -29,7 +24,7 @@ class _AutoSliderState extends State<AutoSlider> {
 
   void _startAutoSlide() {
     _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
-      if (_currentPage < images.length - 1) {
+      if (_currentPage < widget.images.length - 1) {
         _currentPage++;
       } else {
         _currentPage = 0;
@@ -55,7 +50,7 @@ class _AutoSliderState extends State<AutoSlider> {
       height: AppStyles.height(400),
       child: PageView.builder(
         controller: _pageController,
-        itemCount: images.length,
+        itemCount: widget.images.length,
         onPageChanged: (index) {
           setState(() {
             _currentPage = index;
@@ -71,7 +66,7 @@ class _AutoSliderState extends State<AutoSlider> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
-                  image: AssetImage(images[index]),
+                  image: AssetImage(widget.images[index]),
                   fit: BoxFit.cover,
                 ),
               ),

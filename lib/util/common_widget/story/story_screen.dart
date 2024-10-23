@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_app_flutter/data/model/story_model.dart';
-import 'package:health_app_flutter/feature/base/widget/story/story_view.dart';
+import 'package:health_app_flutter/util/common_widget/story/story_view.dart';
 
 class StoryScreen extends StatelessWidget {
   final List<StoryModel> stories = [

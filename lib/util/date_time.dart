@@ -4,8 +4,10 @@ import 'package:timeago/timeago.dart';
 
 class DateTimeHelper {
   static const String dateFormat1 = "yyyy-MM-dd HH:mm:ss";
-  static const String dateFormat2 = "yyyy-MM-dd";
+  static const String dateFormat2 = "dd/MM/yyyy";
   static const String dateFormat3 = "HH:mm dd/MM/yyyy";
+  static const String dateFormat4 = "dd/MM/yyyy HH:mm:ss";
+  static const String dateFormat5 = "HH:mm:ss";
 
   static String formatToHHMM(String dateTime, String dateFormat) {
     if (dateTime == '') {
@@ -27,11 +29,99 @@ class DateTimeHelper {
     return "$hour:$minute";
   }
 
-  static String dateTimeToYMD(DateTime date) =>
-      "${date.year}-${date.month}-${date.day}";
+  static String format4StringToHHmmss(
+    String dateTimeString,
+  ) {
+    if (dateTimeString == '') {
+      throw Exception("Empty date string");
+    }
+    DateTime chosenTime = DateFormat(dateFormat4).parse(dateTimeString);
+    String hour;
+    String minute;
+    String second;
+    if (chosenTime.hour < 10) {
+      hour = "0${chosenTime.hour}";
+    } else {
+      hour = "${chosenTime.hour}";
+    }
+    if (chosenTime.minute < 10) {
+      minute = "0${chosenTime.minute}";
+    } else {
+      minute = "${chosenTime.minute}";
+    }
+    if (chosenTime.second < 10) {
+      second = "0${chosenTime.second}";
+    } else {
+      second = "${chosenTime.second}";
+    }
+    return "$hour:$minute:$second";
+  }
 
-  static String dateTimeToDMYhhMMss(DateTime date) =>
+  static String getDateToday() {
+    return DateFormat(dateFormat2).format(DateTime.now());
+  }
+
+  static String getDateTimeToday() {
+    return DateFormat(dateFormat4).format(DateTime.now());
+  }
+
+  static String convertFormat5ToFormat4String(String timeString) {
+    // Get the current date
+    print("qa alarm pop date time 22222: $timeString");
+    print("data: ${timeString.split(":")[0]}");
+    DateTime now = DateTime.now();
+
+    // Parse the input time (ignoring date, so we use the current date)
+    DateTime parsedTime = DateTime(
+        now.year,
+        now.month,
+        now.day,
+        int.parse(timeString.split(":")[0]),
+        int.parse(timeString.split(":")[1]),
+        int.parse(timeString.split(":")[2]));
+
+    // Format the result in "dd/MM/yyyy HH:mm:ss"
+    String formattedDate = DateFormat(dateFormat4).format(parsedTime);
+
+    return formattedDate;
+  }
+
+  static String getTimeStringFromInts(
+    int hour,
+    int minute,
+    int second,
+  ) {
+    String myHour;
+    String myMinute;
+    String mySecond;
+    if (hour < 10) {
+      myHour = "0$hour";
+    } else {
+      myHour = "$hour";
+    }
+    if (minute < 10) {
+      myMinute = "0$minute";
+    } else {
+      myMinute = "$minute";
+    }
+    if (second < 10) {
+      mySecond = "0$second";
+    } else {
+      mySecond = "$second";
+    }
+    return "$myHour:$myMinute:$mySecond";
+  }
+
+  static DateTime stringToDatetimeFormat4(String datetimeString) =>
+      DateFormat(dateFormat4).parse(datetimeString);
+
+        static DateTime stringToDatetimeFormat5(String datetimeString) =>
+      DateFormat(dateFormat5).parse(datetimeString);
+
+  static String dateTimeToStringFormat4(DateTime date) =>
       "${date.day}/${date.month}/${date.year} ${date.hour}:${date.minute}:${date.second}";
+
+  static stringTimeToStringDateTime(String time) {}
 
   static String getTimeAgo({
     required String dateFormat,

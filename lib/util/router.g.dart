@@ -11,6 +11,7 @@ List<RouteBase> get $appRoutes => [
       $firstTimeIntroRoute,
       $baseRoute,
       $runTrackingRoute,
+      $alarmListgRoute,
     ];
 
 RouteBase get $loginRoute => GoRouteData.$route(
@@ -91,6 +92,29 @@ extension $RunTrackingRouteExtension on RunTrackingRoute {
 
   String get location => GoRouteData.$location(
         '/run_tracking',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $alarmListgRoute => GoRouteData.$route(
+      path: '/alarm_list',
+      factory: $AlarmListgRouteExtension._fromState,
+    );
+
+extension $AlarmListgRouteExtension on AlarmListgRoute {
+  static AlarmListgRoute _fromState(GoRouterState state) =>
+      const AlarmListgRoute();
+
+  String get location => GoRouteData.$location(
+        '/alarm_list',
       );
 
   void go(BuildContext context) => context.go(location);

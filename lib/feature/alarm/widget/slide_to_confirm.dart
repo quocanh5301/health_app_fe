@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:health_app_flutter/util/styles.dart';
 
 class SlideToConfirm extends StatefulWidget {
   final Function
       onConfirm; // The callback function to trigger at the end of the slide
+  final String title;
 
-  const SlideToConfirm({super.key, required this.onConfirm});
+  const SlideToConfirm({
+    super.key,
+    required this.onConfirm,
+    required this.title,
+  });
 
   @override
   State<SlideToConfirm> createState() => _SlideToConfirmState();
@@ -27,11 +33,20 @@ class _SlideToConfirmState extends State<SlideToConfirm> {
       onHorizontalDragEnd: (details) {
         if (_dragPosition >= _maxDrag) {
           widget.onConfirm(); // Trigger the callback function
+          Future.delayed(const Duration(seconds: 1), () {
+            if (mounted) {
+              setState(() {
+                _dragPosition = 0.0;
+              });
+            }
+          });
+        } else {
+          setState(
+            () {
+              _dragPosition = 0.0;
+            },
+          );
         }
-        // Reset the position after completion
-        setState(() {
-          _dragPosition = 0.0;
-        });
       },
       child: Stack(
         children: [
@@ -41,13 +56,15 @@ class _SlideToConfirmState extends State<SlideToConfirm> {
                 60, // Width includes extra space for the draggable button
             height: 60.0,
             decoration: BoxDecoration(
-              color: Colors.grey.shade300,
+              color: "FBE888".toColor(),
               borderRadius: BorderRadius.circular(30.0),
             ),
             child: Center(
               child: Text(
-                'Slide to confirm',
-                style: TextStyle(fontSize: 18, color: Colors.black87),
+                widget.title,
+                style: AppStyles.f18b().copyWith(
+                    // color: Colors.white,
+                    ),
               ),
             ),
           ),
@@ -56,10 +73,11 @@ class _SlideToConfirmState extends State<SlideToConfirm> {
             width: _dragPosition + 30, // Slightly larger to cover button area
             height: 60.0,
             decoration: BoxDecoration(
-              color: Colors.greenAccent
+              color: "FBE888"
+                  .toColor()
                   .withOpacity(0.5), // Color for the left trail
               borderRadius:
-                  BorderRadius.horizontal(left: Radius.circular(30.0)),
+                  const BorderRadius.horizontal(left: Radius.circular(30.0)),
             ),
           ),
           // The draggable button
@@ -69,10 +87,10 @@ class _SlideToConfirmState extends State<SlideToConfirm> {
               width: 60,
               height: 60,
               decoration: BoxDecoration(
-                color: Colors.blueAccent,
+                color: "263238".toColor(),
                 borderRadius: BorderRadius.circular(30.0),
               ),
-              child: Icon(Icons.arrow_forward, color: Colors.white),
+              child: Icon(Icons.alarm, color: "64b5f6".toColor()),
             ),
           ),
         ],

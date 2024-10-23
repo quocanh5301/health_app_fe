@@ -1,15 +1,16 @@
 import 'package:health_app_flutter/data/local_database/local_database.dart';
+import 'package:health_app_flutter/data/model/user.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class UserDatabase<User> implements IDatabase<User> {
+class UserDatabase implements IDatabase<User> {
   static final UserDatabase _instance = UserDatabase._internal();
   static Database? _database;
 
   UserDatabase._internal();
 
   factory UserDatabase() {
-    return _instance as UserDatabase<User>;
+    return _instance;
   }
 
   Future<Database> get database async {

@@ -2,30 +2,45 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:health_app_flutter/feature/base/bloc/base_bloc.dart';
+import 'package:health_app_flutter/feature/base/bloc/base_cubit.dart';
 import 'package:health_app_flutter/feature/base/bloc/base_state.dart';
-import 'package:health_app_flutter/feature/base/widget/auto_slider.dart';
-import 'package:health_app_flutter/feature/base/widget/slide_to_confirm.dart';
-import 'package:health_app_flutter/feature/base/widget/story/story_screen.dart';
-import 'package:health_app_flutter/feature/base/widget/time_picker.dart';
+import 'package:health_app_flutter/util/common_widget/auto_slider.dart';
+import 'package:health_app_flutter/feature/alarm/widget/slide_to_confirm.dart';
+import 'package:health_app_flutter/util/common_widget/story/story_screen.dart';
+import 'package:health_app_flutter/util/common_widget/overlay/overlay_widget/time_picker.dart';
+import 'package:health_app_flutter/util/images.dart';
 import 'package:health_app_flutter/util/injection.dart';
+import 'package:health_app_flutter/util/router.dart';
 
-class BaseScreen extends StatelessWidget {
-  BaseScreen({super.key});
+class BaseScreen extends StatefulWidget {
+  const BaseScreen({super.key});
 
+  @override
+  State<BaseScreen> createState() => _BaseScreenState();
+}
+
+class _BaseScreenState extends State<BaseScreen> {
   final List<IconData> iconList = [
     Icons.home,
     Icons.explore,
-    Icons.person,
+    Icons.menu,
     Icons.person,
   ];
+
+  BaseCubit baseCubit = sl<BaseCubit>()..setUpAlarm();
+
+  @override
+  void dispose() {
+    baseCubit.disposeAlarm();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(systemNavigationBarColor: Colors.grey[800]));
     return BlocProvider<BaseCubit>(
-      create: (context) => sl<BaseCubit>(),
+      create: (context) => baseCubit,
       child: BlocBuilder<BaseCubit, BaseState>(
         builder: (context, state) {
           return Scaffold(
@@ -39,7 +54,7 @@ class BaseScreen extends StatelessWidget {
                 // Implement any FAB action if needed
               },
               child: const Icon(
-                Icons.add,
+                Icons.run_circle,
                 color: Colors.white,
               ),
             ),
@@ -67,12 +82,21 @@ class BaseScreen extends StatelessWidget {
   Widget _getSelectedPage(int index) {
     switch (index) {
       case 0:
-        return const AutoSlider();
+        return const AutoSlider(
+          images: [
+            AppImage.imgIntro1,
+            AppImage.imgIntro2,
+            AppImage.imgIntro3,
+          ],
+        );
       case 1:
         return Center(
           child: SlideToConfirm(
+            title: 'Slide to view alarms',
             onConfirm: () {
               // Action to take place when the slide is completed
+              const AlarmListgRoute()
+                  .push(rootNavigatorKey.currentState!.context);
               debugPrint('Confirmed!');
             },
           ),
@@ -80,13 +104,10 @@ class BaseScreen extends StatelessWidget {
       case 2:
         return StoryScreen();
       case 3:
-        return TimerPicker(
+        return const TimerPicker(
           selectedHour: 0,
-          selectedMinute: 3,
+          selectedMinute: 0,
           selectedSecond: 0,
-          onHourSelected: (hour) {},
-          onMinuteSelected: (minute) {},
-          onSecondSelected: (second) {},
         );
       default:
         return const Placeholder();
