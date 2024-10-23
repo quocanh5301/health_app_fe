@@ -1,11 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_app_flutter/data/model/alarm_model.dart';
 import 'package:health_app_flutter/feature/alarm/bloc/alarm_list/alarm_cubit.dart';
+import 'package:health_app_flutter/util/styles.dart';
 
 class AlarmTile extends StatelessWidget {
   const AlarmTile({
-    required this.title,
+    required this.time,
     required this.onPressed,
     super.key,
     this.onDismissed,
@@ -13,7 +16,7 @@ class AlarmTile extends StatelessWidget {
     required this.myKey,
   });
 
-  final String title;
+  final String time;
   final AlarmModel alarmModel;
   final void Function() onPressed;
   final void Function()? onDismissed;
@@ -40,18 +43,43 @@ class AlarmTile extends StatelessWidget {
       child: RawMaterialButton(
         onPressed: onPressed,
         child: Container(
-          height: 100,
+          // height: 100,
           padding: const EdgeInsets.all(35),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w500,
+              Expanded(
+                child: IntrinsicHeight(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            alarmModel.title,
+                            style: AppStyles.f18sb(),
+                          ),
+                          const HorizontalSpace(10),
+                          Text(
+                            time,
+                            style: AppStyles.f17m(),
+                          ),
+                        ],
+                      ),
+                      const VerticalSpace(10),
+                      Expanded(
+                        child: Text(
+                          alarmModel.note,
+                          textAlign: TextAlign.start,
+                          style: AppStyles.f17m(),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
+              const HorizontalSpace(10),
               Switch(
                 value: alarmModel.isActive,
                 onChanged: (value) => context.read<AlarmCubit>().toggleAlarm(

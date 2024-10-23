@@ -20,7 +20,7 @@ class AlarmListScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text('alarm'),
+              title: const Text('Your Reminders'),
             ),
             body: SafeArea(
               child: state.alarms.isNotEmpty
@@ -33,7 +33,7 @@ class AlarmListScreen extends StatelessWidget {
                           key: ValueKey(state.alarms[index].id),
                           myKey: ValueKey(state.alarms[index].id),
                           alarmModel: state.alarms[index],
-                          title: DateTimeHelper.format4StringToHHmmss(
+                          time: DateTimeHelper.format4StringToHHmmss(
                             state.alarms[index].dateTime,
                           ),
                           onPressed: () =>

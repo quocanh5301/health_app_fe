@@ -37,7 +37,7 @@ class _TimerPickerScreenState extends State<TimerPicker> {
     return Dialog(
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.grey[200],
+          color: Colors.grey[800],
           borderRadius: BorderRadius.circular(15),
         ),
         child: Padding(
@@ -106,7 +106,7 @@ class _TimerPickerScreenState extends State<TimerPicker> {
                       ),
                       child: Center(
                         child: Text(
-                          "S.of(context).",
+                          "Select",
                           style:
                               AppStyles.f15sb().copyWith(color: Colors.white),
                         ),
@@ -119,7 +119,10 @@ class _TimerPickerScreenState extends State<TimerPicker> {
                 top: 3,
                 right: 3,
                 child: IconButton(
-                  icon: const Icon(Icons.close),
+                  icon: const Icon(
+                    Icons.close,
+                    color: Colors.white,
+                  ),
                   onPressed: () => Navigator.of(context).pop(null),
                 ),
               ),
@@ -154,7 +157,10 @@ class _TimerPickerScreenState extends State<TimerPicker> {
               child: Center(
                 child: Text(
                   index.toString().padLeft(2, '0'),
-                  style: AppStyles.f20sb().copyWith(fontSize: 25),
+                  style: AppStyles.f20sb().copyWith(
+                    fontSize: 25,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             );

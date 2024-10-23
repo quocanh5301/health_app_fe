@@ -16,7 +16,15 @@ class AlarmService {
 
   Future<List<AlarmModel>> getAllAlarm() async {
     // await _alarmDatabase.dropTable();
-    return await _alarmDatabase.getAll();
+    final alarms = await _alarmDatabase.getAll();
+    alarms.sort((a, b) {
+      DateTime dateTimeA = DateTimeHelper.stringToDatetimeFormat5(
+          DateTimeHelper.format4StringToHHmmss(a.dateTime));
+      DateTime dateTimeB = DateTimeHelper.stringToDatetimeFormat5(
+          DateTimeHelper.format4StringToHHmmss(b.dateTime));
+      return dateTimeA.compareTo(dateTimeB); // Sort from low to high
+    });
+    return alarms;
   }
 
   Future<bool> toggleAlarm(AlarmModel alarm) async {

@@ -14,7 +14,7 @@ import 'package:health_app_flutter/util/styles.dart';
 import 'package:intl/intl.dart';
 
 class SetAlarmScreen extends StatefulWidget {
-  SetAlarmScreen({
+  const SetAlarmScreen({
     super.key,
     required this.context,
     required this.alarmModel,
@@ -70,63 +70,107 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
 
     List<int>? result = await showModalBottomSheet<List<int>>(
       context: parentContext,
+      backgroundColor: Colors.grey[800],
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(13),
+          topRight: Radius.circular(13),
+        ),
+      ),
       builder: (BuildContext context) {
         return StatefulBuilder(
           builder: (context, setState) {
-            return Container(
-              color: Colors.grey[500],
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Text(
-                      'Customize',
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                    ),
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(
+                    'Customize days',
+                    style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: daysOfWeek.length,
-                      itemBuilder: (context, index) {
-                        return CheckboxListTile(
-                          title: Text(
-                            daysOfWeek[index],
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                          value: selectedDays.contains(index + 1),
-                          onChanged: (bool? value) {
-                            setState(() {
-                              if (value == true) {
-                                selectedDays.add(index + 1);
-                              } else {
-                                selectedDays.remove(index + 1);
-                              }
-                            });
-                          },
-                        );
-                      },
-                    ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: daysOfWeek.length,
+                    itemBuilder: (context, index) {
+                      return CheckboxListTile(
+                        checkboxShape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        fillColor: MaterialStateProperty.all(Colors.grey[200]),
+                        checkColor: "DBA510".toColor(),
+                        selectedTileColor: Colors.grey[800]!.withOpacity(0.5),
+                        overlayColor:
+                            MaterialStateProperty.all("b0bec5".toColor()),
+                        title: Text(
+                          daysOfWeek[index],
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        value: selectedDays.contains(index + 1),
+                        onChanged: (bool? value) {
+                          setState(() {
+                            if (value == true) {
+                              selectedDays.add(index + 1);
+                            } else {
+                              selectedDays.remove(index + 1);
+                            }
+                          });
+                        },
+                      );
+                    },
                   ),
-                  Row(
+                ),
+                const VerticalSpace(7),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      TextButton(
-                        onPressed: () {
+                      InkWell(
+                        onTap: () {
                           Navigator.pop(context, null);
                         },
-                        child: const Text("Cancel"),
+                        child: Container(
+                          width: AppStyles.width(80),
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: "DBA510".toColor(),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Cancel",
+                              style: AppStyles.f16m()
+                                  .copyWith(color: Colors.black),
+                            ),
+                          ),
+                        ),
                       ),
-                      ElevatedButton(
-                        onPressed: () {
+                      InkWell(
+                        onTap: () {
                           Navigator.pop(context, selectedDays);
                         },
-                        child: const Text("OK"),
+                        child: Container(
+                          width: AppStyles.width(80),
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: "2A5DAF".toColor(),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "OK",
+                              style: AppStyles.f16m()
+                                  .copyWith(color: Colors.white),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+              ],
             );
           },
         );
@@ -175,8 +219,8 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
                     _buildCancelSaveButtons(context, state),
 
                     // Time picker button
-                    RawMaterialButton(
-                      onPressed: () => MyOverlayController.showTimePickerDialog(
+                    InkWell(
+                      onTap: () => MyOverlayController.showTimePickerDialog(
                         context,
                         currentDate.hour,
                         currentDate.minute,
@@ -185,32 +229,36 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
                             .read<AlarmEditCubit>()
                             .setAlarmDateTime(timeString ?? state.dateTime),
                       ),
-                      fillColor: Colors.grey[200],
+                      // fillColor: Colors.grey[200],
                       child: Container(
                         margin: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: "64b5f6".toColor(),
+                        ),
                         child: Text(
                           state.dateTime,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayMedium!
-                              .copyWith(color: Colors.blueAccent),
+                          style: AppStyles.f20sb()
+                              .copyWith(color: Colors.white, fontSize: 30),
                         ),
                       ),
                     ),
 
                     // Title field
                     _buildTitleField(),
-
+                    const VerticalSpace(12),
                     // Note field
                     _buildNoteField(),
-
+                    const VerticalSpace(12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           'Loop alarm audio',
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: AppStyles.f16m().copyWith(color: Colors.white),
                         ),
+                        const HorizontalSpace(12),
                         Switch(
                           value: state.loopAudio,
                           onChanged: (value) => context
@@ -219,13 +267,15 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
                         ),
                       ],
                     ),
+                    const VerticalSpace(12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           'Vibrate',
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: AppStyles.f16m().copyWith(color: Colors.white),
                         ),
+                        const HorizontalSpace(12),
                         Switch(
                           value: state.vibrate,
                           onChanged: (value) => context
@@ -234,13 +284,15 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
                         ),
                       ],
                     ),
+                    const VerticalSpace(12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           'Sound',
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: AppStyles.f16m().copyWith(color: Colors.white),
                         ),
+                        const HorizontalSpace(12),
                         Expanded(
                           child: AudioDropDown(
                             audio: state.audio,
@@ -252,6 +304,7 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
                         ),
                       ],
                     ),
+                    const VerticalSpace(12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -261,7 +314,9 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
                               : state.volume > 0.1
                                   ? Icons.volume_down_rounded
                                   : Icons.volume_mute_rounded,
+                          color: Colors.white,
                         ),
+                        const HorizontalSpace(12),
                         Expanded(
                           child: Slider(
                             value: state.volume,
@@ -272,13 +327,15 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
                         ),
                       ],
                     ),
+                    const VerticalSpace(12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           'Repeat',
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: AppStyles.f16m().copyWith(color: Colors.white),
                         ),
+                        const HorizontalSpace(12),
                         Expanded(
                           child: RepeatOptionDropDown(
                             repeatOption: state.repeatOption,
@@ -291,13 +348,15 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
                         ),
                       ],
                     ),
+                    const VerticalSpace(12),
                     state.repeatOption == RepeatOption.custom
                         ? Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 'Customize',
-                                style: Theme.of(context).textTheme.titleMedium,
+                                style: AppStyles.f16m()
+                                    .copyWith(color: Colors.white),
                               ),
                               TextButton(
                                 onPressed: () => _showCustomDayBottomSheet(
@@ -327,10 +386,7 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
           onPressed: () => Navigator.pop(context, null),
           child: Text(
             'Cancel',
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge!
-                .copyWith(color: Colors.blueAccent),
+            style: AppStyles.f20m().copyWith(color: "89C8FE".toColor()),
           ),
         ),
         TextButton(
@@ -355,10 +411,7 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
           },
           child: Text(
             'Save',
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge!
-                .copyWith(color: Colors.blueAccent),
+            style: AppStyles.f20m().copyWith(color: "89C8FE".toColor()),
           ),
         ),
       ],
@@ -371,14 +424,27 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
       children: [
         Text(
           'Title',
-          style: Theme.of(context).textTheme.titleMedium,
+          style: AppStyles.f16m().copyWith(color: Colors.white),
         ),
+        const HorizontalSpace(12),
         Expanded(
           child: FormBuilderTextField(
             controller: _titleController,
             name: "alarmTitle",
-            style: AppStyles.f15m(),
+            style: AppStyles.f15m().copyWith(color: Colors.white),
             keyboardType: TextInputType.text,
+            decoration: InputDecoration(
+              isDense: true,
+              hintText: "enter title",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(
+                  color: '#08357C'.toColor(),
+                  width: 2,
+                ),
+              ),
+              hintStyle: AppStyles.f16m().copyWith(color: Colors.white),
+            ),
             validator: FormBuilderValidators.required(
               errorText: "This field is required",
             ),
@@ -394,14 +460,28 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
       children: [
         Text(
           'Note',
-          style: Theme.of(context).textTheme.titleMedium,
+          style: AppStyles.f16m().copyWith(color: Colors.white),
         ),
+        const HorizontalSpace(12),
         Expanded(
           child: FormBuilderTextField(
             controller: _noteController,
             name: "alarmNote",
-            style: AppStyles.f15m(),
+            style: AppStyles.f15m().copyWith(color: Colors.white),
             keyboardType: TextInputType.text,
+            decoration: InputDecoration(
+              isDense: true,
+              hintText: "enter note",
+              fillColor: Colors.white,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(
+                  color: '#08357C'.toColor(),
+                  width: 2,
+                ),
+              ),
+              hintStyle: AppStyles.f16m().copyWith(color: Colors.white),
+            ),
             validator: FormBuilderValidators.required(
               errorText: "This field is required",
             ),

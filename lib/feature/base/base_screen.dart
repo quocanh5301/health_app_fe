@@ -92,6 +92,7 @@ class _BaseScreenState extends State<BaseScreen> {
       case 1:
         return Center(
           child: SlideToConfirm(
+            title: 'Slide to view alarms',
             onConfirm: () {
               // Action to take place when the slide is completed
               const AlarmListgRoute()

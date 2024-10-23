@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_app_flutter/data/model/alarm_model.dart';
 import 'package:health_app_flutter/feature/alarm/bloc/alarm_list/alarm_state.dart';
-import 'package:health_app_flutter/util/date_time.dart';
 import 'package:health_app_flutter/util/service/alarm_service.dart';
 
 class AlarmCubit extends Cubit<AlarmState> {
@@ -14,12 +13,6 @@ class AlarmCubit extends Cubit<AlarmState> {
     ));
     try {
       final alarms = await alarmService.getAllAlarm();
-      alarms.sort((a, b) {
-        DateTime dateTimeA = DateTimeHelper.stringToDatetimeFormat4(a.dateTime);
-        DateTime dateTimeB = DateTimeHelper.stringToDatetimeFormat4(b.dateTime);
-
-        return dateTimeA.compareTo(dateTimeB); // Sort from low to high
-      });
       emit(state.copyWith(
         alarms: alarms,
         getAlarmStatus: GetAlarmStatus.finish,

@@ -115,6 +115,9 @@ class DateTimeHelper {
   static DateTime stringToDatetimeFormat4(String datetimeString) =>
       DateFormat(dateFormat4).parse(datetimeString);
 
+        static DateTime stringToDatetimeFormat5(String datetimeString) =>
+      DateFormat(dateFormat5).parse(datetimeString);
+
   static String dateTimeToStringFormat4(DateTime date) =>
       "${date.day}/${date.month}/${date.year} ${date.hour}:${date.minute}:${date.second}";
 

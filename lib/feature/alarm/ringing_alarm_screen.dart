@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:alarm/alarm.dart';
 import 'package:flutter/material.dart';
+import 'package:health_app_flutter/feature/alarm/widget/slide_to_confirm.dart';
+import 'package:health_app_flutter/util/styles.dart';
 
 class RingingAlarmScreen extends StatelessWidget {
   const RingingAlarmScreen({
@@ -17,34 +19,59 @@ class RingingAlarmScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text(
-              'You alarm (${alarmSettings.id}) is ringing...',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const Text('🔔', style: TextStyle(fontSize: 50)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                RawMaterialButton(
-                  onPressed: onSnooze,
-                  child: Text(
-                    'Snooze',
-                    style: Theme.of(context).textTheme.titleLarge,
+        child: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const VerticalSpace(50),
+                  Text(
+                    '🔔',
+                    style: AppStyles.f20sb().copyWith(
+                      fontSize: 100,
+                    ),
                   ),
-                ),
-                RawMaterialButton(
-                  onPressed: onStop,
-                  child: Text(
-                    'Stop',
-                    style: Theme.of(context).textTheme.titleLarge,
+                  const VerticalSpace(25),
+                  Text(
+                    alarmSettings.notificationTitle,
+                    style: AppStyles.f20sb(),
                   ),
-                ),
-              ],
+                  const VerticalSpace(15),
+                  Text(
+                    alarmSettings.notificationBody,
+                    style: AppStyles.f20sb(),
+                  ),
+                  const VerticalSpace(25),
+                  InkWell(
+                    onTap: onSnooze,
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: "#1f2933".toColor(),
+                      ),
+                      child: Text(
+                        'Snooze',
+                        style: AppStyles.f15sb().copyWith(
+                          color: "e0e0e0".toColor(),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const VerticalSpace(25),
+                  SlideToConfirm(
+                    title: 'Slide to stop alarms',
+                    onConfirm: onStop,
+                  ),
+                  const VerticalSpace(25),
+                ],
+              ),
             ),
-          ],
+          ),
         ),
       ),
     );

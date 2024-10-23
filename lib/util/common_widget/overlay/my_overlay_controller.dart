@@ -57,9 +57,13 @@ class MyOverlayController {
     showModalBottomSheet<AlarmModel>(
       context: context,
       isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(13),
+          topRight: Radius.circular(13),
+        ),
       ),
+      backgroundColor: Colors.grey[800],
       builder: (context) {
         return SetAlarmScreen(
           alarmModel: alarmModel,
