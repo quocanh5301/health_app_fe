@@ -13,6 +13,7 @@ class User with _$User {
     @Default("") String image,
     @Default("") String apiKey,
     @Default("") String refreshApiKey,
+    @Default("") String joinAt,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

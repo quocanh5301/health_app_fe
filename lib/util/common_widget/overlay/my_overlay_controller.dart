@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:health_app_flutter/data/model/alarm_model.dart';
 import 'package:health_app_flutter/feature/alarm/set_alarm_screen.dart';
+import 'package:health_app_flutter/util/common_widget/overlay/overlay_widget/measure_option_dialog.dart';
 import 'package:health_app_flutter/util/common_widget/overlay/overlay_widget/my_dialog.dart';
 import 'package:health_app_flutter/util/common_widget/overlay/overlay_widget/time_picker.dart';
 
@@ -94,5 +95,17 @@ class MyOverlayController {
         );
       },
     ).then(onFinish);
+  }
+
+  static void showMeasureOptionDialog(
+    BuildContext context,
+  ) async {
+    return showDialog(
+      context: context,
+      barrierDismissible: false, // user must tap button to dismiss
+      builder: (BuildContext context) {
+        return const MeasureDialog();
+      },
+    );
   }
 }

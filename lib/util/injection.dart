@@ -18,6 +18,7 @@ Future<void> init() async {
   initRunTracking();
   initAppSetting();
   initAlarm();
+  // initExerciseList();
 }
 
 void initAppSetting() async {
@@ -45,5 +46,8 @@ void initAlarm() async {
   sl.registerSingleton<AlarmService>(AlarmService());
   sl.registerFactory(() => AlarmCubit(sl()));
   sl.registerFactory(() => AlarmEditCubit(sl()));
-  
 }
+
+// void initExerciseList() async {
+//   sl.registerFactory(() => ExerciseListCubit());
+// }

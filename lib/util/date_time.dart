@@ -112,10 +112,22 @@ class DateTimeHelper {
     return "$myHour:$myMinute:$mySecond";
   }
 
-  static DateTime stringToDatetimeFormat4(String datetimeString) =>
-      DateFormat(dateFormat4).parse(datetimeString);
+  static DateTime stringToDatetimeFormat4(String datetimeString) {
+    try {
+      return DateFormat(dateFormat4).parse(datetimeString);
+    } catch (e) {
+      try {
+        return DateFormat(dateFormat1).parse(datetimeString);
+      } catch (e) {
+        return DateFormat(dateFormat2).parse(datetimeString);
+      }
+    }
+  }
 
-        static DateTime stringToDatetimeFormat5(String datetimeString) =>
+  static DateTime stringToDatetimeFormat1(String datetimeString) =>
+      DateFormat(dateFormat1).parse(datetimeString);
+
+  static DateTime stringToDatetimeFormat5(String datetimeString) =>
       DateFormat(dateFormat5).parse(datetimeString);
 
   static String dateTimeToStringFormat4(DateTime date) =>

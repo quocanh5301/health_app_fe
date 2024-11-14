@@ -22,7 +22,7 @@ class AlarmDatabase implements IDatabase<AlarmModel> {
   }
 
   Future<Database> _initDatabase() async {
-    String path = join(await getDatabasesPath(), 'alarms.db');
+    String path = join(await getDatabasesPath(), AppDatabase.alarmbase);
     return await openDatabase(
       path,
       version: 1,

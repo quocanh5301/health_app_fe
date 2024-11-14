@@ -6,6 +6,7 @@ import 'package:health_app_flutter/feature/alarm/widget/alarm_tile.dart';
 import 'package:health_app_flutter/util/common_widget/overlay/my_overlay_controller.dart';
 import 'package:health_app_flutter/util/date_time.dart';
 import 'package:health_app_flutter/util/injection.dart';
+import 'package:health_app_flutter/util/styles.dart';
 
 class AlarmListScreen extends StatelessWidget {
   const AlarmListScreen({super.key});
@@ -20,7 +21,30 @@ class AlarmListScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Your Reminders'),
+              title: Text(
+                'Your Reminders',
+                style: AppStyles.f20m().copyWith(
+                  color: Colors.black,
+                ),
+              ),
+              actions: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.add_alarm_rounded,
+                    size: 33,
+                  ),
+                  onPressed: () => MyOverlayController.showEditAlarmBottomSheet(
+                    context,
+                    null,
+                    (alarm) {
+                      if (alarm != null) {
+                        context.read<AlarmCubit>().setAlarm(alarm);
+                      }
+                      // return null; //!qa
+                    },
+                  ),
+                ),
+              ],
             ),
             body: SafeArea(
               child: state.alarms.isNotEmpty
@@ -59,27 +83,29 @@ class AlarmListScreen extends StatelessWidget {
                       ? Center(
                           child: Text(
                             'No alarms set',
-                            style: Theme.of(context).textTheme.titleMedium,
+                            style: AppStyles.f18m().copyWith(
+                              color: Colors.black,
+                            ),
                           ),
                         )
                       : const Center(
                           child: CircularProgressIndicator(),
                         ),
             ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () => MyOverlayController.showEditAlarmBottomSheet(
-                context,
-                null,
-                (alarm) {
-                  if (alarm != null) {
-                    context.read<AlarmCubit>().setAlarm(alarm);
-                  }
-                  // return null; //!qa
-                },
-              ),
-              child: const Icon(Icons.alarm_add_rounded, size: 33),
-            ),
-            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+            // floatingActionButton: FloatingActionButton(
+            //   onPressed: () => MyOverlayController.showEditAlarmBottomSheet(
+            //     context,
+            //     null,
+            //     (alarm) {
+            //       if (alarm != null) {
+            //         context.read<AlarmCubit>().setAlarm(alarm);
+            //       }
+            //       // return null; //!qa
+            //     },
+            //   ),
+            //   child: const Icon(Icons.alarm_add_rounded, size: 33),
+            // ),
+            // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           );
         },
       ),

@@ -1,4 +1,4 @@
-abstract class IDatabase <T> {
+abstract class IDatabase<T> {
   Future<void> insert(T obj);
   Future<T?> getById(int id);
   Future<List<T>> getAll();
@@ -9,4 +9,5 @@ abstract class IDatabase <T> {
 class AppDatabase {
   static String userDatabase = 'users.db';
   static String runDatabase = 'runs.db';
+  static String alarmbase = 'alarms.db';
 }

@@ -26,6 +26,7 @@ mixin _$User {
   String get image => throw _privateConstructorUsedError;
   String get apiKey => throw _privateConstructorUsedError;
   String get refreshApiKey => throw _privateConstructorUsedError;
+  String get joinAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +44,8 @@ abstract class $UserCopyWith<$Res> {
       String email,
       String image,
       String apiKey,
-      String refreshApiKey});
+      String refreshApiKey,
+      String joinAt});
 }
 
 /// @nodoc
@@ -65,6 +67,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? image = null,
     Object? apiKey = null,
     Object? refreshApiKey = null,
+    Object? joinAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -91,6 +94,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.refreshApiKey
           : refreshApiKey // ignore: cast_nullable_to_non_nullable
               as String,
+      joinAt: null == joinAt
+          ? _value.joinAt
+          : joinAt // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -108,7 +115,8 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String email,
       String image,
       String apiKey,
-      String refreshApiKey});
+      String refreshApiKey,
+      String joinAt});
 }
 
 /// @nodoc
@@ -127,6 +135,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? image = null,
     Object? apiKey = null,
     Object? refreshApiKey = null,
+    Object? joinAt = null,
   }) {
     return _then(_$UserImpl(
       id: null == id
@@ -153,6 +162,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.refreshApiKey
           : refreshApiKey // ignore: cast_nullable_to_non_nullable
               as String,
+      joinAt: null == joinAt
+          ? _value.joinAt
+          : joinAt // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -166,7 +179,8 @@ class _$UserImpl with DiagnosticableTreeMixin implements _User {
       this.email = "",
       this.image = "",
       this.apiKey = "",
-      this.refreshApiKey = ""});
+      this.refreshApiKey = "",
+      this.joinAt = ""});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -189,10 +203,13 @@ class _$UserImpl with DiagnosticableTreeMixin implements _User {
   @override
   @JsonKey()
   final String refreshApiKey;
+  @override
+  @JsonKey()
+  final String joinAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(id: $id, name: $name, email: $email, image: $image, apiKey: $apiKey, refreshApiKey: $refreshApiKey)';
+    return 'User(id: $id, name: $name, email: $email, image: $image, apiKey: $apiKey, refreshApiKey: $refreshApiKey, joinAt: $joinAt)';
   }
 
   @override
@@ -205,7 +222,8 @@ class _$UserImpl with DiagnosticableTreeMixin implements _User {
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('image', image))
       ..add(DiagnosticsProperty('apiKey', apiKey))
-      ..add(DiagnosticsProperty('refreshApiKey', refreshApiKey));
+      ..add(DiagnosticsProperty('refreshApiKey', refreshApiKey))
+      ..add(DiagnosticsProperty('joinAt', joinAt));
   }
 
   @override
@@ -219,13 +237,14 @@ class _$UserImpl with DiagnosticableTreeMixin implements _User {
             (identical(other.image, image) || other.image == image) &&
             (identical(other.apiKey, apiKey) || other.apiKey == apiKey) &&
             (identical(other.refreshApiKey, refreshApiKey) ||
-                other.refreshApiKey == refreshApiKey));
+                other.refreshApiKey == refreshApiKey) &&
+            (identical(other.joinAt, joinAt) || other.joinAt == joinAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, email, image, apiKey, refreshApiKey);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, email, image, apiKey, refreshApiKey, joinAt);
 
   @JsonKey(ignore: true)
   @override
@@ -248,7 +267,8 @@ abstract class _User implements User {
       final String email,
       final String image,
       final String apiKey,
-      final String refreshApiKey}) = _$UserImpl;
+      final String refreshApiKey,
+      final String joinAt}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -264,6 +284,8 @@ abstract class _User implements User {
   String get apiKey;
   @override
   String get refreshApiKey;
+  @override
+  String get joinAt;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

@@ -83,11 +83,13 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(16.0),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
                   child: Text(
                     'Customize days',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    style: AppStyles.f18m().copyWith(
+                      color: Colors.black,
+                    ),
                   ),
                 ),
                 Expanded(
@@ -105,7 +107,9 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
                             MaterialStateProperty.all("b0bec5".toColor()),
                         title: Text(
                           daysOfWeek[index],
-                          style: const TextStyle(color: Colors.white),
+                          style: AppStyles.f16m().copyWith(
+                            color: Colors.white,
+                          ),
                         ),
                         value: selectedDays.contains(index + 1),
                         onChanged: (bool? value) {

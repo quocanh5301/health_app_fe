@@ -13,6 +13,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       image: json['image'] as String? ?? "",
       apiKey: json['apiKey'] as String? ?? "",
       refreshApiKey: json['refreshApiKey'] as String? ?? "",
+      joinAt: json['joinAt'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
@@ -23,4 +24,5 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'image': instance.image,
       'apiKey': instance.apiKey,
       'refreshApiKey': instance.refreshApiKey,
+      'joinAt': instance.joinAt,
     };

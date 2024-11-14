@@ -11,7 +11,7 @@ List<RouteBase> get $appRoutes => [
       $firstTimeIntroRoute,
       $baseRoute,
       $runTrackingRoute,
-      $alarmListgRoute,
+      $heartBPMTrackingRoute,
     ];
 
 RouteBase get $loginRoute => GoRouteData.$route(
@@ -104,17 +104,17 @@ extension $RunTrackingRouteExtension on RunTrackingRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $alarmListgRoute => GoRouteData.$route(
-      path: '/alarm_list',
-      factory: $AlarmListgRouteExtension._fromState,
+RouteBase get $heartBPMTrackingRoute => GoRouteData.$route(
+      path: '/heart_bpm_tracking',
+      factory: $HeartBPMTrackingRouteExtension._fromState,
     );
 
-extension $AlarmListgRouteExtension on AlarmListgRoute {
-  static AlarmListgRoute _fromState(GoRouterState state) =>
-      const AlarmListgRoute();
+extension $HeartBPMTrackingRouteExtension on HeartBPMTrackingRoute {
+  static HeartBPMTrackingRoute _fromState(GoRouterState state) =>
+      const HeartBPMTrackingRoute();
 
   String get location => GoRouteData.$location(
-        '/alarm_list',
+        '/heart_bpm_tracking',
       );
 
   void go(BuildContext context) => context.go(location);
