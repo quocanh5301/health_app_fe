@@ -118,10 +118,10 @@ class HeartBPMDialog extends StatefulWidget {
   }
 
   @override
-  State<HeartBPMDialog> createState() => _HeartBPPView();
+  State<HeartBPMDialog> createState() => HeartBPPView();
 }
 
-class _HeartBPPView extends State<HeartBPMDialog> {
+class HeartBPPView extends State<HeartBPMDialog> {
   /// Camera controller
   CameraController? _controller;
 
@@ -165,8 +165,13 @@ class _HeartBPPView extends State<HeartBPMDialog> {
       // 1. get list of all available cameras
       List<CameraDescription> cameras = await availableCameras();
       // 2. assign the preferred camera with low resolution and disable audio
-      _controller = CameraController(cameras.first, ResolutionPreset.low,
-          enableAudio: false, imageFormatGroup: ImageFormatGroup.yuv420);
+      _controller = CameraController(
+        cameras.first,
+        ResolutionPreset.low,
+        enableAudio: false,
+        imageFormatGroup: ImageFormatGroup.bgra8888,
+        fps: 40,
+      );
 
       // 3. initialize the camera
       await _controller!.initialize();
@@ -304,7 +309,8 @@ class _HeartBPPView extends State<HeartBPMDialog> {
             )
           : Center(
               /// A developer has to customize the loading widget (Implemented by Karl Mathuthu)
-              child: widget.centerLoadingWidget ?? const CircularProgressIndicator(),
+              child: widget.centerLoadingWidget ??
+                  const CircularProgressIndicator(),
             ),
     );
   }

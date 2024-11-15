@@ -62,7 +62,7 @@ class BPMChart extends StatelessWidget {
               getTitlesWidget: (value, _) {
                 final date = DateTime.fromMillisecondsSinceEpoch(value.toInt());
                 return Text(
-                  '${date.hour}:${date.minute}',
+                  '${date.hour}:${date.minute}:${date.second}',
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 10,
