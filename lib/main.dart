@@ -1,6 +1,6 @@
 import 'package:alarm/alarm.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,36 +14,36 @@ import 'package:health_app_flutter/generated/l10n.dart';
 import 'package:health_app_flutter/util/app_state/bloc/app_cubit.dart';
 import 'package:health_app_flutter/util/app_state/bloc/app_state.dart';
 import 'package:health_app_flutter/util/injection.dart';
-import 'package:health_app_flutter/util/notification.dart';
+// import 'package:health_app_flutter/util/notification.dart';
 import 'package:health_app_flutter/util/router.dart';
 import 'package:health_app_flutter/util/styles.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:health_app_flutter/util/injection.dart' as di;
 
-@pragma('vm:entry-point')
-Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  try {
-    debugPrint('Handling a background message ${message.data}');
-    if (message.data.isNotEmpty) {
-      final String? title = message.data['title'];
-      final String? content = message.data['content'];
+// @pragma('vm:entry-point')
+// Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+//   try {
+//     debugPrint('Handling a background message ${message.data}');
+//     if (message.data.isNotEmpty) {
+//       final String? title = message.data['title'];
+//       final String? content = message.data['content'];
 
-      if (title != null && content != null) {
-        // Access shared preferences directly without getIt
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setBool(SharedPref.newNotificationKey, true);
-        debugPrint('set new notification alert to true');
+//       if (title != null && content != null) {
+//         // Access shared preferences directly without getIt
+//         final prefs = await SharedPreferences.getInstance();
+//         await prefs.setBool(SharedPref.newNotificationKey, true);
+//         debugPrint('set new notification alert to true');
 
-        // Manually initialize LocalNotificationHelper and trigger notification
-        final notificationHelper = LocalNotificationHelper();
-        await notificationHelper.init(); // Initialize notifications if needed
-        notificationHelper.handleNotificationSetting(title, content);
-      }
-    }
-  } catch (e) {
-    debugPrint('Handling a background message error $e');
-  }
-}
+//         // Manually initialize LocalNotificationHelper and trigger notification
+//         final notificationHelper = LocalNotificationHelper();
+//         await notificationHelper.init(); // Initialize notifications if needed
+//         notificationHelper.handleNotificationSetting(title, content);
+//       }
+//     }
+//   } catch (e) {
+//     debugPrint('Handling a background message error $e');
+//   }
+// }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,8 +53,9 @@ void main() async {
   await Alarm.init();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-        systemNavigationBarColor: Colors.white,
-        systemNavigationBarIconBrightness: Brightness.dark),
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ),
   );
   runApp(const MyApp());
 }
