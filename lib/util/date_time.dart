@@ -5,29 +5,9 @@ import 'package:timeago/timeago.dart';
 class DateTimeHelper {
   static const String dateFormat1 = "yyyy-MM-dd HH:mm:ss";
   static const String dateFormat2 = "dd/MM/yyyy";
-  static const String dateFormat3 = "HH:mm dd/MM/yyyy";
+  // static const String dateFormat3 = "HH:mm dd/MM/yyyy";
   static const String dateFormat4 = "dd/MM/yyyy HH:mm:ss";
   static const String dateFormat5 = "HH:mm:ss";
-
-  static String formatToHHMM(String dateTime, String dateFormat) {
-    if (dateTime == '') {
-      return 'Empty date string';
-    }
-    DateTime chosenTime = DateFormat(dateFormat).parse(dateTime);
-    String hour;
-    String minute;
-    if (chosenTime.hour < 10) {
-      hour = "0${chosenTime.hour}";
-    } else {
-      hour = "${chosenTime.hour}";
-    }
-    if (chosenTime.minute < 10) {
-      minute = "0${chosenTime.minute}";
-    } else {
-      minute = "${chosenTime.minute}";
-    }
-    return "$hour:$minute";
-  }
 
   static String format4StringToHHmmss(
     String dateTimeString,
@@ -55,10 +35,6 @@ class DateTimeHelper {
       second = "${chosenTime.second}";
     }
     return "$hour:$minute:$second";
-  }
-
-  static String getDateToday() {
-    return DateFormat(dateFormat2).format(DateTime.now());
   }
 
   static String getDateTimeToday() {
@@ -124,16 +100,11 @@ class DateTimeHelper {
     }
   }
 
-  static DateTime stringToDatetimeFormat1(String datetimeString) =>
-      DateFormat(dateFormat1).parse(datetimeString);
-
   static DateTime stringToDatetimeFormat5(String datetimeString) =>
       DateFormat(dateFormat5).parse(datetimeString);
 
   static String dateTimeToStringFormat4(DateTime date) =>
       "${date.day}/${date.month}/${date.year} ${date.hour}:${date.minute}:${date.second}";
-
-  static stringTimeToStringDateTime(String time) {}
 
   static String getTimeAgo({
     required String dateFormat,

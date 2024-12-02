@@ -55,59 +55,71 @@ class _HeartBPMScreenState extends State<HeartBPMScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            isBPMEnabled
-                ? HeartBPMDialog(
-                    context: context,
-                    showTextValues: true,
-                    borderRadius: 10,
-                    onRawData: (value) {
-                      setState(() {
-                        if (data.length >= 100) data.removeAt(0);
-                        data.add(value);
-                      });
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              isBPMEnabled
+                  ? HeartBPMDialog(
+                      context: context,
+                      showTextValues: true,
+                      borderRadius: 10,
+                      onRawData: (value) {
+                        setState(() {
+                          if (data.length >= 100) data.removeAt(0);
+                          data.add(value);
+                        });
+                      },
+                      onBPM: (value) => setState(() {
+                        if (bpmValues.length >= 100) bpmValues.removeAt(0);
+                        bpmValues.add(
+                          SensorValue(
+                            value: value.toDouble(),
+                            time: DateTime.now(),
+                          ),
+                        );
+                      }),
+                    )
+                  : const SizedBox(),
+              const VerticalSpace(15),
+              Text(
+                "Put your finger to cover the camera AND the flash light at the same time to ensure your BPM is measured accurately.",
+                style: AppStyles.f16m(),
+              ),
+              const VerticalSpace(15),
+              isBPMEnabled && data.isNotEmpty
+                  ? Container(
+                      decoration: BoxDecoration(border: Border.all()),
+                      constraints: const BoxConstraints.expand(height: 180),
+                      child: BPMChart(data),
+                    )
+                  : const SizedBox(),
+              const VerticalSpace(15),
+              isBPMEnabled && bpmValues.isNotEmpty
+                  ? Container(
+                      decoration: BoxDecoration(border: Border.all()),
+                      constraints: const BoxConstraints.expand(height: 180),
+                      child: BPMChart(bpmValues),
+                    )
+                  : const SizedBox(),
+              const VerticalSpace(10),
+              Center(
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.favorite_rounded),
+                  label:
+                      Text(isBPMEnabled ? "Stop measurement" : "Measure BPM"),
+                  onPressed: () => setState(
+                    () {
+                      isBPMEnabled = !isBPMEnabled;
+                      if (!isBPMEnabled) {
+                        data.clear();
+                        bpmValues.clear();
+                      }
                     },
-                    onBPM: (value) => setState(() {
-                      if (bpmValues.length >= 100) bpmValues.removeAt(0);
-                      bpmValues.add(
-                        SensorValue(
-                          value: value.toDouble(),
-                          time: DateTime.now(),
-                        ),
-                      );
-                    }),
-                  )
-                : const SizedBox(),
-            const VerticalSpace(15),
-            Text(
-              "Put your finger to cover the camera AND the flash light at the same time to ensure your BPM is measured accurately.",
-              style: AppStyles.f16m(),
-            ),
-            const VerticalSpace(15),
-            isBPMEnabled && bpmValues.isNotEmpty
-                ? Container(
-                    decoration: BoxDecoration(border: Border.all()),
-                    constraints: const BoxConstraints.expand(height: 180),
-                    child: BPMChart(bpmValues),
-                  )
-                : const SizedBox(),
-            Center(
-              child: ElevatedButton.icon(
-                icon: const Icon(Icons.favorite_rounded),
-                label: Text(isBPMEnabled ? "Stop measurement" : "Measure BPM"),
-                onPressed: () => setState(
-                  () {
-                    isBPMEnabled = !isBPMEnabled;
-                    if (!isBPMEnabled) {
-                      data.clear();
-                      bpmValues.clear();
-                    }
-                  },
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -7,7 +7,8 @@ import 'package:health_app_flutter/data/share_pref/shared_pref.dart';
 import 'package:health_app_flutter/feature/base/base_screen.dart';
 import 'package:health_app_flutter/feature/first_intro/first_intro.dart';
 import 'package:health_app_flutter/feature/heart_bpm/heart_bpm_screen.dart';
-import 'package:health_app_flutter/feature/login/log_in_screen.dart';
+import 'package:health_app_flutter/feature/login/ui/login_screen.dart';
+import 'package:health_app_flutter/feature/register/ui/register_screen.dart';
 import 'package:health_app_flutter/feature/run_tracking/run_tracking_screen.dart';
 
 part 'router.g.dart';
@@ -17,8 +18,8 @@ final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 final router = GoRouter(
   navigatorKey: rootNavigatorKey,
   initialLocation: SharedPref.getIsFirstTime()
-      // ? const FirstTimeIntroRoute().location
-      ? const BaseRoute().location
+      ? const FirstTimeIntroRoute().location
+      // ? const BaseRoute().location
       // ? const AlarmListRoute().location
       : SharedPref.getApiToken().isEmpty
           ? const LoginRoute().location
@@ -32,7 +33,16 @@ class LoginRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      const LoginScreen();
+      LoginScreen();
+}
+
+@TypedGoRoute<RegisterRoute>(path: Routes.register)
+class RegisterRoute extends GoRouteData {
+  const RegisterRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      RegisterScreen();
 }
 
 @TypedGoRoute<FirstTimeIntroRoute>(path: Routes.firstTimeIntro)
@@ -82,6 +92,7 @@ class HeartBPMTrackingRoute extends GoRouteData {
 class Routes {
   static const String firstTimeIntro = '/first_time_intro';
   static const String login = '/login';
+  static const String register = '/register';
   static const String base = '/base';
   static const String runTracking = '/run_tracking';
   static const String heartBPMTracking = '/heart_bpm_tracking';

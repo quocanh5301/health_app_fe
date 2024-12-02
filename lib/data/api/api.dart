@@ -1,10 +1,14 @@
 import 'package:dio/dio.dart';
+import 'package:health_app_flutter/data/share_pref/shared_pref.dart';
 
 final apiRequest = Dio(
   BaseOptions(
-    // baseUrl: 'https://tangoevent.vn/',
+    baseUrl: 'http://192.168.200.1:3000/',
     connectTimeout: const Duration(minutes: 1),
     receiveTimeout: const Duration(minutes: 1),
+    headers: {
+      'Authorization': 'Bearer ${SharedPref.getApiToken()}',
+    },
   ),
 );
 

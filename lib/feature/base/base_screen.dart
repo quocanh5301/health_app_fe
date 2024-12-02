@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:health_app_flutter/feature/alarm/alarm_list_screen.dart';
 import 'package:health_app_flutter/feature/base/bloc/base_cubit.dart';
 import 'package:health_app_flutter/feature/base/bloc/base_state.dart';
+import 'package:health_app_flutter/feature/home/home_tab.dart';
 import 'package:health_app_flutter/util/common_widget/auto_slider.dart';
 import 'package:health_app_flutter/util/common_widget/overlay/my_overlay_controller.dart';
 import 'package:health_app_flutter/util/images.dart';
@@ -86,6 +87,8 @@ class _BaseScreenState extends State<BaseScreen> {
   Widget _getSelectedPage(int index) {
     switch (index) {
       case 0:
+        return const HomeTab();
+      case 1:
         return const AutoSlider(
           images: [
             AppImage.imgIntro1,
@@ -94,8 +97,6 @@ class _BaseScreenState extends State<BaseScreen> {
           ],
           startAutoSlide: true,
         );
-      case 1:
-        return const Placeholder();
       case 2:
         return const AlarmListScreen();
       case 3:

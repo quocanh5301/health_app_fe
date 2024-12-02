@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:health_app_flutter/util/service/heart_bpm_service.dart';
+import 'package:health_app_flutter/util/styles.dart';
 
 /// Generate a simple heart BPM graph
 class BPMChart extends StatelessWidget {
@@ -53,7 +54,7 @@ class BPMChart extends StatelessWidget {
         ],
         titlesData: FlTitlesData(
           show: true,
-          leftTitles: AxisTitles(
+          leftTitles: const AxisTitles(
             sideTitles: SideTitles(showTitles: false),
           ),
           bottomTitles: AxisTitles(
@@ -63,9 +64,8 @@ class BPMChart extends StatelessWidget {
                 final date = DateTime.fromMillisecondsSinceEpoch(value.toInt());
                 return Text(
                   '${date.hour}:${date.minute}:${date.second}',
-                  style: TextStyle(
+                  style: AppStyles.f13m().copyWith(
                     color: Colors.grey,
-                    fontSize: 10,
                   ),
                 );
               },
@@ -73,7 +73,7 @@ class BPMChart extends StatelessWidget {
             ),
           ),
         ),
-        gridData: FlGridData(show: false),
+        gridData: const FlGridData(show: false),
         borderData: FlBorderData(show: false),
       ),
     );

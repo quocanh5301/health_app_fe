@@ -24,6 +24,18 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "emailEmpty":
+            MessageLookupByLibrary.simpleMessage("Email must not be empty"),
+        "emailFormatError":
+            MessageLookupByLibrary.simpleMessage("Email is not valid"),
+        "emailHint": MessageLookupByLibrary.simpleMessage("Email"),
+        "forgotPassword":
+            MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+        "forgotPasswordSuccess": MessageLookupByLibrary.simpleMessage(
+            "Please check your email to reset your password"),
+        "intro": MessageLookupByLibrary.simpleMessage(
+            "We are the largest community sharing cooking recipes in Vietnam"),
         "introDescription1": MessageLookupByLibrary.simpleMessage(
             "Stay active and improve your endurance by incorporating daily runs into your routine. Track your progress and keep moving forward!"),
         "introDescription2": MessageLookupByLibrary.simpleMessage(
@@ -37,8 +49,30 @@ class MessageLookup extends MessageLookupByLibrary {
         "introTitle3":
             MessageLookupByLibrary.simpleMessage("Prioritize Your Recovery"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "loginText1":
+            MessageLookupByLibrary.simpleMessage("Already have an account? "),
+        "loginText2": MessageLookupByLibrary.simpleMessage("Log in"),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "nameError":
+            MessageLookupByLibrary.simpleMessage("Please fill in your name"),
+        "nameHint": MessageLookupByLibrary.simpleMessage("Enter your Name"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordEmpty":
+            MessageLookupByLibrary.simpleMessage("Password must not be empty"),
+        "passwordHint": MessageLookupByLibrary.simpleMessage("Password"),
         "previous": MessageLookupByLibrary.simpleMessage("Previous"),
+        "register": MessageLookupByLibrary.simpleMessage("Register"),
+        "registerSuccess": MessageLookupByLibrary.simpleMessage(
+            "Registration successful. Please check your email to confirm your account"),
+        "registerText1":
+            MessageLookupByLibrary.simpleMessage("Don\'t have an account? "),
+        "registerText2": MessageLookupByLibrary.simpleMessage("Create one"),
+        "registerTitle1":
+            MessageLookupByLibrary.simpleMessage("Create Account"),
+        "registerTitle2": MessageLookupByLibrary.simpleMessage(
+            "Explore new recipes with us today !!!"),
         "titleIntro":
             MessageLookupByLibrary.simpleMessage("Create a Healthier Lifestyle")
       };

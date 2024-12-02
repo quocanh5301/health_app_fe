@@ -70,6 +70,8 @@ dependencies:
   alarm: ^3.1.5
   camera: ^0.10.5+5
   fl_chart: ^0.69.0
+  dart_jsonwebtoken: ^2.13.0
+
 
 dev_dependencies:
   flutter_test:

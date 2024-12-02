@@ -77,8 +77,8 @@ class RunTrackCubit extends Cubit<RunTrackState> {
         runTrackingStatus: RunTrackingStatus.tracking,
         mess: '',
       ));
-      _positionStream = await _locationService.startLocationTracking();
-      _stepStream = await _stepService.startStepTracking();
+      _positionStream = _locationService.startLocationTracking();
+      _stepStream = _stepService.startStepTracking();
 
       if (_positionStream != null && _stepStream != null) {
         _combinePositionAndStepStreams();
