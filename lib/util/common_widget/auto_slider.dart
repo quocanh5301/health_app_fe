@@ -6,10 +6,14 @@ import 'package:health_app_flutter/util/styles.dart';
 class AutoSlider extends StatefulWidget {
   final List<String> images;
   final bool startAutoSlide;
+  final double? height;
+  final double? width;
   const AutoSlider({
     super.key,
     required this.images,
     required this.startAutoSlide,
+    this.height,
+    this.width,
   });
 
   @override
@@ -77,7 +81,8 @@ class _AutoSliderState extends State<AutoSlider> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: AppStyles.height(400),
+      height: widget.height ?? AppStyles.width(400),
+      width: widget.width ?? AppStyles.width(400),
       child: GestureDetector(
         onTap: _onUserTap, // Start auto slide on first tap
         onLongPress: _stopAutoSlide, // Stop sliding on long press

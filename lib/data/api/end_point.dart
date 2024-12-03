@@ -2,6 +2,7 @@ class Endpoints {
   static String login = 'authenticate/logIn';
   static String register = 'register/registerUser';
   static String changePass = 'register/registerUser';
+  static String refreshToken = 'authenticate/refreshToken';
 
   static String getExercise = 'exercise/getExercise';
   static String getExerciseDetail = 'exercise/getExerciseDetail';

@@ -81,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                             AppImage.imgIcon,
                             width: AppStyles.width(217),
                             height: AppStyles.height(86),
-                            color: '#FF6B00'.toColor(),
+                            // color: '#FF6B00'.toColor(),
                           ),
                           const VerticalSpace(55),
                           Text(
