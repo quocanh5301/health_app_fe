@@ -3,6 +3,9 @@ import 'package:health_app_flutter/data/api/api.dart';
 import 'package:health_app_flutter/feature/alarm/bloc/alarm_edit/alarm_edit_cubit.dart';
 import 'package:health_app_flutter/feature/alarm/bloc/alarm_list/alarm_cubit.dart';
 import 'package:health_app_flutter/feature/base/bloc/base_cubit.dart';
+import 'package:health_app_flutter/feature/heart_bpm/bloc/bpm_cubit.dart';
+import 'package:health_app_flutter/feature/heart_bpm/provider/bpm_provider.dart';
+import 'package:health_app_flutter/feature/heart_bpm/repository/bpm_repository.dart';
 import 'package:health_app_flutter/feature/home/bloc/home_cubit.dart';
 import 'package:health_app_flutter/feature/home/repository/home_repository.dart';
 import 'package:health_app_flutter/feature/login/bloc/login_cubit.dart';
@@ -26,6 +29,7 @@ Future<void> init() async {
   initLogin();
   initRegister();
   initHomeTab();
+  initBPM();
   initHomeTabs();
   initRunTracking();
   initAppSetting();
@@ -49,6 +53,12 @@ void initHomeTab() async {
   sl.registerFactory(() => HomeCubit(homeRepository: sl()));
   sl.registerFactory(() => HomeRepository(homeProvider: sl()));
   sl.registerFactory(() => HomeProvider(apiRequest: APIRequest()));
+}
+
+void initBPM() async {
+  sl.registerFactory(() => BPMCubit(bpmRepository: sl()));
+  sl.registerFactory(() => BPMRepository(bpmProvider: sl()));
+  sl.registerFactory(() => BPMProvider(apiRequest: APIRequest()));
 }
 
 void initRegister() async {

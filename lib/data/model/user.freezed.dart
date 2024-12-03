@@ -27,11 +27,11 @@ mixin _$User {
   @JsonKey(name: 'user_email')
   String? get userEmail => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_age')
-  String? get description => throw _privateConstructorUsedError;
+  int? get userAge => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_height')
-  int? get updateAt => throw _privateConstructorUsedError;
+  int? get height => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_weight')
-  int? get joinAt => throw _privateConstructorUsedError;
+  int? get weight => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,9 +47,9 @@ abstract class $UserCopyWith<$Res> {
       {@JsonKey(name: 'id') int? id,
       @JsonKey(name: 'user_name') String? userName,
       @JsonKey(name: 'user_email') String? userEmail,
-      @JsonKey(name: 'user_age') String? description,
-      @JsonKey(name: 'user_height') int? updateAt,
-      @JsonKey(name: 'user_weight') int? joinAt});
+      @JsonKey(name: 'user_age') int? userAge,
+      @JsonKey(name: 'user_height') int? height,
+      @JsonKey(name: 'user_weight') int? weight});
 }
 
 /// @nodoc
@@ -68,9 +68,9 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? id = freezed,
     Object? userName = freezed,
     Object? userEmail = freezed,
-    Object? description = freezed,
-    Object? updateAt = freezed,
-    Object? joinAt = freezed,
+    Object? userAge = freezed,
+    Object? height = freezed,
+    Object? weight = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -85,17 +85,17 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.userEmail
           : userEmail // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updateAt: freezed == updateAt
-          ? _value.updateAt
-          : updateAt // ignore: cast_nullable_to_non_nullable
+      userAge: freezed == userAge
+          ? _value.userAge
+          : userAge // ignore: cast_nullable_to_non_nullable
               as int?,
-      joinAt: freezed == joinAt
-          ? _value.joinAt
-          : joinAt // ignore: cast_nullable_to_non_nullable
+      height: freezed == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int?,
+      weight: freezed == weight
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
   }
@@ -112,9 +112,9 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       {@JsonKey(name: 'id') int? id,
       @JsonKey(name: 'user_name') String? userName,
       @JsonKey(name: 'user_email') String? userEmail,
-      @JsonKey(name: 'user_age') String? description,
-      @JsonKey(name: 'user_height') int? updateAt,
-      @JsonKey(name: 'user_weight') int? joinAt});
+      @JsonKey(name: 'user_age') int? userAge,
+      @JsonKey(name: 'user_height') int? height,
+      @JsonKey(name: 'user_weight') int? weight});
 }
 
 /// @nodoc
@@ -130,9 +130,9 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? userName = freezed,
     Object? userEmail = freezed,
-    Object? description = freezed,
-    Object? updateAt = freezed,
-    Object? joinAt = freezed,
+    Object? userAge = freezed,
+    Object? height = freezed,
+    Object? weight = freezed,
   }) {
     return _then(_$UserImpl(
       id: freezed == id
@@ -147,17 +147,17 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.userEmail
           : userEmail // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updateAt: freezed == updateAt
-          ? _value.updateAt
-          : updateAt // ignore: cast_nullable_to_non_nullable
+      userAge: freezed == userAge
+          ? _value.userAge
+          : userAge // ignore: cast_nullable_to_non_nullable
               as int?,
-      joinAt: freezed == joinAt
-          ? _value.joinAt
-          : joinAt // ignore: cast_nullable_to_non_nullable
+      height: freezed == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int?,
+      weight: freezed == weight
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -170,9 +170,9 @@ class _$UserImpl implements _User {
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'user_name') this.userName,
       @JsonKey(name: 'user_email') this.userEmail,
-      @JsonKey(name: 'user_age') this.description,
-      @JsonKey(name: 'user_height') this.updateAt,
-      @JsonKey(name: 'user_weight') this.joinAt});
+      @JsonKey(name: 'user_age') this.userAge,
+      @JsonKey(name: 'user_height') this.height,
+      @JsonKey(name: 'user_weight') this.weight});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -188,17 +188,17 @@ class _$UserImpl implements _User {
   final String? userEmail;
   @override
   @JsonKey(name: 'user_age')
-  final String? description;
+  final int? userAge;
   @override
   @JsonKey(name: 'user_height')
-  final int? updateAt;
+  final int? height;
   @override
   @JsonKey(name: 'user_weight')
-  final int? joinAt;
+  final int? weight;
 
   @override
   String toString() {
-    return 'User(id: $id, userName: $userName, userEmail: $userEmail, description: $description, updateAt: $updateAt, joinAt: $joinAt)';
+    return 'User(id: $id, userName: $userName, userEmail: $userEmail, userAge: $userAge, height: $height, weight: $weight)';
   }
 
   @override
@@ -211,17 +211,15 @@ class _$UserImpl implements _User {
                 other.userName == userName) &&
             (identical(other.userEmail, userEmail) ||
                 other.userEmail == userEmail) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.updateAt, updateAt) ||
-                other.updateAt == updateAt) &&
-            (identical(other.joinAt, joinAt) || other.joinAt == joinAt));
+            (identical(other.userAge, userAge) || other.userAge == userAge) &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.weight, weight) || other.weight == weight));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, userName, userEmail, description, updateAt, joinAt);
+      runtimeType, id, userName, userEmail, userAge, height, weight);
 
   @JsonKey(ignore: true)
   @override
@@ -242,9 +240,9 @@ abstract class _User implements User {
       {@JsonKey(name: 'id') final int? id,
       @JsonKey(name: 'user_name') final String? userName,
       @JsonKey(name: 'user_email') final String? userEmail,
-      @JsonKey(name: 'user_age') final String? description,
-      @JsonKey(name: 'user_height') final int? updateAt,
-      @JsonKey(name: 'user_weight') final int? joinAt}) = _$UserImpl;
+      @JsonKey(name: 'user_age') final int? userAge,
+      @JsonKey(name: 'user_height') final int? height,
+      @JsonKey(name: 'user_weight') final int? weight}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -259,13 +257,13 @@ abstract class _User implements User {
   String? get userEmail;
   @override
   @JsonKey(name: 'user_age')
-  String? get description;
+  int? get userAge;
   @override
   @JsonKey(name: 'user_height')
-  int? get updateAt;
+  int? get height;
   @override
   @JsonKey(name: 'user_weight')
-  int? get joinAt;
+  int? get weight;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

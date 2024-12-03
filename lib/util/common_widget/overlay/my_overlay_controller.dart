@@ -15,6 +15,8 @@ class MyOverlayController {
     void Function() onConfirm,
     void Function() onDeny,
     FutureOr<void> Function(T?) onFinish,
+    String? onConfirmBtnText,
+    String? onDenyBtnText,
   ) async {
     return showDialog<T>(
       context: context,
@@ -25,6 +27,8 @@ class MyOverlayController {
           content: content,
           onConfirm: onConfirm,
           onDeny: onDeny,
+          onConfirmBtnText: onConfirmBtnText,
+          onDenyBtnText: onDenyBtnText,
         );
       },
     ).then(onFinish);

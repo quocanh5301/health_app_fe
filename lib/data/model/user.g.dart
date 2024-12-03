@@ -10,9 +10,9 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       id: (json['id'] as num?)?.toInt(),
       userName: json['user_name'] as String?,
       userEmail: json['user_email'] as String?,
-      description: json['user_age'] as String?,
-      updateAt: (json['user_height'] as num?)?.toInt(),
-      joinAt: (json['user_weight'] as num?)?.toInt(),
+      userAge: (json['user_age'] as num?)?.toInt(),
+      height: (json['user_height'] as num?)?.toInt(),
+      weight: (json['user_weight'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
@@ -20,7 +20,7 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'id': instance.id,
       'user_name': instance.userName,
       'user_email': instance.userEmail,
-      'user_age': instance.description,
-      'user_height': instance.updateAt,
-      'user_weight': instance.joinAt,
+      'user_age': instance.userAge,
+      'user_height': instance.height,
+      'user_weight': instance.weight,
     };

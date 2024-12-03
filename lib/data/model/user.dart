@@ -11,9 +11,9 @@ class User with _$User {
     @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'user_name') String? userName,
     @JsonKey(name: 'user_email') String? userEmail,
-    @JsonKey(name: 'user_age') String? description,
-    @JsonKey(name: 'user_height') int? updateAt,
-    @JsonKey(name: 'user_weight') int? joinAt,
+    @JsonKey(name: 'user_age') int? userAge,
+    @JsonKey(name: 'user_height') int? height,
+    @JsonKey(name: 'user_weight') int? weight,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

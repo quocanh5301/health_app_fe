@@ -38,7 +38,7 @@ class MeasureDialog extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "data",
+                              "Run Tracking",
                               style: AppStyles.f17sb()
                                   .copyWith(color: Colors.white),
                             ),
@@ -67,7 +67,7 @@ class MeasureDialog extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "data",
+                              "BPM Tracking",
                               style: AppStyles.f17sb()
                                   .copyWith(color: Colors.white),
                             ),

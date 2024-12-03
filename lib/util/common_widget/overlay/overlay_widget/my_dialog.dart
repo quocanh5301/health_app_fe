@@ -9,12 +9,16 @@ class MyDialog extends StatelessWidget {
     required this.content,
     required this.onConfirm,
     required this.onDeny,
+    this.onConfirmBtnText,
+    this.onDenyBtnText,
   });
 
   final String title;
   final String content;
   final void Function() onConfirm;
   final void Function() onDeny;
+  final String? onConfirmBtnText;
+  final String? onDenyBtnText;
 
   @override
   Widget build(BuildContext context) {
@@ -52,30 +56,6 @@ class MyDialog extends StatelessWidget {
                       Expanded(
                         flex: 50,
                         child: InkWell(
-                          onTap: () => onConfirm(),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: '#2b2b2b'.toColor(),
-                              borderRadius: BorderRadius.circular(15),
-                              border: Border.all(
-                                color: '#FF6B00'.toColor(),
-                                width: 2,
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                S.of(context).confirm,
-                                style: AppStyles.f16m()
-                                    .copyWith(color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const HorizontalSpace(10),
-                      Expanded(
-                        flex: 50,
-                        child: InkWell(
                           onTap: () => onDeny(),
                           child: Container(
                             decoration: BoxDecoration(
@@ -88,9 +68,33 @@ class MyDialog extends StatelessWidget {
                             ),
                             child: Center(
                               child: Text(
-                                S.of(context).cancel,
+                                onDenyBtnText ?? S.of(context).cancel,
                                 style: AppStyles.f16m()
                                     .copyWith(color: Colors.black),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const HorizontalSpace(10),
+                      Expanded(
+                        flex: 50,
+                        child: InkWell(
+                          onTap: () => onConfirm(),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: '#2b2b2b'.toColor(),
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(
+                                color: '#FF6B00'.toColor(),
+                                width: 2,
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                onConfirmBtnText ?? S.of(context).confirm,
+                                style: AppStyles.f16m()
+                                    .copyWith(color: Colors.white),
                               ),
                             ),
                           ),
