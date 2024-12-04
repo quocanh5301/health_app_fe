@@ -15,6 +15,8 @@ import 'package:health_app_flutter/feature/register/bloc/register_cubit.dart';
 import 'package:health_app_flutter/feature/register/provider/register_provider.dart';
 import 'package:health_app_flutter/feature/register/repository/register_repository.dart';
 import 'package:health_app_flutter/feature/run_tracking/bloc/run_tracking_cubit.dart';
+import 'package:health_app_flutter/feature/run_tracking/provider/run_tracking_provider.dart';
+import 'package:health_app_flutter/feature/run_tracking/repository/run_tracking_repository.dart';
 import 'package:health_app_flutter/util/app_state/bloc/app_cubit.dart';
 import 'package:health_app_flutter/util/app_state/provider/app_provider.dart';
 import 'package:health_app_flutter/util/app_state/repository/app_repository.dart';
@@ -75,7 +77,9 @@ void initRunTracking() async {
   // sl.registerFactory(() => LocationRepository());
   // sl.registerFactory(() => StepCountRepository());
   // sl.registerFactory(() => TimerRepository());
-  sl.registerFactory(() => RunTrackCubit());
+  sl.registerFactory(() => RunTrackCubit(runTrackingRepository: sl()));
+  sl.registerFactory(() => RunTrackingRepository(runTrackingProvider: sl()));
+  sl.registerFactory(() => RunTrackingProvider(apiRequest: APIRequest()));
 }
 
 // void initDataBase() async {

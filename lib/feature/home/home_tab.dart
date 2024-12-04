@@ -28,6 +28,7 @@ class HomeTab extends StatelessWidget {
               previous.thisWeekRunDatas != current.thisWeekRunDatas ||
               previous.myBPMDatas != current.myBPMDatas,
           builder: (context, state) {
+            debugPrint("HomeTab: ${state.thisWeekRunDatas}");
             return SingleChildScrollView(
               child: Column(
                 children: [

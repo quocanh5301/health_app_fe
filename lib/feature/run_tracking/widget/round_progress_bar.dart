@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RoundProgressBar extends StatefulWidget {
-  final String timeString;
+  final int duration; // in seconds
   final Function() onFinish;
   final Function() onReset;
   final IconData playIcon;
@@ -9,7 +9,7 @@ class RoundProgressBar extends StatefulWidget {
 
   const RoundProgressBar({
     super.key,
-    required this.timeString,
+    required this.duration,
     required this.onFinish,
     required this.onReset,
     this.playIcon = Icons.play_arrow,
@@ -31,7 +31,7 @@ class _RoundProgressBarState extends State<RoundProgressBar>
   void initState() {
     super.initState();
     // Convert time string to duration
-    initialDuration = _stringToDuration(widget.timeString);
+    initialDuration = _intToDuration(widget.duration);
     _controller = AnimationController(
       vsync: this,
       duration: initialDuration,
@@ -42,9 +42,8 @@ class _RoundProgressBarState extends State<RoundProgressBar>
       });
   }
 
-  Duration _stringToDuration(String timeString) {
-    final parts = timeString.split(":").map(int.parse).toList();
-    return Duration(hours: parts[0], minutes: parts[1], seconds: parts[2]);
+  Duration _intToDuration(int duration) {
+    return Duration(seconds: duration);
   }
 
   void _onTap() {

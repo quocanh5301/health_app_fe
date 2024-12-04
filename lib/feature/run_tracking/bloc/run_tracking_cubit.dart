@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:health_app_flutter/data/model/run_data.dart';
 import 'package:health_app_flutter/feature/run_tracking/bloc/run_tracking_state.dart';
+import 'package:health_app_flutter/feature/run_tracking/repository/run_tracking_repository.dart';
 import 'package:health_app_flutter/util/service/location.dart';
 import 'package:health_app_flutter/util/service/permission.dart';
 import 'package:health_app_flutter/util/service/step.dart';
@@ -20,8 +21,10 @@ class RunTrackCubit extends Cubit<RunTrackState> {
       LocationPermissionService();
   final PhysicalActivityPermissionService _activityPermissionService =
       PhysicalActivityPermissionService();
+  final RunTrackingRepository runTrackingRepository;
 
-  RunTrackCubit() : super(const RunTrackState());
+  RunTrackCubit({required this.runTrackingRepository})
+      : super(const RunTrackState());
 
   Stream<Position>? _positionStream;
   Stream<StepCount>? _stepStream;
@@ -46,29 +49,29 @@ class RunTrackCubit extends Cubit<RunTrackState> {
         locationPermission: MyLocationPermission.deniedForever,
         physicalActivityPermission: state.physicalActivityPermission,
       ));
-    } else{
+    } else {
       emit(state.copyWith(
         locationPermission: MyLocationPermission.allowed,
         physicalActivityPermission: state.physicalActivityPermission,
       ));
     }
-    
+
     if (activityPermission == PermissionStatus.denied) {
-        emit(state.copyWith(
-          locationPermission: state.locationPermission,
-          physicalActivityPermission: PhysicalActivityPermission.denied,
-        ));
-      } else if (activityPermission == PermissionStatus.permanentlyDenied) {
-        emit(state.copyWith(
-          locationPermission: state.locationPermission,
-          physicalActivityPermission: PhysicalActivityPermission.deniedForever,
-        ));
-      } else {
-        emit(state.copyWith(
-          locationPermission: state.locationPermission,
-          physicalActivityPermission: PhysicalActivityPermission.allowed,
-        ));
-      }
+      emit(state.copyWith(
+        locationPermission: state.locationPermission,
+        physicalActivityPermission: PhysicalActivityPermission.denied,
+      ));
+    } else if (activityPermission == PermissionStatus.permanentlyDenied) {
+      emit(state.copyWith(
+        locationPermission: state.locationPermission,
+        physicalActivityPermission: PhysicalActivityPermission.deniedForever,
+      ));
+    } else {
+      emit(state.copyWith(
+        locationPermission: state.locationPermission,
+        physicalActivityPermission: PhysicalActivityPermission.allowed,
+      ));
+    }
   }
 
   Future<void> onStartTracking() async {
@@ -103,9 +106,10 @@ class RunTrackCubit extends Cubit<RunTrackState> {
     }
   }
 
-  void onStopTracking() {
+  void onStopTracking() async {
     _positionAndStepStreamSubscription?.cancel();
     _timeService.stopCountdown();
+    await saveRunData();
     emit(state.copyWith(
       runTrackingStatus: RunTrackingStatus.finish,
       mess: '',
@@ -129,7 +133,6 @@ class RunTrackCubit extends Cubit<RunTrackState> {
           position.latitude,
           position.longitude,
         );
-        debugPrint('Distance: $distance');
 
         emit(state.copyWith(
           runData: RunData(
@@ -147,5 +150,38 @@ class RunTrackCubit extends Cubit<RunTrackState> {
       // Optionally, handle stream events here
       debugPrint('Stream ${event[0]}');
     });
+  }
+
+  Future<void> saveRunData() async {
+    emit(
+      state.copyWith(
+        saveRunStatus: SaveRunStatus.loading,
+      ),
+    );
+    final result = await runTrackingRepository
+        .saveRunData(
+          distance: state.runData.distanceTraveled,
+          stepsCount: state.runData.stepsCount,
+          duration: state.runData.timePassed.inSeconds,
+        )
+        .run();
+
+    result.match(
+      (error) {
+        // debugPrint("save bpm data error: $error");
+        emit(
+          state.copyWith(
+            mess: error,
+            saveRunStatus: SaveRunStatus.error,
+          ),
+        );
+      },
+      (response) async {
+        // debugPrint("save bpm data response: $response");
+        emit(
+          state.copyWith(saveRunStatus: SaveRunStatus.finish),
+        );
+      },
+    );
   }
 }
