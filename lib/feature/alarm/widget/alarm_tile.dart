@@ -44,6 +44,10 @@ class AlarmTile extends StatelessWidget {
         onPressed: onPressed,
         child: Container(
           // height: 100,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white.withOpacity(0.3),
+          ),
           padding: const EdgeInsets.all(35),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,12 +62,16 @@ class AlarmTile extends StatelessWidget {
                         children: [
                           Text(
                             alarmModel.title,
-                            style: AppStyles.f18sb(),
+                            style: AppStyles.f18sb().copyWith(
+                              color: Colors.white,
+                            ),
                           ),
                           const HorizontalSpace(10),
                           Text(
                             time,
-                            style: AppStyles.f17m(),
+                            style: AppStyles.f17m().copyWith(
+                              color: Colors.white,
+                            ),
                           ),
                         ],
                       ),
@@ -72,7 +80,9 @@ class AlarmTile extends StatelessWidget {
                         child: Text(
                           alarmModel.note,
                           textAlign: TextAlign.start,
-                          style: AppStyles.f17m(),
+                          style: AppStyles.f17m().copyWith(
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],

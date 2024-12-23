@@ -112,6 +112,7 @@ class RunTrackCubit extends Cubit<RunTrackState> {
     await saveRunData();
     emit(state.copyWith(
       runTrackingStatus: RunTrackingStatus.finish,
+      runData: const RunData(),
       mess: '',
     ));
   }

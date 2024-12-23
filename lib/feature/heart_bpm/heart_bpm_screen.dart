@@ -48,12 +48,13 @@ class _HeartBPMScreenState extends State<HeartBPMScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: "#1f2933".toColor(),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey.withOpacity(0.3),
+        iconTheme: const IconThemeData(color: Colors.white),
         title: Text(
           'Heart BPM',
-          style: AppStyles.f20sb(),
+          style: AppStyles.f20sb().copyWith(color: Colors.white),
         ),
       ),
       body: BlocProvider(
@@ -143,7 +144,7 @@ class _HeartBPMScreenState extends State<HeartBPMScreen> {
                     const VerticalSpace(15),
                     Text(
                       "Put your finger to cover the camera AND the flash light at the same time to ensure your BPM is measured accurately.",
-                      style: AppStyles.f16m(),
+                      style: AppStyles.f16m().copyWith(color: Colors.white),
                     ),
                     const VerticalSpace(15),
                     isBPMEnabled && data.isNotEmpty
@@ -165,11 +166,8 @@ class _HeartBPMScreenState extends State<HeartBPMScreen> {
                         : const SizedBox(),
                     const VerticalSpace(10),
                     Center(
-                      child: ElevatedButton.icon(
-                        icon: const Icon(Icons.favorite_rounded),
-                        label: Text(
-                            isBPMEnabled ? "Stop measurement" : "Measure BPM"),
-                        onPressed: () => setState(
+                      child: InkWell(
+                        onTap: () => setState(
                           () {
                             isBPMEnabled = !isBPMEnabled;
                             if (!isBPMEnabled) {
@@ -177,6 +175,32 @@ class _HeartBPMScreenState extends State<HeartBPMScreen> {
                               bpmValues.clear();
                             }
                           },
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 3, 117, 210)
+                                .withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.favorite_rounded,
+                                color: Colors.white,
+                              ),
+                              const HorizontalSpace(10),
+                              Text(
+                                isBPMEnabled
+                                    ? "Stop measurement"
+                                    : "Measure BPM",
+                                style: AppStyles.f15m().copyWith(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

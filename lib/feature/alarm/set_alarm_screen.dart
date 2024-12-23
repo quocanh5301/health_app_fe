@@ -239,12 +239,14 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: "64b5f6".toColor(),
+                          color: Colors.white.withOpacity(0.5),
                         ),
                         child: Text(
                           state.dateTime,
-                          style: AppStyles.f20sb()
-                              .copyWith(color: Colors.white, fontSize: 30),
+                          style: AppStyles.f20sb().copyWith(
+                            color: Colors.white,
+                            fontSize: 30,
+                          ),
                         ),
                       ),
                     ),
@@ -390,7 +392,7 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
           onPressed: () => Navigator.pop(context, null),
           child: Text(
             'Cancel',
-            style: AppStyles.f20m().copyWith(color: "89C8FE".toColor()),
+            style: AppStyles.f20m().copyWith(color: Colors.white),
           ),
         ),
         TextButton(
@@ -415,7 +417,7 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
           },
           child: Text(
             'Save',
-            style: AppStyles.f20m().copyWith(color: "89C8FE".toColor()),
+            style: AppStyles.f20m().copyWith(color: Colors.white),
           ),
         ),
       ],

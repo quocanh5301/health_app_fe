@@ -32,7 +32,7 @@ class HomeTab extends StatelessWidget {
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  const VerticalSpace(30),
+                  const VerticalSpace(60),
                   Container(
                     clipBehavior: Clip.hardEdge,
                     decoration: BoxDecoration(

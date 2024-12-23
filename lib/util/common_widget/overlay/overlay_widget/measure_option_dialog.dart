@@ -22,16 +22,19 @@ class MeasureDialog extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    const VerticalSpace(55),
+                    const VerticalSpace(20),
+                    Text(
+                      "Track your health",
+                      style: AppStyles.f17sb().copyWith(color: Colors.white),
+                    ),
+                    const VerticalSpace(25),
                     InkWell(
                       onTap: () => const RunTrackingRoute().push(context),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: '#2b2b2b'.toColor(),
+                          color: const Color.fromARGB(255, 3, 117, 210)
+                              .withOpacity(0.3),
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(
-                            color: '#DBA510'.toColor(),
-                          ),
                         ),
                         padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                         child: Row(
@@ -56,11 +59,9 @@ class MeasureDialog extends StatelessWidget {
                       onTap: () => const HeartBPMTrackingRoute().push(context),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: '#2b2b2b'.toColor(),
+                          color: const Color.fromARGB(255, 3, 117, 210)
+                              .withOpacity(0.3),
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(
-                            color: '#DBA510'.toColor(),
-                          ),
                         ),
                         padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                         child: Row(

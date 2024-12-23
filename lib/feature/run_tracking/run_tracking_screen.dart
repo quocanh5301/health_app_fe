@@ -14,12 +14,13 @@ class RunTrackingScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<RunTrackCubit>()..permissionsHandling(),
       child: Scaffold(
+        backgroundColor: "#1f2933".toColor(),
         appBar: AppBar(
+          backgroundColor: Colors.grey.withOpacity(0.3),
+          iconTheme: const IconThemeData(color: Colors.white),
           title: Text(
             "Fitness Tracker",
-            style: AppStyles.f18m().copyWith(
-              color: Colors.black,
-            ),
+            style: AppStyles.f18m().copyWith(color: Colors.white),
           ),
         ),
         body: BlocConsumer<RunTrackCubit, RunTrackState>(
@@ -39,9 +40,11 @@ class RunTrackingScreen extends StatelessWidget {
               debugPrint("Denied forever");
               ScaffoldMessenger.of(context)
                   .showSnackBar(
-                    const SnackBar(
+                    SnackBar(
                       content: Text(
-                          "Please enable location and activity tracking from your device settings"),
+                        "Please enable location and activity tracking from your device settings",
+                        style: AppStyles.f16m().copyWith(color: Colors.white),
+                      ),
                     ),
                   )
                   .closed
@@ -50,7 +53,11 @@ class RunTrackingScreen extends StatelessWidget {
           },
           buildWhen: (previous, current) =>
               previous.runTrackingStatus != current.runTrackingStatus ||
-              previous.saveRunStatus != current.saveRunStatus,
+              previous.saveRunStatus != current.saveRunStatus 
+              ||
+              // current.runData.distanceTraveled != previous.runData.distanceTraveled || 
+              // current.runData.stepsCount != previous.runData.stepsCount ||
+              current.runData.timePassed != previous.runData.timePassed,
           builder: (context, state) {
             return Center(
               child: Stack(
@@ -60,23 +67,17 @@ class RunTrackingScreen extends StatelessWidget {
                     children: [
                       Text(
                         "Distance Traveled: ${state.runData.distanceTraveled} meters",
-                        style: AppStyles.f16m().copyWith(
-                          color: Colors.black,
-                        ),
+                        style: AppStyles.f16m().copyWith(color: Colors.white),
                       ),
                       const VerticalSpace(15),
                       Text(
                         "Step Count: ${state.runData.stepsCount.toStringAsFixed(2)}",
-                        style: AppStyles.f16m().copyWith(
-                          color: Colors.black,
-                        ),
+                        style: AppStyles.f16m().copyWith(color: Colors.white),
                       ),
                       const VerticalSpace(15),
                       Text(
                         "Time Passed: ${state.runData.timePassed.inSeconds} seconds",
-                        style: AppStyles.f16m().copyWith(
-                          color: Colors.black,
-                        ),
+                        style: AppStyles.f16m().copyWith(color: Colors.white),
                       ),
                       const VerticalSpace(30),
                       ElevatedButton(
@@ -94,16 +95,6 @@ class RunTrackingScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      // ElevatedButton(
-                      //   onPressed: () =>
-                      //       context.read<RunTrackCubit>().onStopTracking(),
-                      //   child: Text(
-                      //     "Stop",
-                      //     style: AppStyles.f16m().copyWith(
-                      //       color: Colors.black,
-                      //     ),
-                      //   ),
-                      // ),
                     ],
                   ),
                 ],

@@ -13,9 +13,9 @@ class RunTrackState with _$RunTrackState {
     PhysicalActivityPermission physicalActivityPermission,
     @Default(SaveRunStatus.initial) SaveRunStatus saveRunStatus,
     @Default("") String mess,
-    @Default(0) double distance,
-    @Default(0) int stepsCount,
-    @Default(0) int duration, //in seconds
+    // @Default(0) double distance,
+    // @Default(0) int stepsCount,
+    // @Default(0) int duration, //in seconds
   }) = _RunTrackState;
 }
 
