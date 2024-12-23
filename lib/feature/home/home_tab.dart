@@ -15,21 +15,21 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: BlocProvider(
-        create: (context) => sl<HomeCubit>()
-          ..getMyRunData()
-          ..getMyHeartData(),
-        child: BlocBuilder<HomeCubit, HomeState>(
-          buildWhen: (previous, current) =>
-              previous.getYourDataStatus != current.getYourDataStatus ||
-              previous.lastWeekRunDatas != current.lastWeekRunDatas ||
-              previous.myBPMDatas != current.myBPMDatas ||
-              previous.thisWeekRunDatas != current.thisWeekRunDatas ||
-              previous.myBPMDatas != current.myBPMDatas,
-          builder: (context, state) {
-            debugPrint("HomeTab: ${state.thisWeekRunDatas}");
-            return SingleChildScrollView(
+    return BlocProvider(
+      create: (context) => sl<HomeCubit>()
+        ..getMyRunData()
+        ..getMyHeartData(),
+      child: BlocBuilder<HomeCubit, HomeState>(
+        buildWhen: (previous, current) =>
+            previous.getYourDataStatus != current.getYourDataStatus ||
+            previous.lastWeekRunDatas != current.lastWeekRunDatas ||
+            previous.myBPMDatas != current.myBPMDatas ||
+            previous.thisWeekRunDatas != current.thisWeekRunDatas ||
+            previous.myBPMDatas != current.myBPMDatas,
+        builder: (context, state) {
+          return Scaffold(
+            backgroundColor: "#1f2933".toColor(),
+            body: SingleChildScrollView(
               child: Column(
                 children: [
                   const VerticalSpace(30),
@@ -86,9 +86,9 @@ class HomeTab extends StatelessWidget {
                   ),
                 ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

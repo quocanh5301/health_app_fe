@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:health_app_flutter/data/share_pref/shared_pref.dart';
 import 'package:health_app_flutter/feature/base/base_screen.dart';
+import 'package:health_app_flutter/feature/exercise_detail.dart/exercise_detail_screen.dart';
 import 'package:health_app_flutter/feature/first_intro/first_intro.dart';
 import 'package:health_app_flutter/feature/heart_bpm/heart_bpm_screen.dart';
 import 'package:health_app_flutter/feature/login/ui/login_screen.dart';
@@ -32,8 +33,7 @@ class LoginRoute extends GoRouteData {
   const LoginRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      LoginScreen();
+  Widget build(BuildContext context, GoRouterState state) => LoginScreen();
 }
 
 @TypedGoRoute<RegisterRoute>(path: Routes.register)
@@ -41,8 +41,7 @@ class RegisterRoute extends GoRouteData {
   const RegisterRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      RegisterScreen();
+  Widget build(BuildContext context, GoRouterState state) => RegisterScreen();
 }
 
 @TypedGoRoute<FirstTimeIntroRoute>(path: Routes.firstTimeIntro)
@@ -80,14 +79,17 @@ class HeartBPMTrackingRoute extends GoRouteData {
       const HeartBPMScreen();
 }
 
-// @TypedGoRoute<ExerciseListRoute>(path: Routes.exerciseList)
-// class ExerciseListRoute extends GoRouteData {
-//   const ExerciseListRoute();
+@TypedGoRoute<ExerciseDetailRoute>(path: Routes.exerciseDetail)
+class ExerciseDetailRoute extends GoRouteData {
+  const ExerciseDetailRoute({required this.exerciseId});
+  final int exerciseId;
 
-//   @override
-//   Widget build(BuildContext context, GoRouterState state) =>
-//       const ExerciseListScreen();
-// }
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      ExerciseDetailScreen(
+        exerciseId: exerciseId,
+      );
+}
 
 class Routes {
   static const String firstTimeIntro = '/first_time_intro';
@@ -97,5 +99,5 @@ class Routes {
   static const String runTracking = '/run_tracking';
   static const String heartBPMTracking = '/heart_bpm_tracking';
   static const String alarmList = '/alarm_list';
-  static const String exerciseList = '/exercise_list';
+  static const String exerciseDetail = '/exercise_detail';
 }

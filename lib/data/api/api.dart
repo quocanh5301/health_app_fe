@@ -6,7 +6,7 @@ import 'package:health_app_flutter/util/router.dart';
 
 final apiRequest = Dio(
   BaseOptions(
-    baseUrl: 'http://192.168.180.1:3000/',
+    baseUrl: 'http://192.168.1.11:3000/',
     connectTimeout: const Duration(minutes: 1),
     receiveTimeout: const Duration(minutes: 1),
     headers: {

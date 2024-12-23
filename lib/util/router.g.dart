@@ -13,6 +13,7 @@ List<RouteBase> get $appRoutes => [
       $baseRoute,
       $runTrackingRoute,
       $heartBPMTrackingRoute,
+      $exerciseDetailRoute,
     ];
 
 RouteBase get $loginRoute => GoRouteData.$route(
@@ -138,6 +139,34 @@ extension $HeartBPMTrackingRouteExtension on HeartBPMTrackingRoute {
 
   String get location => GoRouteData.$location(
         '/heart_bpm_tracking',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $exerciseDetailRoute => GoRouteData.$route(
+      path: '/exercise_detail',
+      factory: $ExerciseDetailRouteExtension._fromState,
+    );
+
+extension $ExerciseDetailRouteExtension on ExerciseDetailRoute {
+  static ExerciseDetailRoute _fromState(GoRouterState state) =>
+      ExerciseDetailRoute(
+        exerciseId: int.parse(state.uri.queryParameters['exercise-id']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/exercise_detail',
+        queryParams: {
+          'exercise-id': exerciseId.toString(),
+        },
       );
 
   void go(BuildContext context) => context.go(location);

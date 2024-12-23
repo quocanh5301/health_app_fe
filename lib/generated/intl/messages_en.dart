@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailFormatError":
             MessageLookupByLibrary.simpleMessage("Email is not valid"),
         "emailHint": MessageLookupByLibrary.simpleMessage("Email"),
+        "exerciseDetail":
+            MessageLookupByLibrary.simpleMessage("Exercise Detail"),
         "forarms": MessageLookupByLibrary.simpleMessage("Forearms"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),

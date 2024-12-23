@@ -24,6 +24,8 @@ class AppImage {
   static const String imgEmpty3 = 'assets/img_empty_3.png';
   // icon
   static const String icHeart = 'assets/ic_heart.svg';
-
+  static const String icMuscleGroup = 'assets/ic_muscle_group.svg';
   static const String icMeasure = "assets/ic_measure.svg";
+  static const String icDifficulty = "assets/ic_difficulty.svg";
+  static const String icCalor = "assets/ic_calor.svg";
 }

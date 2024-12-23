@@ -6,6 +6,9 @@ import 'package:health_app_flutter/feature/base/bloc/base_cubit.dart';
 import 'package:health_app_flutter/feature/exercise/bloc/exercise_list_cubit.dart';
 import 'package:health_app_flutter/feature/exercise/provider/exercise_provider.dart';
 import 'package:health_app_flutter/feature/exercise/repository/exercise_repository.dart';
+import 'package:health_app_flutter/feature/exercise_detail.dart/bloc/exercise_detail_cubit.dart';
+import 'package:health_app_flutter/feature/exercise_detail.dart/provider/exercise_detail_provider.dart';
+import 'package:health_app_flutter/feature/exercise_detail.dart/repository/exercise_detail_repository.dart';
 import 'package:health_app_flutter/feature/heart_bpm/bloc/bpm_cubit.dart';
 import 'package:health_app_flutter/feature/heart_bpm/provider/bpm_provider.dart';
 import 'package:health_app_flutter/feature/heart_bpm/repository/bpm_repository.dart';
@@ -40,6 +43,7 @@ Future<void> init() async {
   initAppSetting();
   initAlarm();
   initExerciseList();
+  initExerciseDetail();
 }
 
 void initAppSetting() async {
@@ -99,4 +103,10 @@ void initExerciseList() async {
   sl.registerFactory(() => ExerciseListCubit(exerciseRepository: sl()));
   sl.registerFactory(() => ExerciseRepository(exerciseProvider: sl()));
   sl.registerFactory(() => ExerciseProvider(apiRequest: APIRequest()));
+}
+
+void initExerciseDetail() async {
+  sl.registerFactory(() => ExerciseDetailCubit(exerciseDetailRepository: sl()));
+  sl.registerFactory(() => ExerciseDetailRepository(exerciseDetailProvider: sl()));
+  sl.registerFactory(() => ExerciseDetailProvider(apiRequest: APIRequest()));
 }

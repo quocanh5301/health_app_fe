@@ -22,13 +22,7 @@ class ExerciseListScreen extends StatelessWidget {
             previous.getExerciseStatus != current.getExerciseStatus ||
             previous.filterType != current.filterType,
         builder: (context, state) {
-          // final double imageHeight =
-          //     (AppStyles.screenW - AppStyles.width(60)) / 2 * 203.0 / 185.0 / 2;
-          debugPrint("state.filterType ${state.filterType}");
-          debugPrint("state.getExerciseStatus ${state.getExerciseStatus}");
-
           return Container(
-            // padding: const EdgeInsets.all(20),
             height: AppStyles.screenH,
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(

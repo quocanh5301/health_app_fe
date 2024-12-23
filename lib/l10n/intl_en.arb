@@ -56,5 +56,6 @@
   "intermediate": "Intermediate",
   "advance": "Advance",
 
-  "noData": "There is no data"
+  "noData": "There is no data",
+  "exerciseDetail": "Exercise Detail"
 }

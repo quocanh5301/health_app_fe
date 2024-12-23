@@ -5,6 +5,7 @@ import 'package:health_app_flutter/generated/l10n.dart';
 import 'package:health_app_flutter/util/common_widget/firebase_image.dart';
 import 'package:health_app_flutter/util/date_time.dart';
 import 'package:health_app_flutter/util/images.dart';
+import 'package:health_app_flutter/util/router.dart';
 import 'package:health_app_flutter/util/styles.dart';
 
 class ExerciseTile extends StatelessWidget {
@@ -22,7 +23,8 @@ class ExerciseTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => {},
+      onTap: () =>
+          ExerciseDetailRoute(exerciseId: exerciseModel.id ?? 0).push(context),
       child: Stack(
         children: [
           Stack(
@@ -31,7 +33,7 @@ class ExerciseTile extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: '#FF6B00'.toColor().withOpacity(0.3),
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -48,6 +50,14 @@ class ExerciseTile extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          Container(
+            width: cardWidth,
+            height: cardHeight,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: '#802D264f'.toColor().withOpacity(0.3),
+            ),
           ),
           Positioned(
             bottom: AppStyles.height(8),
@@ -102,7 +112,7 @@ class ExerciseTile extends StatelessWidget {
                                     width: AppStyles.height(20),
                                     height: AppStyles.height(20),
                                     child: SvgPicture.asset(
-                                      AppImage.icMeasure,
+                                      AppImage.icCalor,
                                       colorFilter: const ColorFilter.mode(
                                         Colors.white,
                                         BlendMode.srcIn,
@@ -135,6 +145,31 @@ class ExerciseTile extends StatelessWidget {
                                     ),
                                   ),
                                 ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: AppStyles.height(20),
+                              height: AppStyles.height(20),
+                              child: SvgPicture.asset(
+                                AppImage.icMuscleGroup,
+                                colorFilter: const ColorFilter.mode(
+                                  Colors.white,
+                                  BlendMode.srcIn,
+                                ),
+                              ),
+                            ),
+                            const HorizontalSpace(8),
+                            Expanded(
+                              child: Text(
+                                "Muscle Groups: ${exerciseModel.muscleGroups?.join(', ') ?? S.of(context).noInfoField}",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppStyles.f12r()
+                                    .copyWith(color: Colors.white),
                               ),
                             ),
                           ],
