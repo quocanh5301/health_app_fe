@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'exercise_model.freezed.dart';
@@ -6,15 +8,14 @@ part 'exercise_model.g.dart';
 @freezed
 class ExerciseModel with _$ExerciseModel {
   const factory ExerciseModel({
-    @Default(0) int id,
-    @Default("") String name,
-    @Default(0) int calor,
-    @Default(0) int time,
-    @Default("") String guide,
-    @Default("") String muscleGroup,  //Chest, Upper Back, Lower Back, Shoulder, Biceps, Triceps, Forearms, Thighs, Calves, Core, Glutes, Full Body
-    @Default("") String difficulty,   //beginner, intermediate, advanced
+    @JsonKey(name: 'exercise_id') int? id,
+    @JsonKey(name: 'exercise_name') String? name,
+    @JsonKey(name: 'calor') int? calor,
+    @JsonKey(name: 'duration') int? duration,
+    @JsonKey(name: 'difficulty') String? difficulty,
+    @JsonKey(name: 'image') String? image,
+    @JsonKey(name: 'muscle_groups') List<String>? muscleGroups,
   }) = _ExerciseModel;
 
-  factory ExerciseModel.fromJson(Map<String, dynamic> json) =>
-      _$ExerciseModelFromJson(json);
+  factory ExerciseModel.fromJson(Map<String, dynamic> json) => _$ExerciseModelFromJson(json);
 }

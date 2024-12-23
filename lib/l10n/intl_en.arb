@@ -33,5 +33,28 @@
   "name": "Name",
   "nameHint": "Enter your Name",
   "nameError": "Please fill in your name",
-  "ok": "OK"
+  "ok": "OK",
+  "noInfoField": "No information field",
+  "allFilter": "All",
+  "muscleGroupFilter": "Muscle Group",
+  "difficultyFilter": "Difficulty",
+
+  "chest": "Chest",
+  "upperBack": "Upper Back",
+  "lowerBack": "Lower Back",
+  "shoulders": "Shoulders",
+  "biceps": "Biceps",
+  "triceps": "Triceps",
+  "forarms": "Forearms",
+  "core": "Core",
+  "calves": "Calves",
+  "thighs": "Thighs",
+  "glutes": "Glutes",
+  "fullBody": "Full Body",
+
+  "beginner": "Beginner",
+  "intermediate": "Intermediate",
+  "advance": "Advance",
+
+  "noData": "There is no data"
 }

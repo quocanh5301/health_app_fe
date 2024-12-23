@@ -20,14 +20,20 @@ ExerciseModel _$ExerciseModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ExerciseModel {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  int get calor => throw _privateConstructorUsedError;
-  int get time => throw _privateConstructorUsedError;
-  String get guide => throw _privateConstructorUsedError;
-  String get muscleGroup =>
-      throw _privateConstructorUsedError; //Chest, Upper Back, Lower Back, Shoulder, Biceps, Triceps, Forearms, Thighs, Calves, Core, Glutes, Full Body
-  String get difficulty => throw _privateConstructorUsedError;
+  @JsonKey(name: 'exercise_id')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'exercise_name')
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'calor')
+  int? get calor => throw _privateConstructorUsedError;
+  @JsonKey(name: 'duration')
+  int? get duration => throw _privateConstructorUsedError;
+  @JsonKey(name: 'difficulty')
+  String? get difficulty => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image')
+  String? get image => throw _privateConstructorUsedError;
+  @JsonKey(name: 'muscle_groups')
+  List<String>? get muscleGroups => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,13 +48,13 @@ abstract class $ExerciseModelCopyWith<$Res> {
       _$ExerciseModelCopyWithImpl<$Res, ExerciseModel>;
   @useResult
   $Res call(
-      {int id,
-      String name,
-      int calor,
-      int time,
-      String guide,
-      String muscleGroup,
-      String difficulty});
+      {@JsonKey(name: 'exercise_id') int? id,
+      @JsonKey(name: 'exercise_name') String? name,
+      @JsonKey(name: 'calor') int? calor,
+      @JsonKey(name: 'duration') int? duration,
+      @JsonKey(name: 'difficulty') String? difficulty,
+      @JsonKey(name: 'image') String? image,
+      @JsonKey(name: 'muscle_groups') List<String>? muscleGroups});
 }
 
 /// @nodoc
@@ -64,43 +70,43 @@ class _$ExerciseModelCopyWithImpl<$Res, $Val extends ExerciseModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? calor = null,
-    Object? time = null,
-    Object? guide = null,
-    Object? muscleGroup = null,
-    Object? difficulty = null,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? calor = freezed,
+    Object? duration = freezed,
+    Object? difficulty = freezed,
+    Object? image = freezed,
+    Object? muscleGroups = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
+              as int?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      calor: null == calor
+              as String?,
+      calor: freezed == calor
           ? _value.calor
           : calor // ignore: cast_nullable_to_non_nullable
-              as int,
-      time: null == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as int,
-      guide: null == guide
-          ? _value.guide
-          : guide // ignore: cast_nullable_to_non_nullable
-              as String,
-      muscleGroup: null == muscleGroup
-          ? _value.muscleGroup
-          : muscleGroup // ignore: cast_nullable_to_non_nullable
-              as String,
-      difficulty: null == difficulty
+              as int?,
+      duration: freezed == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int?,
+      difficulty: freezed == difficulty
           ? _value.difficulty
           : difficulty // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      muscleGroups: freezed == muscleGroups
+          ? _value.muscleGroups
+          : muscleGroups // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -114,13 +120,13 @@ abstract class _$$ExerciseModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String name,
-      int calor,
-      int time,
-      String guide,
-      String muscleGroup,
-      String difficulty});
+      {@JsonKey(name: 'exercise_id') int? id,
+      @JsonKey(name: 'exercise_name') String? name,
+      @JsonKey(name: 'calor') int? calor,
+      @JsonKey(name: 'duration') int? duration,
+      @JsonKey(name: 'difficulty') String? difficulty,
+      @JsonKey(name: 'image') String? image,
+      @JsonKey(name: 'muscle_groups') List<String>? muscleGroups});
 }
 
 /// @nodoc
@@ -134,43 +140,43 @@ class __$$ExerciseModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? calor = null,
-    Object? time = null,
-    Object? guide = null,
-    Object? muscleGroup = null,
-    Object? difficulty = null,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? calor = freezed,
+    Object? duration = freezed,
+    Object? difficulty = freezed,
+    Object? image = freezed,
+    Object? muscleGroups = freezed,
   }) {
     return _then(_$ExerciseModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
+              as int?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      calor: null == calor
+              as String?,
+      calor: freezed == calor
           ? _value.calor
           : calor // ignore: cast_nullable_to_non_nullable
-              as int,
-      time: null == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as int,
-      guide: null == guide
-          ? _value.guide
-          : guide // ignore: cast_nullable_to_non_nullable
-              as String,
-      muscleGroup: null == muscleGroup
-          ? _value.muscleGroup
-          : muscleGroup // ignore: cast_nullable_to_non_nullable
-              as String,
-      difficulty: null == difficulty
+              as int?,
+      duration: freezed == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int?,
+      difficulty: freezed == difficulty
           ? _value.difficulty
           : difficulty // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      muscleGroups: freezed == muscleGroups
+          ? _value._muscleGroups
+          : muscleGroups // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -179,43 +185,50 @@ class __$$ExerciseModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ExerciseModelImpl implements _ExerciseModel {
   const _$ExerciseModelImpl(
-      {this.id = 0,
-      this.name = "",
-      this.calor = 0,
-      this.time = 0,
-      this.guide = "",
-      this.muscleGroup = "",
-      this.difficulty = ""});
+      {@JsonKey(name: 'exercise_id') this.id,
+      @JsonKey(name: 'exercise_name') this.name,
+      @JsonKey(name: 'calor') this.calor,
+      @JsonKey(name: 'duration') this.duration,
+      @JsonKey(name: 'difficulty') this.difficulty,
+      @JsonKey(name: 'image') this.image,
+      @JsonKey(name: 'muscle_groups') final List<String>? muscleGroups})
+      : _muscleGroups = muscleGroups;
 
   factory _$ExerciseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ExerciseModelImplFromJson(json);
 
   @override
-  @JsonKey()
-  final int id;
+  @JsonKey(name: 'exercise_id')
+  final int? id;
   @override
-  @JsonKey()
-  final String name;
+  @JsonKey(name: 'exercise_name')
+  final String? name;
   @override
-  @JsonKey()
-  final int calor;
+  @JsonKey(name: 'calor')
+  final int? calor;
   @override
-  @JsonKey()
-  final int time;
+  @JsonKey(name: 'duration')
+  final int? duration;
   @override
-  @JsonKey()
-  final String guide;
+  @JsonKey(name: 'difficulty')
+  final String? difficulty;
   @override
-  @JsonKey()
-  final String muscleGroup;
-//Chest, Upper Back, Lower Back, Shoulder, Biceps, Triceps, Forearms, Thighs, Calves, Core, Glutes, Full Body
+  @JsonKey(name: 'image')
+  final String? image;
+  final List<String>? _muscleGroups;
   @override
-  @JsonKey()
-  final String difficulty;
+  @JsonKey(name: 'muscle_groups')
+  List<String>? get muscleGroups {
+    final value = _muscleGroups;
+    if (value == null) return null;
+    if (_muscleGroups is EqualUnmodifiableListView) return _muscleGroups;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'ExerciseModel(id: $id, name: $name, calor: $calor, time: $time, guide: $guide, muscleGroup: $muscleGroup, difficulty: $difficulty)';
+    return 'ExerciseModel(id: $id, name: $name, calor: $calor, duration: $duration, difficulty: $difficulty, image: $image, muscleGroups: $muscleGroups)';
   }
 
   @override
@@ -226,18 +239,19 @@ class _$ExerciseModelImpl implements _ExerciseModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.calor, calor) || other.calor == calor) &&
-            (identical(other.time, time) || other.time == time) &&
-            (identical(other.guide, guide) || other.guide == guide) &&
-            (identical(other.muscleGroup, muscleGroup) ||
-                other.muscleGroup == muscleGroup) &&
+            (identical(other.duration, duration) ||
+                other.duration == duration) &&
             (identical(other.difficulty, difficulty) ||
-                other.difficulty == difficulty));
+                other.difficulty == difficulty) &&
+            (identical(other.image, image) || other.image == image) &&
+            const DeepCollectionEquality()
+                .equals(other._muscleGroups, _muscleGroups));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, calor, time, guide, muscleGroup, difficulty);
+  int get hashCode => Object.hash(runtimeType, id, name, calor, duration,
+      difficulty, image, const DeepCollectionEquality().hash(_muscleGroups));
 
   @JsonKey(ignore: true)
   @override
@@ -255,31 +269,39 @@ class _$ExerciseModelImpl implements _ExerciseModel {
 
 abstract class _ExerciseModel implements ExerciseModel {
   const factory _ExerciseModel(
-      {final int id,
-      final String name,
-      final int calor,
-      final int time,
-      final String guide,
-      final String muscleGroup,
-      final String difficulty}) = _$ExerciseModelImpl;
+          {@JsonKey(name: 'exercise_id') final int? id,
+          @JsonKey(name: 'exercise_name') final String? name,
+          @JsonKey(name: 'calor') final int? calor,
+          @JsonKey(name: 'duration') final int? duration,
+          @JsonKey(name: 'difficulty') final String? difficulty,
+          @JsonKey(name: 'image') final String? image,
+          @JsonKey(name: 'muscle_groups') final List<String>? muscleGroups}) =
+      _$ExerciseModelImpl;
 
   factory _ExerciseModel.fromJson(Map<String, dynamic> json) =
       _$ExerciseModelImpl.fromJson;
 
   @override
-  int get id;
+  @JsonKey(name: 'exercise_id')
+  int? get id;
   @override
-  String get name;
+  @JsonKey(name: 'exercise_name')
+  String? get name;
   @override
-  int get calor;
+  @JsonKey(name: 'calor')
+  int? get calor;
   @override
-  int get time;
+  @JsonKey(name: 'duration')
+  int? get duration;
   @override
-  String get guide;
+  @JsonKey(name: 'difficulty')
+  String? get difficulty;
   @override
-  String get muscleGroup;
-  @override //Chest, Upper Back, Lower Back, Shoulder, Biceps, Triceps, Forearms, Thighs, Calves, Core, Glutes, Full Body
-  String get difficulty;
+  @JsonKey(name: 'image')
+  String? get image;
+  @override
+  @JsonKey(name: 'muscle_groups')
+  List<String>? get muscleGroups;
   @override
   @JsonKey(ignore: true)
   _$$ExerciseModelImplCopyWith<_$ExerciseModelImpl> get copyWith =>

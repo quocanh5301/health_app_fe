@@ -389,6 +389,206 @@ class S {
       args: [],
     );
   }
+
+  /// `No information field`
+  String get noInfoField {
+    return Intl.message(
+      'No information field',
+      name: 'noInfoField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get allFilter {
+    return Intl.message(
+      'All',
+      name: 'allFilter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Muscle Group`
+  String get muscleGroupFilter {
+    return Intl.message(
+      'Muscle Group',
+      name: 'muscleGroupFilter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Difficulty`
+  String get difficultyFilter {
+    return Intl.message(
+      'Difficulty',
+      name: 'difficultyFilter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chest`
+  String get chest {
+    return Intl.message(
+      'Chest',
+      name: 'chest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upper Back`
+  String get upperBack {
+    return Intl.message(
+      'Upper Back',
+      name: 'upperBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lower Back`
+  String get lowerBack {
+    return Intl.message(
+      'Lower Back',
+      name: 'lowerBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shoulders`
+  String get shoulders {
+    return Intl.message(
+      'Shoulders',
+      name: 'shoulders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biceps`
+  String get biceps {
+    return Intl.message(
+      'Biceps',
+      name: 'biceps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Triceps`
+  String get triceps {
+    return Intl.message(
+      'Triceps',
+      name: 'triceps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forearms`
+  String get forarms {
+    return Intl.message(
+      'Forearms',
+      name: 'forarms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Core`
+  String get core {
+    return Intl.message(
+      'Core',
+      name: 'core',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Calves`
+  String get calves {
+    return Intl.message(
+      'Calves',
+      name: 'calves',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thighs`
+  String get thighs {
+    return Intl.message(
+      'Thighs',
+      name: 'thighs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Glutes`
+  String get glutes {
+    return Intl.message(
+      'Glutes',
+      name: 'glutes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Full Body`
+  String get fullBody {
+    return Intl.message(
+      'Full Body',
+      name: 'fullBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Beginner`
+  String get beginner {
+    return Intl.message(
+      'Beginner',
+      name: 'beginner',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Intermediate`
+  String get intermediate {
+    return Intl.message(
+      'Intermediate',
+      name: 'intermediate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Advance`
+  String get advance {
+    return Intl.message(
+      'Advance',
+      name: 'advance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There is no data`
+  String get noData {
+    return Intl.message(
+      'There is no data',
+      name: 'noData',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

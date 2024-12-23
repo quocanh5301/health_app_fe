@@ -6,8 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:health_app_flutter/feature/alarm/alarm_list_screen.dart';
 import 'package:health_app_flutter/feature/base/bloc/base_cubit.dart';
 import 'package:health_app_flutter/feature/base/bloc/base_state.dart';
+import 'package:health_app_flutter/feature/exercise/exercise_list_screen.dart';
 import 'package:health_app_flutter/feature/home/home_tab.dart';
-import 'package:health_app_flutter/util/common_widget/auto_slider.dart';
 import 'package:health_app_flutter/util/common_widget/overlay/my_overlay_controller.dart';
 import 'package:health_app_flutter/util/images.dart';
 import 'package:health_app_flutter/util/injection.dart';
@@ -44,7 +44,7 @@ class _BaseScreenState extends State<BaseScreen> {
       child: BlocBuilder<BaseCubit, BaseState>(
         builder: (context, state) {
           return Scaffold(
-            // extendBody: true,
+            extendBody: true,
             body: _getSelectedPage(state.tabIndex),
             floatingActionButton: FloatingActionButton(
               shape: const RoundedRectangleBorder(
@@ -89,14 +89,7 @@ class _BaseScreenState extends State<BaseScreen> {
       case 0:
         return const HomeTab();
       case 1:
-        return const AutoSlider(
-          images: [
-            AppImage.imgIntro1,
-            AppImage.imgIntro2,
-            AppImage.imgIntro3,
-          ],
-          startAutoSlide: true,
-        );
+        return const ExerciseListScreen();
       case 2:
         return const AlarmListScreen();
       case 3:

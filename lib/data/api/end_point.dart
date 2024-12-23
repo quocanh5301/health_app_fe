@@ -4,7 +4,7 @@ class Endpoints {
   static String changePass = 'register/registerUser';
   static String refreshToken = 'authenticate/refreshToken';
 
-  static String getExercise = 'exercise/getExercise';
+  static String getExercise = 'exercise/getExercises';
   static String getExerciseDetail = 'exercise/getExerciseDetail';
   static String markAsFavoriteExercise = 'exercise/markAsFavorite';
   static String getFavoriteExercise = 'exercise/getFavorites';

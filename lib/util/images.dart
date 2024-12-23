@@ -19,9 +19,11 @@ class AppImage {
   static const String imgRandom13 = 'assets/img_random_13.png';
   static const String imgRandom14 = 'assets/img_random_14.png';
   static const String imgRandom15 = 'assets/img_random_15.png';
-
+  static const String imgEmpty1 = 'assets/img_empty_1.png';
+  static const String imgEmpty2 = 'assets/img_empty_2.png';
+  static const String imgEmpty3 = 'assets/img_empty_3.png';
   // icon
   static const String icHeart = 'assets/ic_heart.svg';
-  
+
   static const String icMeasure = "assets/ic_measure.svg";
 }

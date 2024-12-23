@@ -22,18 +22,30 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "advance": MessageLookupByLibrary.simpleMessage("Advance"),
+        "allFilter": MessageLookupByLibrary.simpleMessage("All"),
+        "beginner": MessageLookupByLibrary.simpleMessage("Beginner"),
+        "biceps": MessageLookupByLibrary.simpleMessage("Biceps"),
+        "calves": MessageLookupByLibrary.simpleMessage("Calves"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "chest": MessageLookupByLibrary.simpleMessage("Chest"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "core": MessageLookupByLibrary.simpleMessage("Core"),
+        "difficultyFilter": MessageLookupByLibrary.simpleMessage("Difficulty"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailEmpty":
             MessageLookupByLibrary.simpleMessage("Email must not be empty"),
         "emailFormatError":
             MessageLookupByLibrary.simpleMessage("Email is not valid"),
         "emailHint": MessageLookupByLibrary.simpleMessage("Email"),
+        "forarms": MessageLookupByLibrary.simpleMessage("Forearms"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "forgotPasswordSuccess": MessageLookupByLibrary.simpleMessage(
             "Please check your email to reset your password"),
+        "fullBody": MessageLookupByLibrary.simpleMessage("Full Body"),
+        "glutes": MessageLookupByLibrary.simpleMessage("Glutes"),
+        "intermediate": MessageLookupByLibrary.simpleMessage("Intermediate"),
         "intro": MessageLookupByLibrary.simpleMessage(
             "We are the largest community sharing cooking recipes in Vietnam"),
         "introDescription1": MessageLookupByLibrary.simpleMessage(
@@ -52,11 +64,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginText1":
             MessageLookupByLibrary.simpleMessage("Already have an account? "),
         "loginText2": MessageLookupByLibrary.simpleMessage("Log in"),
+        "lowerBack": MessageLookupByLibrary.simpleMessage("Lower Back"),
+        "muscleGroupFilter":
+            MessageLookupByLibrary.simpleMessage("Muscle Group"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "nameError":
             MessageLookupByLibrary.simpleMessage("Please fill in your name"),
         "nameHint": MessageLookupByLibrary.simpleMessage("Enter your Name"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "noData": MessageLookupByLibrary.simpleMessage("There is no data"),
+        "noInfoField":
+            MessageLookupByLibrary.simpleMessage("No information field"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordEmpty":
@@ -73,7 +91,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Create Account"),
         "registerTitle2": MessageLookupByLibrary.simpleMessage(
             "Explore new recipes with us today !!!"),
-        "titleIntro":
-            MessageLookupByLibrary.simpleMessage("Create a Healthier Lifestyle")
+        "shoulders": MessageLookupByLibrary.simpleMessage("Shoulders"),
+        "thighs": MessageLookupByLibrary.simpleMessage("Thighs"),
+        "titleIntro": MessageLookupByLibrary.simpleMessage(
+            "Create a Healthier Lifestyle"),
+        "triceps": MessageLookupByLibrary.simpleMessage("Triceps"),
+        "upperBack": MessageLookupByLibrary.simpleMessage("Upper Back")
       };
 }

@@ -6,7 +6,7 @@ import 'package:health_app_flutter/util/router.dart';
 
 final apiRequest = Dio(
   BaseOptions(
-    baseUrl: 'http://192.168.200.1:3000/',
+    baseUrl: 'http://192.168.180.1:3000/',
     connectTimeout: const Duration(minutes: 1),
     receiveTimeout: const Duration(minutes: 1),
     headers: {
@@ -58,7 +58,7 @@ void configInterceptor(Dio apiRequest) {
               apiRequest.options.headers['Authorization'] =
                   'Bearer ${response.data['data']['accessToken']}';
               // handler.next(error); //!qa
-              handler.resolve(response);
+              // handler.resolve(response);
             } else {
               final context = rootNavigatorKey.currentContext;
               if (context != null) {

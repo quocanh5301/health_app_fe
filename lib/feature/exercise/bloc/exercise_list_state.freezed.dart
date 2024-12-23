@@ -17,6 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ExerciseListState {
   List<ExerciseModel> get exercises => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
+  String get filterType =>
+      throw _privateConstructorUsedError; // muscle group , difficulty , all
+  String get filterValue => throw _privateConstructorUsedError;
   String get mess => throw _privateConstructorUsedError;
   GetExerciseStatus get getExerciseStatus => throw _privateConstructorUsedError;
 
@@ -33,6 +37,9 @@ abstract class $ExerciseListStateCopyWith<$Res> {
   @useResult
   $Res call(
       {List<ExerciseModel> exercises,
+      int page,
+      String filterType,
+      String filterValue,
       String mess,
       GetExerciseStatus getExerciseStatus});
 }
@@ -51,6 +58,9 @@ class _$ExerciseListStateCopyWithImpl<$Res, $Val extends ExerciseListState>
   @override
   $Res call({
     Object? exercises = null,
+    Object? page = null,
+    Object? filterType = null,
+    Object? filterValue = null,
     Object? mess = null,
     Object? getExerciseStatus = null,
   }) {
@@ -59,6 +69,18 @@ class _$ExerciseListStateCopyWithImpl<$Res, $Val extends ExerciseListState>
           ? _value.exercises
           : exercises // ignore: cast_nullable_to_non_nullable
               as List<ExerciseModel>,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      filterType: null == filterType
+          ? _value.filterType
+          : filterType // ignore: cast_nullable_to_non_nullable
+              as String,
+      filterValue: null == filterValue
+          ? _value.filterValue
+          : filterValue // ignore: cast_nullable_to_non_nullable
+              as String,
       mess: null == mess
           ? _value.mess
           : mess // ignore: cast_nullable_to_non_nullable
@@ -81,6 +103,9 @@ abstract class _$$ExerciseListStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {List<ExerciseModel> exercises,
+      int page,
+      String filterType,
+      String filterValue,
       String mess,
       GetExerciseStatus getExerciseStatus});
 }
@@ -97,6 +122,9 @@ class __$$ExerciseListStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? exercises = null,
+    Object? page = null,
+    Object? filterType = null,
+    Object? filterValue = null,
     Object? mess = null,
     Object? getExerciseStatus = null,
   }) {
@@ -105,6 +133,18 @@ class __$$ExerciseListStateImplCopyWithImpl<$Res>
           ? _value._exercises
           : exercises // ignore: cast_nullable_to_non_nullable
               as List<ExerciseModel>,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      filterType: null == filterType
+          ? _value.filterType
+          : filterType // ignore: cast_nullable_to_non_nullable
+              as String,
+      filterValue: null == filterValue
+          ? _value.filterValue
+          : filterValue // ignore: cast_nullable_to_non_nullable
+              as String,
       mess: null == mess
           ? _value.mess
           : mess // ignore: cast_nullable_to_non_nullable
@@ -122,6 +162,9 @@ class __$$ExerciseListStateImplCopyWithImpl<$Res>
 class _$ExerciseListStateImpl implements _ExerciseListState {
   const _$ExerciseListStateImpl(
       {final List<ExerciseModel> exercises = const [],
+      this.page = 1,
+      this.filterType = "all",
+      this.filterValue = "",
       this.mess = "",
       this.getExerciseStatus = GetExerciseStatus.initial})
       : _exercises = exercises;
@@ -137,6 +180,16 @@ class _$ExerciseListStateImpl implements _ExerciseListState {
 
   @override
   @JsonKey()
+  final int page;
+  @override
+  @JsonKey()
+  final String filterType;
+// muscle group , difficulty , all
+  @override
+  @JsonKey()
+  final String filterValue;
+  @override
+  @JsonKey()
   final String mess;
   @override
   @JsonKey()
@@ -144,7 +197,7 @@ class _$ExerciseListStateImpl implements _ExerciseListState {
 
   @override
   String toString() {
-    return 'ExerciseListState(exercises: $exercises, mess: $mess, getExerciseStatus: $getExerciseStatus)';
+    return 'ExerciseListState(exercises: $exercises, page: $page, filterType: $filterType, filterValue: $filterValue, mess: $mess, getExerciseStatus: $getExerciseStatus)';
   }
 
   @override
@@ -154,14 +207,25 @@ class _$ExerciseListStateImpl implements _ExerciseListState {
             other is _$ExerciseListStateImpl &&
             const DeepCollectionEquality()
                 .equals(other._exercises, _exercises) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.filterType, filterType) ||
+                other.filterType == filterType) &&
+            (identical(other.filterValue, filterValue) ||
+                other.filterValue == filterValue) &&
             (identical(other.mess, mess) || other.mess == mess) &&
             (identical(other.getExerciseStatus, getExerciseStatus) ||
                 other.getExerciseStatus == getExerciseStatus));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_exercises), mess, getExerciseStatus);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_exercises),
+      page,
+      filterType,
+      filterValue,
+      mess,
+      getExerciseStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -174,11 +238,20 @@ class _$ExerciseListStateImpl implements _ExerciseListState {
 abstract class _ExerciseListState implements ExerciseListState {
   const factory _ExerciseListState(
       {final List<ExerciseModel> exercises,
+      final int page,
+      final String filterType,
+      final String filterValue,
       final String mess,
       final GetExerciseStatus getExerciseStatus}) = _$ExerciseListStateImpl;
 
   @override
   List<ExerciseModel> get exercises;
+  @override
+  int get page;
+  @override
+  String get filterType;
+  @override // muscle group , difficulty , all
+  String get filterValue;
   @override
   String get mess;
   @override
