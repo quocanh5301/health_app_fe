@@ -85,30 +85,7 @@ class ExerciseListScreen extends StatelessWidget {
                         : const SizedBox.shrink(),
                     const VerticalSpace(15),
                     state.exercises.isNotEmpty
-                        ?
-                        // GridView.builder(
-                        //     shrinkWrap: true,
-                        //     gridDelegate:
-                        //         SliverGridDelegateWithFixedCrossAxisCount(
-                        //       crossAxisCount: 2,
-                        //       childAspectRatio: 185.0 / 203.0,
-                        //       crossAxisSpacing: AppStyles.width(20),
-                        //       mainAxisSpacing: AppStyles.height(10),
-                        //     ),
-                        //     padding: EdgeInsets.symmetric(
-                        //       horizontal: AppStyles.width(20),
-                        //       vertical: AppStyles.height(10),
-                        //     ),
-                        //     itemCount: state.exercises.length,
-                        //     itemBuilder: (context, index) {
-                        //       return ExerciseTile(
-                        //         exerciseModel: state.exercises[index],
-                        //         cardWidth: AppStyles.screenW / 3,
-                        //         cardHeight: imageHeight,
-                        //       );
-                        //     },
-                        //   )
-                        ListView.separated(
+                        ? ListView.separated(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: state.exercises.length,

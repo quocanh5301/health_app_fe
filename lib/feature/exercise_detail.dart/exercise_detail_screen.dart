@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:health_app_flutter/feature/bookmark_exercise/bloc/bookmark_exercise_cubit.dart';
 import 'package:health_app_flutter/feature/exercise_detail.dart/bloc/exercise_detail_cubit.dart';
 import 'package:health_app_flutter/feature/exercise_detail.dart/bloc/exercise_detail_state.dart';
 import 'package:health_app_flutter/generated/l10n.dart';
@@ -23,8 +24,10 @@ class ExerciseDetailScreen extends StatelessWidget {
         ),
       child: BlocBuilder<ExerciseDetailCubit, ExerciseDetailState>(
         buildWhen: (previous, current) =>
-            previous.getExerciseDetailStatus != current.getExerciseDetailStatus || 
-            previous.markFavoriteExerciseStatus != current.markFavoriteExerciseStatus,
+            previous.getExerciseDetailStatus !=
+                current.getExerciseDetailStatus ||
+            previous.markFavoriteExerciseStatus !=
+                current.markFavoriteExerciseStatus,
         builder: (context, state) {
           return Scaffold(
             backgroundColor: "#1f2933".toColor(),
@@ -41,9 +44,15 @@ class ExerciseDetailScreen extends StatelessWidget {
               ),
               actions: [
                 IconButton(
-                  onPressed: () => context
-                      .read<ExerciseDetailCubit>()
-                      .markAsFavorite(exerciseId: exerciseId,),
+                  onPressed: () async {
+                    context
+                        .read<ExerciseDetailCubit>()
+                        .markAsFavorite(exerciseId: exerciseId)
+                        .then(
+                          (value) => sl<BookmarkExerciseCubit>()
+                              .refreshBookmarkExercise(),
+                        );
+                  },
                   icon: Icon(
                     (state.exerciseDetail.isFavorite ?? false)
                         ? Icons.favorite

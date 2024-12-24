@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_app_flutter/feature/exercise_detail.dart/bloc/exercise_detail_state.dart';
 import 'package:health_app_flutter/feature/exercise_detail.dart/repository/exercise_detail_repository.dart';
@@ -69,6 +70,7 @@ class ExerciseDetailCubit extends Cubit<ExerciseDetailState> {
           ),
         ),
         (response) async {
+          debugPrint("markAsFavorite response: $response");
           emit(
             state.copyWith(
               markFavoriteExerciseStatus: MarkFavoriteExerciseStatus.finish,

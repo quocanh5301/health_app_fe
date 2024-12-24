@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:health_app_flutter/feature/alarm/alarm_list_screen.dart';
 import 'package:health_app_flutter/feature/base/bloc/base_cubit.dart';
 import 'package:health_app_flutter/feature/base/bloc/base_state.dart';
+import 'package:health_app_flutter/feature/bookmark_exercise/bookmark_exercise_screen.dart';
 import 'package:health_app_flutter/feature/exercise/exercise_list_screen.dart';
 import 'package:health_app_flutter/feature/home/home_tab.dart';
 import 'package:health_app_flutter/util/common_widget/overlay/my_overlay_controller.dart';
@@ -93,7 +94,7 @@ class _BaseScreenState extends State<BaseScreen> {
       case 2:
         return const AlarmListScreen();
       case 3:
-        return const Placeholder();
+        return const BookmarkExerciseList();
       default:
         return const Placeholder();
     }

@@ -24,9 +24,6 @@ mixin _$RunTrackState {
       throw _privateConstructorUsedError;
   SaveRunStatus get saveRunStatus => throw _privateConstructorUsedError;
   String get mess => throw _privateConstructorUsedError;
-  double get distance => throw _privateConstructorUsedError;
-  int get stepsCount => throw _privateConstructorUsedError;
-  int get duration => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RunTrackStateCopyWith<RunTrackState> get copyWith =>
@@ -45,10 +42,7 @@ abstract class $RunTrackStateCopyWith<$Res> {
       MyLocationPermission locationPermission,
       PhysicalActivityPermission physicalActivityPermission,
       SaveRunStatus saveRunStatus,
-      String mess,
-      double distance,
-      int stepsCount,
-      int duration});
+      String mess});
 
   $RunDataCopyWith<$Res> get runData;
 }
@@ -72,9 +66,6 @@ class _$RunTrackStateCopyWithImpl<$Res, $Val extends RunTrackState>
     Object? physicalActivityPermission = null,
     Object? saveRunStatus = null,
     Object? mess = null,
-    Object? distance = null,
-    Object? stepsCount = null,
-    Object? duration = null,
   }) {
     return _then(_value.copyWith(
       runData: null == runData
@@ -101,18 +92,6 @@ class _$RunTrackStateCopyWithImpl<$Res, $Val extends RunTrackState>
           ? _value.mess
           : mess // ignore: cast_nullable_to_non_nullable
               as String,
-      distance: null == distance
-          ? _value.distance
-          : distance // ignore: cast_nullable_to_non_nullable
-              as double,
-      stepsCount: null == stepsCount
-          ? _value.stepsCount
-          : stepsCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      duration: null == duration
-          ? _value.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 
@@ -139,10 +118,7 @@ abstract class _$$RunTrackStateImplCopyWith<$Res>
       MyLocationPermission locationPermission,
       PhysicalActivityPermission physicalActivityPermission,
       SaveRunStatus saveRunStatus,
-      String mess,
-      double distance,
-      int stepsCount,
-      int duration});
+      String mess});
 
   @override
   $RunDataCopyWith<$Res> get runData;
@@ -165,9 +141,6 @@ class __$$RunTrackStateImplCopyWithImpl<$Res>
     Object? physicalActivityPermission = null,
     Object? saveRunStatus = null,
     Object? mess = null,
-    Object? distance = null,
-    Object? stepsCount = null,
-    Object? duration = null,
   }) {
     return _then(_$RunTrackStateImpl(
       runData: null == runData
@@ -194,18 +167,6 @@ class __$$RunTrackStateImplCopyWithImpl<$Res>
           ? _value.mess
           : mess // ignore: cast_nullable_to_non_nullable
               as String,
-      distance: null == distance
-          ? _value.distance
-          : distance // ignore: cast_nullable_to_non_nullable
-              as double,
-      stepsCount: null == stepsCount
-          ? _value.stepsCount
-          : stepsCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      duration: null == duration
-          ? _value.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -219,10 +180,7 @@ class _$RunTrackStateImpl implements _RunTrackState {
       this.locationPermission = MyLocationPermission.initial,
       this.physicalActivityPermission = PhysicalActivityPermission.initial,
       this.saveRunStatus = SaveRunStatus.initial,
-      this.mess = "",
-      this.distance = 0,
-      this.stepsCount = 0,
-      this.duration = 0});
+      this.mess = ""});
 
   @override
   @JsonKey()
@@ -242,19 +200,10 @@ class _$RunTrackStateImpl implements _RunTrackState {
   @override
   @JsonKey()
   final String mess;
-  @override
-  @JsonKey()
-  final double distance;
-  @override
-  @JsonKey()
-  final int stepsCount;
-  @override
-  @JsonKey()
-  final int duration;
 
   @override
   String toString() {
-    return 'RunTrackState(runData: $runData, runTrackingStatus: $runTrackingStatus, locationPermission: $locationPermission, physicalActivityPermission: $physicalActivityPermission, saveRunStatus: $saveRunStatus, mess: $mess, distance: $distance, stepsCount: $stepsCount, duration: $duration)';
+    return 'RunTrackState(runData: $runData, runTrackingStatus: $runTrackingStatus, locationPermission: $locationPermission, physicalActivityPermission: $physicalActivityPermission, saveRunStatus: $saveRunStatus, mess: $mess)';
   }
 
   @override
@@ -273,27 +222,12 @@ class _$RunTrackStateImpl implements _RunTrackState {
                     physicalActivityPermission) &&
             (identical(other.saveRunStatus, saveRunStatus) ||
                 other.saveRunStatus == saveRunStatus) &&
-            (identical(other.mess, mess) || other.mess == mess) &&
-            (identical(other.distance, distance) ||
-                other.distance == distance) &&
-            (identical(other.stepsCount, stepsCount) ||
-                other.stepsCount == stepsCount) &&
-            (identical(other.duration, duration) ||
-                other.duration == duration));
+            (identical(other.mess, mess) || other.mess == mess));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      runData,
-      runTrackingStatus,
-      locationPermission,
-      physicalActivityPermission,
-      saveRunStatus,
-      mess,
-      distance,
-      stepsCount,
-      duration);
+  int get hashCode => Object.hash(runtimeType, runData, runTrackingStatus,
+      locationPermission, physicalActivityPermission, saveRunStatus, mess);
 
   @JsonKey(ignore: true)
   @override
@@ -309,10 +243,7 @@ abstract class _RunTrackState implements RunTrackState {
       final MyLocationPermission locationPermission,
       final PhysicalActivityPermission physicalActivityPermission,
       final SaveRunStatus saveRunStatus,
-      final String mess,
-      final double distance,
-      final int stepsCount,
-      final int duration}) = _$RunTrackStateImpl;
+      final String mess}) = _$RunTrackStateImpl;
 
   @override
   RunData get runData;
@@ -326,12 +257,6 @@ abstract class _RunTrackState implements RunTrackState {
   SaveRunStatus get saveRunStatus;
   @override
   String get mess;
-  @override
-  double get distance;
-  @override
-  int get stepsCount;
-  @override
-  int get duration;
   @override
   @JsonKey(ignore: true)
   _$$RunTrackStateImplCopyWith<_$RunTrackStateImpl> get copyWith =>
