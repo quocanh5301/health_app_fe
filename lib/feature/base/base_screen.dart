@@ -2,15 +2,16 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:health_app_flutter/feature/alarm/alarm_list_screen.dart';
 import 'package:health_app_flutter/feature/base/bloc/base_cubit.dart';
 import 'package:health_app_flutter/feature/base/bloc/base_state.dart';
-import 'package:health_app_flutter/util/common_widget/auto_slider.dart';
-import 'package:health_app_flutter/feature/alarm/widget/slide_to_confirm.dart';
-import 'package:health_app_flutter/util/common_widget/story/story_screen.dart';
-import 'package:health_app_flutter/util/common_widget/overlay/overlay_widget/time_picker.dart';
+import 'package:health_app_flutter/feature/bookmark_exercise/bookmark_exercise_screen.dart';
+import 'package:health_app_flutter/feature/exercise/exercise_list_screen.dart';
+import 'package:health_app_flutter/feature/home/home_tab.dart';
+import 'package:health_app_flutter/util/common_widget/overlay/my_overlay_controller.dart';
 import 'package:health_app_flutter/util/images.dart';
 import 'package:health_app_flutter/util/injection.dart';
-import 'package:health_app_flutter/util/router.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({super.key});
@@ -23,7 +24,7 @@ class _BaseScreenState extends State<BaseScreen> {
   final List<IconData> iconList = [
     Icons.home,
     Icons.explore,
-    Icons.menu,
+    Icons.alarm,
     Icons.person,
   ];
 
@@ -44,18 +45,23 @@ class _BaseScreenState extends State<BaseScreen> {
       child: BlocBuilder<BaseCubit, BaseState>(
         builder: (context, state) {
           return Scaffold(
+            extendBody: true,
             body: _getSelectedPage(state.tabIndex),
             floatingActionButton: FloatingActionButton(
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
               backgroundColor: Colors.grey[800],
-              onPressed: () {
-                // Implement any FAB action if needed
-              },
-              child: const Icon(
-                Icons.run_circle,
-                color: Colors.white,
+              onPressed: () =>
+                  MyOverlayController.showMeasureOptionDialog(context),
+              child: SvgPicture.asset(
+                AppImage.icMeasure,
+                colorFilter: const ColorFilter.mode(
+                  Colors.white,
+                  BlendMode.srcIn,
+                ),
+                width: 40.0,
+                height: 40.0,
               ),
             ),
             floatingActionButtonLocation:
@@ -82,33 +88,13 @@ class _BaseScreenState extends State<BaseScreen> {
   Widget _getSelectedPage(int index) {
     switch (index) {
       case 0:
-        return const AutoSlider(
-          images: [
-            AppImage.imgIntro1,
-            AppImage.imgIntro2,
-            AppImage.imgIntro3,
-          ],
-        );
+        return const HomeTab();
       case 1:
-        return Center(
-          child: SlideToConfirm(
-            title: 'Slide to view alarms',
-            onConfirm: () {
-              // Action to take place when the slide is completed
-              const AlarmListgRoute()
-                  .push(rootNavigatorKey.currentState!.context);
-              debugPrint('Confirmed!');
-            },
-          ),
-        );
+        return const ExerciseListScreen();
       case 2:
-        return StoryScreen();
+        return const AlarmListScreen();
       case 3:
-        return const TimerPicker(
-          selectedHour: 0,
-          selectedMinute: 0,
-          selectedSecond: 0,
-        );
+        return const BookmarkExerciseList();
       default:
         return const Placeholder();
     }

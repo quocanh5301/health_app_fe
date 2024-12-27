@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:health_app_flutter/data/share_pref/shared_pref.dart';
 import 'package:health_app_flutter/feature/first_intro/widget/intro_card.dart';
 import 'package:health_app_flutter/generated/l10n.dart';
 import 'package:health_app_flutter/util/animation/fade_in_bigger.dart';
@@ -126,13 +127,20 @@ class _FirstTimeIntroState extends State<FirstTimeIntro> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
                 child: InkWell(
-                  onTap: () => _currentPage == 2
-                      // ? const HomeRoute().push(context)
-                      ? const RunTrackingRoute().push(context)//!qa
-                      : _pageController.nextPage(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeIn,
-                        ),
+                  onTap: () async {
+                    if (_currentPage == 2) {
+                      await SharedPref.setIsFirstTime(false);
+                      if (mounted) {
+                        // ignore: use_build_context_synchronously
+                        const LoginRoute().push(context);
+                      }
+                    } else {
+                      _pageController.nextPage(
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeIn,
+                      );
+                    }
+                  },
                   child: Container(
                     padding: const EdgeInsets.all(14.0),
                     decoration: BoxDecoration(

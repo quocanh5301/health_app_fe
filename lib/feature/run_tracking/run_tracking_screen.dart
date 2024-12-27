@@ -14,7 +14,15 @@ class RunTrackingScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<RunTrackCubit>()..permissionsHandling(),
       child: Scaffold(
-        appBar: AppBar(title: Text("Fitness Tracker")),
+        backgroundColor: "#1f2933".toColor(),
+        appBar: AppBar(
+          backgroundColor: Colors.grey.withOpacity(0.3),
+          iconTheme: const IconThemeData(color: Colors.white),
+          title: Text(
+            "Fitness Tracker",
+            style: AppStyles.f18m().copyWith(color: Colors.white),
+          ),
+        ),
         body: BlocConsumer<RunTrackCubit, RunTrackState>(
           listenWhen: (previous, current) =>
               current.locationPermission == previous.locationPermission ||
@@ -24,36 +32,70 @@ class RunTrackingScreen extends StatelessWidget {
             if (state.locationPermission == MyLocationPermission.denied ||
                 state.physicalActivityPermission ==
                     PhysicalActivityPermission.denied) {
-              const FirstTimeIntroRoute().push(context);//!qa
-            } else if (state.locationPermission == MyLocationPermission.deniedForever ||
+              const BaseRoute().push(context); //!qa
+            } else if (state.locationPermission ==
+                    MyLocationPermission.deniedForever ||
                 state.physicalActivityPermission ==
-                    PhysicalActivityPermission.deniedForever){
-                      debugPrint("Denied forever");
+                    PhysicalActivityPermission.deniedForever) {
+              debugPrint("Denied forever");
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        "Please enable location and activity tracking from your device settings",
+                        style: AppStyles.f16m().copyWith(color: Colors.white),
+                      ),
+                    ),
+                  )
+                  .closed
+                  .then((value) => const BaseRoute().push(context));
             }
           },
           buildWhen: (previous, current) =>
-              current.runTrackingStatus == RunTrackingStatus.tracking,
+              previous.runTrackingStatus != current.runTrackingStatus ||
+              previous.saveRunStatus != current.saveRunStatus 
+              ||
+              // current.runData.distanceTraveled != previous.runData.distanceTraveled || 
+              // current.runData.stepsCount != previous.runData.stepsCount ||
+              current.runData.timePassed != previous.runData.timePassed,
           builder: (context, state) {
             return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Stack(
                 children: [
-                  Text(
-                      "Distance Traveled: ${state.runData.distanceTraveled} meters"),
-                  Text(
-                      "Step Count: ${state.runData.stepsCount.toStringAsFixed(2)}"),
-                  Text(
-                      "Time Passed: ${state.runData.timePassed.inSeconds} seconds"),
-                  const VerticalSpace(20),
-                  ElevatedButton(
-                    onPressed: () =>
-                        context.read<RunTrackCubit>().onStartTracking(),
-                    child: Text("Start"),
-                  ),
-                  ElevatedButton(
-                    onPressed: () =>
-                        context.read<RunTrackCubit>().onStopTracking(),
-                    child: Text("Stop"),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Distance Traveled: ${state.runData.distanceTraveled} meters",
+                        style: AppStyles.f16m().copyWith(color: Colors.white),
+                      ),
+                      const VerticalSpace(15),
+                      Text(
+                        "Step Count: ${state.runData.stepsCount.toStringAsFixed(2)}",
+                        style: AppStyles.f16m().copyWith(color: Colors.white),
+                      ),
+                      const VerticalSpace(15),
+                      Text(
+                        "Time Passed: ${state.runData.timePassed.inSeconds} seconds",
+                        style: AppStyles.f16m().copyWith(color: Colors.white),
+                      ),
+                      const VerticalSpace(30),
+                      ElevatedButton(
+                        onPressed: () => (state.runTrackingStatus ==
+                                RunTrackingStatus.tracking)
+                            ? context.read<RunTrackCubit>().onStopTracking()
+                            : context.read<RunTrackCubit>().onStartTracking(),
+                        child: Text(
+                          (state.runTrackingStatus ==
+                                  RunTrackingStatus.tracking)
+                              ? "Stop"
+                              : "Start",
+                          style: AppStyles.f18m().copyWith(
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

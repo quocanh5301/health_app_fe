@@ -8,10 +8,12 @@ part of 'router.dart';
 
 List<RouteBase> get $appRoutes => [
       $loginRoute,
+      $registerRoute,
       $firstTimeIntroRoute,
       $baseRoute,
       $runTrackingRoute,
-      $alarmListgRoute,
+      $heartBPMTrackingRoute,
+      $exerciseDetailRoute,
     ];
 
 RouteBase get $loginRoute => GoRouteData.$route(
@@ -24,6 +26,28 @@ extension $LoginRouteExtension on LoginRoute {
 
   String get location => GoRouteData.$location(
         '/login',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $registerRoute => GoRouteData.$route(
+      path: '/register',
+      factory: $RegisterRouteExtension._fromState,
+    );
+
+extension $RegisterRouteExtension on RegisterRoute {
+  static RegisterRoute _fromState(GoRouterState state) => const RegisterRoute();
+
+  String get location => GoRouteData.$location(
+        '/register',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -104,17 +128,45 @@ extension $RunTrackingRouteExtension on RunTrackingRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $alarmListgRoute => GoRouteData.$route(
-      path: '/alarm_list',
-      factory: $AlarmListgRouteExtension._fromState,
+RouteBase get $heartBPMTrackingRoute => GoRouteData.$route(
+      path: '/heart_bpm_tracking',
+      factory: $HeartBPMTrackingRouteExtension._fromState,
     );
 
-extension $AlarmListgRouteExtension on AlarmListgRoute {
-  static AlarmListgRoute _fromState(GoRouterState state) =>
-      const AlarmListgRoute();
+extension $HeartBPMTrackingRouteExtension on HeartBPMTrackingRoute {
+  static HeartBPMTrackingRoute _fromState(GoRouterState state) =>
+      const HeartBPMTrackingRoute();
 
   String get location => GoRouteData.$location(
-        '/alarm_list',
+        '/heart_bpm_tracking',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $exerciseDetailRoute => GoRouteData.$route(
+      path: '/exercise_detail',
+      factory: $ExerciseDetailRouteExtension._fromState,
+    );
+
+extension $ExerciseDetailRouteExtension on ExerciseDetailRoute {
+  static ExerciseDetailRoute _fromState(GoRouterState state) =>
+      ExerciseDetailRoute(
+        exerciseId: int.parse(state.uri.queryParameters['exercise-id']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/exercise_detail',
+        queryParams: {
+          'exercise-id': exerciseId.toString(),
+        },
       );
 
   void go(BuildContext context) => context.go(location);

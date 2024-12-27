@@ -22,6 +22,7 @@ mixin _$RunTrackState {
       throw _privateConstructorUsedError;
   PhysicalActivityPermission get physicalActivityPermission =>
       throw _privateConstructorUsedError;
+  SaveRunStatus get saveRunStatus => throw _privateConstructorUsedError;
   String get mess => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -40,6 +41,7 @@ abstract class $RunTrackStateCopyWith<$Res> {
       RunTrackingStatus runTrackingStatus,
       MyLocationPermission locationPermission,
       PhysicalActivityPermission physicalActivityPermission,
+      SaveRunStatus saveRunStatus,
       String mess});
 
   $RunDataCopyWith<$Res> get runData;
@@ -62,6 +64,7 @@ class _$RunTrackStateCopyWithImpl<$Res, $Val extends RunTrackState>
     Object? runTrackingStatus = null,
     Object? locationPermission = null,
     Object? physicalActivityPermission = null,
+    Object? saveRunStatus = null,
     Object? mess = null,
   }) {
     return _then(_value.copyWith(
@@ -81,6 +84,10 @@ class _$RunTrackStateCopyWithImpl<$Res, $Val extends RunTrackState>
           ? _value.physicalActivityPermission
           : physicalActivityPermission // ignore: cast_nullable_to_non_nullable
               as PhysicalActivityPermission,
+      saveRunStatus: null == saveRunStatus
+          ? _value.saveRunStatus
+          : saveRunStatus // ignore: cast_nullable_to_non_nullable
+              as SaveRunStatus,
       mess: null == mess
           ? _value.mess
           : mess // ignore: cast_nullable_to_non_nullable
@@ -110,6 +117,7 @@ abstract class _$$RunTrackStateImplCopyWith<$Res>
       RunTrackingStatus runTrackingStatus,
       MyLocationPermission locationPermission,
       PhysicalActivityPermission physicalActivityPermission,
+      SaveRunStatus saveRunStatus,
       String mess});
 
   @override
@@ -131,6 +139,7 @@ class __$$RunTrackStateImplCopyWithImpl<$Res>
     Object? runTrackingStatus = null,
     Object? locationPermission = null,
     Object? physicalActivityPermission = null,
+    Object? saveRunStatus = null,
     Object? mess = null,
   }) {
     return _then(_$RunTrackStateImpl(
@@ -150,6 +159,10 @@ class __$$RunTrackStateImplCopyWithImpl<$Res>
           ? _value.physicalActivityPermission
           : physicalActivityPermission // ignore: cast_nullable_to_non_nullable
               as PhysicalActivityPermission,
+      saveRunStatus: null == saveRunStatus
+          ? _value.saveRunStatus
+          : saveRunStatus // ignore: cast_nullable_to_non_nullable
+              as SaveRunStatus,
       mess: null == mess
           ? _value.mess
           : mess // ignore: cast_nullable_to_non_nullable
@@ -166,6 +179,7 @@ class _$RunTrackStateImpl implements _RunTrackState {
       this.runTrackingStatus = RunTrackingStatus.initial,
       this.locationPermission = MyLocationPermission.initial,
       this.physicalActivityPermission = PhysicalActivityPermission.initial,
+      this.saveRunStatus = SaveRunStatus.initial,
       this.mess = ""});
 
   @override
@@ -182,11 +196,14 @@ class _$RunTrackStateImpl implements _RunTrackState {
   final PhysicalActivityPermission physicalActivityPermission;
   @override
   @JsonKey()
+  final SaveRunStatus saveRunStatus;
+  @override
+  @JsonKey()
   final String mess;
 
   @override
   String toString() {
-    return 'RunTrackState(runData: $runData, runTrackingStatus: $runTrackingStatus, locationPermission: $locationPermission, physicalActivityPermission: $physicalActivityPermission, mess: $mess)';
+    return 'RunTrackState(runData: $runData, runTrackingStatus: $runTrackingStatus, locationPermission: $locationPermission, physicalActivityPermission: $physicalActivityPermission, saveRunStatus: $saveRunStatus, mess: $mess)';
   }
 
   @override
@@ -203,12 +220,14 @@ class _$RunTrackStateImpl implements _RunTrackState {
                     physicalActivityPermission) ||
                 other.physicalActivityPermission ==
                     physicalActivityPermission) &&
+            (identical(other.saveRunStatus, saveRunStatus) ||
+                other.saveRunStatus == saveRunStatus) &&
             (identical(other.mess, mess) || other.mess == mess));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, runData, runTrackingStatus,
-      locationPermission, physicalActivityPermission, mess);
+      locationPermission, physicalActivityPermission, saveRunStatus, mess);
 
   @JsonKey(ignore: true)
   @override
@@ -223,6 +242,7 @@ abstract class _RunTrackState implements RunTrackState {
       final RunTrackingStatus runTrackingStatus,
       final MyLocationPermission locationPermission,
       final PhysicalActivityPermission physicalActivityPermission,
+      final SaveRunStatus saveRunStatus,
       final String mess}) = _$RunTrackStateImpl;
 
   @override
@@ -233,6 +253,8 @@ abstract class _RunTrackState implements RunTrackState {
   MyLocationPermission get locationPermission;
   @override
   PhysicalActivityPermission get physicalActivityPermission;
+  @override
+  SaveRunStatus get saveRunStatus;
   @override
   String get mess;
   @override

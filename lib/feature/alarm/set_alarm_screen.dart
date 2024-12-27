@@ -83,11 +83,13 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(16.0),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
                   child: Text(
                     'Customize days',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    style: AppStyles.f18m().copyWith(
+                      color: Colors.black,
+                    ),
                   ),
                 ),
                 Expanded(
@@ -105,7 +107,9 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
                             MaterialStateProperty.all("b0bec5".toColor()),
                         title: Text(
                           daysOfWeek[index],
-                          style: const TextStyle(color: Colors.white),
+                          style: AppStyles.f16m().copyWith(
+                            color: Colors.white,
+                          ),
                         ),
                         value: selectedDays.contains(index + 1),
                         onChanged: (bool? value) {
@@ -235,12 +239,14 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: "64b5f6".toColor(),
+                          color: Colors.white.withOpacity(0.5),
                         ),
                         child: Text(
                           state.dateTime,
-                          style: AppStyles.f20sb()
-                              .copyWith(color: Colors.white, fontSize: 30),
+                          style: AppStyles.f20sb().copyWith(
+                            color: Colors.white,
+                            fontSize: 30,
+                          ),
                         ),
                       ),
                     ),
@@ -386,7 +392,7 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
           onPressed: () => Navigator.pop(context, null),
           child: Text(
             'Cancel',
-            style: AppStyles.f20m().copyWith(color: "89C8FE".toColor()),
+            style: AppStyles.f20m().copyWith(color: Colors.white),
           ),
         ),
         TextButton(
@@ -411,7 +417,7 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
           },
           child: Text(
             'Save',
-            style: AppStyles.f20m().copyWith(color: "89C8FE".toColor()),
+            style: AppStyles.f20m().copyWith(color: Colors.white),
           ),
         ),
       ],

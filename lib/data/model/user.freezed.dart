@@ -20,12 +20,18 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
-  String get apiKey => throw _privateConstructorUsedError;
-  String get refreshApiKey => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_name')
+  String? get userName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_email')
+  String? get userEmail => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_age')
+  int? get userAge => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_height')
+  int? get height => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_weight')
+  int? get weight => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,12 +44,12 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String email,
-      String image,
-      String apiKey,
-      String refreshApiKey});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'user_name') String? userName,
+      @JsonKey(name: 'user_email') String? userEmail,
+      @JsonKey(name: 'user_age') int? userAge,
+      @JsonKey(name: 'user_height') int? height,
+      @JsonKey(name: 'user_weight') int? weight});
 }
 
 /// @nodoc
@@ -59,38 +65,38 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? email = null,
-    Object? image = null,
-    Object? apiKey = null,
-    Object? refreshApiKey = null,
+    Object? id = freezed,
+    Object? userName = freezed,
+    Object? userEmail = freezed,
+    Object? userAge = freezed,
+    Object? height = freezed,
+    Object? weight = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      apiKey: null == apiKey
-          ? _value.apiKey
-          : apiKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      refreshApiKey: null == refreshApiKey
-          ? _value.refreshApiKey
-          : refreshApiKey // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userEmail: freezed == userEmail
+          ? _value.userEmail
+          : userEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userAge: freezed == userAge
+          ? _value.userAge
+          : userAge // ignore: cast_nullable_to_non_nullable
+              as int?,
+      height: freezed == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int?,
+      weight: freezed == weight
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -103,12 +109,12 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String email,
-      String image,
-      String apiKey,
-      String refreshApiKey});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'user_name') String? userName,
+      @JsonKey(name: 'user_email') String? userEmail,
+      @JsonKey(name: 'user_age') int? userAge,
+      @JsonKey(name: 'user_height') int? height,
+      @JsonKey(name: 'user_weight') int? weight});
 }
 
 /// @nodoc
@@ -121,91 +127,78 @@ class __$$UserImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? email = null,
-    Object? image = null,
-    Object? apiKey = null,
-    Object? refreshApiKey = null,
+    Object? id = freezed,
+    Object? userName = freezed,
+    Object? userEmail = freezed,
+    Object? userAge = freezed,
+    Object? height = freezed,
+    Object? weight = freezed,
   }) {
     return _then(_$UserImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      apiKey: null == apiKey
-          ? _value.apiKey
-          : apiKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      refreshApiKey: null == refreshApiKey
-          ? _value.refreshApiKey
-          : refreshApiKey // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userEmail: freezed == userEmail
+          ? _value.userEmail
+          : userEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userAge: freezed == userAge
+          ? _value.userAge
+          : userAge // ignore: cast_nullable_to_non_nullable
+              as int?,
+      height: freezed == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int?,
+      weight: freezed == weight
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$UserImpl with DiagnosticableTreeMixin implements _User {
+class _$UserImpl implements _User {
   const _$UserImpl(
-      {this.id = 0,
-      this.name = "",
-      this.email = "",
-      this.image = "",
-      this.apiKey = "",
-      this.refreshApiKey = ""});
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'user_name') this.userName,
+      @JsonKey(name: 'user_email') this.userEmail,
+      @JsonKey(name: 'user_age') this.userAge,
+      @JsonKey(name: 'user_height') this.height,
+      @JsonKey(name: 'user_weight') this.weight});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
 
   @override
-  @JsonKey()
-  final int id;
+  @JsonKey(name: 'id')
+  final int? id;
   @override
-  @JsonKey()
-  final String name;
+  @JsonKey(name: 'user_name')
+  final String? userName;
   @override
-  @JsonKey()
-  final String email;
+  @JsonKey(name: 'user_email')
+  final String? userEmail;
   @override
-  @JsonKey()
-  final String image;
+  @JsonKey(name: 'user_age')
+  final int? userAge;
   @override
-  @JsonKey()
-  final String apiKey;
+  @JsonKey(name: 'user_height')
+  final int? height;
   @override
-  @JsonKey()
-  final String refreshApiKey;
+  @JsonKey(name: 'user_weight')
+  final int? weight;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(id: $id, name: $name, email: $email, image: $image, apiKey: $apiKey, refreshApiKey: $refreshApiKey)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'User'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('image', image))
-      ..add(DiagnosticsProperty('apiKey', apiKey))
-      ..add(DiagnosticsProperty('refreshApiKey', refreshApiKey));
+  String toString() {
+    return 'User(id: $id, userName: $userName, userEmail: $userEmail, userAge: $userAge, height: $height, weight: $weight)';
   }
 
   @override
@@ -214,18 +207,19 @@ class _$UserImpl with DiagnosticableTreeMixin implements _User {
         (other.runtimeType == runtimeType &&
             other is _$UserImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.apiKey, apiKey) || other.apiKey == apiKey) &&
-            (identical(other.refreshApiKey, refreshApiKey) ||
-                other.refreshApiKey == refreshApiKey));
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
+            (identical(other.userEmail, userEmail) ||
+                other.userEmail == userEmail) &&
+            (identical(other.userAge, userAge) || other.userAge == userAge) &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.weight, weight) || other.weight == weight));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, email, image, apiKey, refreshApiKey);
+  int get hashCode => Object.hash(
+      runtimeType, id, userName, userEmail, userAge, height, weight);
 
   @JsonKey(ignore: true)
   @override
@@ -243,27 +237,33 @@ class _$UserImpl with DiagnosticableTreeMixin implements _User {
 
 abstract class _User implements User {
   const factory _User(
-      {final int id,
-      final String name,
-      final String email,
-      final String image,
-      final String apiKey,
-      final String refreshApiKey}) = _$UserImpl;
+      {@JsonKey(name: 'id') final int? id,
+      @JsonKey(name: 'user_name') final String? userName,
+      @JsonKey(name: 'user_email') final String? userEmail,
+      @JsonKey(name: 'user_age') final int? userAge,
+      @JsonKey(name: 'user_height') final int? height,
+      @JsonKey(name: 'user_weight') final int? weight}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
   @override
-  int get id;
+  @JsonKey(name: 'id')
+  int? get id;
   @override
-  String get name;
+  @JsonKey(name: 'user_name')
+  String? get userName;
   @override
-  String get email;
+  @JsonKey(name: 'user_email')
+  String? get userEmail;
   @override
-  String get image;
+  @JsonKey(name: 'user_age')
+  int? get userAge;
   @override
-  String get apiKey;
+  @JsonKey(name: 'user_height')
+  int? get height;
   @override
-  String get refreshApiKey;
+  @JsonKey(name: 'user_weight')
+  int? get weight;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

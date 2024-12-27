@@ -14,6 +14,11 @@
 			<string>processing</string>
 		</array>
 
+		<key>NSCameraUsageDescription</key>
+		<string>Heart BPM plugin would like to use camera to measure your heart rate.</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>Can I use the mic please?</string>
+
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
