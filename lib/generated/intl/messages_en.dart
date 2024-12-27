@@ -49,7 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "glutes": MessageLookupByLibrary.simpleMessage("Glutes"),
         "intermediate": MessageLookupByLibrary.simpleMessage("Intermediate"),
         "intro": MessageLookupByLibrary.simpleMessage(
-            "We are the largest community sharing cooking recipes in Vietnam"),
+            "We are the best health tracker app in Vietnam"),
         "introDescription1": MessageLookupByLibrary.simpleMessage(
             "Stay active and improve your endurance by incorporating daily runs into your routine. Track your progress and keep moving forward!"),
         "introDescription2": MessageLookupByLibrary.simpleMessage(

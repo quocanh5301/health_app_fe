@@ -84,6 +84,7 @@ class HomeTab extends StatelessWidget {
                     separatorBuilder: (context, index) =>
                         const VerticalSpace(10),
                   ),
+                  const VerticalSpace(80),
                 ],
               ),
             ),

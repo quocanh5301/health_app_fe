@@ -160,10 +160,10 @@ class S {
     );
   }
 
-  /// `We are the largest community sharing cooking recipes in Vietnam`
+  /// `We are the best health tracker app in Vietnam`
   String get intro {
     return Intl.message(
-      'We are the largest community sharing cooking recipes in Vietnam',
+      'We are the best health tracker app in Vietnam',
       name: 'intro',
       desc: '',
       args: [],

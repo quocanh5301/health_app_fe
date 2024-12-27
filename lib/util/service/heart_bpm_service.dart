@@ -3,6 +3,7 @@
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:health_app_flutter/util/styles.dart';
 
 /// Class to store one sample data point
 class SensorValue {
@@ -301,7 +302,10 @@ class HeartBPPView extends State<HeartBPMDialog> {
                 ),
                 //A developer has to choose whether they want to show this Text widget. (Implemented by Karl Mathuthu)
                 if (widget.showTextValues == true) ...{
-                  Text(currentValue.toStringAsFixed(0)),
+                  Text(
+                    currentValue.toStringAsFixed(0),
+                    style: AppStyles.f16m().copyWith(color: Colors.white),
+                  ),
                 } else
                   const SizedBox(),
                 widget.child == null ? const SizedBox() : widget.child!,
